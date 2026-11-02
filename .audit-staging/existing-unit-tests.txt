@@ -1,0 +1,16 @@
+test_cycle_graph_c4 (test_unit.TestGraphData.test_cycle_graph_c4) ... ok
+test_disconnected_components (test_unit.TestGraphData.test_disconnected_components) ... ok
+test_path_graph_p4 (test_unit.TestGraphData.test_path_graph_p4) ... ok
+test_cp_sat_baseline (test_unit.TestSolversCorrectness.test_cp_sat_baseline) ... ok
+test_cplex_cp_baseline (test_unit.TestSolversCorrectness.test_cplex_cp_baseline) ... ok
+test_cplex_mip_baseline (test_unit.TestSolversCorrectness.test_cplex_mip_baseline) ... ok
+test_gurobi_mip_baseline (test_unit.TestSolversCorrectness.test_gurobi_mip_baseline) ... ok
+test_order_incremental (test_unit.TestSolversCorrectness.test_order_incremental) ... ok
+test_order_iterative (test_unit.TestSolversCorrectness.test_order_iterative) ... ok
+test_pairwise_incremental (test_unit.TestSolversCorrectness.test_pairwise_incremental) ... ok
+test_pairwise_iterative (test_unit.TestSolversCorrectness.test_pairwise_iterative) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.015s
+
+OK

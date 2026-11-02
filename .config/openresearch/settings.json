@@ -1,0 +1,26 @@
+{
+  "acpHarnesses": [],
+  "ssh": {
+    "defaultHost": null,
+    "hosts": {}
+  },
+  "installId": "1b879aaa-f2c7-4017-83b6-5a4390c772ed",
+  "telemetryDisabled": null,
+  "dataDir": null,
+  "cacheDir": null,
+  "orxBinaryPath": null,
+  "defaultBackend": null,
+  "defaultFlavor": null,
+  "researchAreas": [],
+  "otherArea": null,
+  "background": null,
+  "linkedPapers": [],
+  "githubForNewProjects": null,
+  "githubDefaultPromptSeen": null,
+  "disabledLitSources": [],
+  "autoUpdate": null,
+  "updateChannel": null,
+  "firstActionReported": [],
+  "dashboardLocale": null,
+  "harnessSnapshot": null
+}
