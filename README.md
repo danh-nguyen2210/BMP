@@ -8,7 +8,7 @@ Dự án Bài tập lớn số 2 - Môn Các vấn đề hiện đại trong Kho
 Cho đồ thị vô hướng $G = (V, E)$ với $n = |V|$ đỉnh và $m = |E|$ cạnh. Một phép gán nhãn (song ánh) $f: V \to \{1, 2, \dots, n\}$ sắp xếp các đỉnh đồ thị lên các vị trí nguyên liên tiếp trên một đường thẳng. Băng thông của đồ thị tương ứng với phép gán $f$ là độ lệch nhãn lớn nhất trên các cạnh:
 $$B(G) = \min_{f} \max_{(u, v) \in E} |f(u) - f(v)|$$
 
-Bài toán BMP là bài toán tối ưu tổ hợp **NP-khó** (NP-hard), đóng vai trò then chốt trong đại số tuyến tính tính toán (giảm độ rộng băng dải của ma trận thưa để tăng tốc giải hệ $Ax = b$ từ $O(n^3)$ xuống $O(n \cdot B^2)$), thiết kế vi mạch VLSI, và nén dữ liệu mạng.
+Bài toán BMP là bài toán tối ưu tổ hợp **NP-khó** (NP-hard), đóng vai trò then chốt trong đại số tuyến tính tính toán (giảm độ rộng băng dải của ma trận thưa để tăng tốc giải hệ $Ax = b$, thiết kế vi mạch VLSI, và nén dữ liệu mạng.
 
 ---
 
