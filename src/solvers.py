@@ -5,12 +5,40 @@
 4. OrderIncrementalSolver: Order Encoding (Biến phụ G của Thầy) + Incremental SAT
 
 Tích hợp:
+- BƯỚC 1: Ràng buộc Song ánh cho biến X (Bijective Assignment):
+  (1.1) ALO: Mỗi đỉnh nhận ít nhất 1 nhãn.
+  (1.2) AMO: Mỗi đỉnh nhận tối đa 1 nhãn.
+  (1.3) Injective: Không 2 đỉnh nào trùng nhãn.
+  Hỗ trợ các phương pháp mã hóa AMO/ALO nâng cao: pairwise, sequential, binary, commander, product.
+- Giới hạn kích thước đồ thị: Đồ thị n > 400 sẽ tự động trả về MEM_EXCEED (Memory Exceeded).
+- Giới hạn thời gian (Timeout): Mỗi bài toán tối đa 10 phút (600 giây).
 - Tối ưu 4.4.2: Thu hẹp khoảng tìm kiếm [LB, UB] bằng Heuristic RCM và lý thuyết đồ thị.
 - Tối ưu 4.4.3: Phân rã thành phần liên thông (Connected Components).
 """
 
+import multiprocessing as mp
+import sys
 import time
 from pysat.solvers import Cadical153
+from src.cardinality import encode_bijective_assignment
+
+sys.stdout.reconfigure(encoding="utf-8")
+
+
+def _worker_solve_entry(solver_instance, use_heuristics, use_components, strategy, verbose, queue):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        solver_instance._queue = queue
+        res = solver_instance._solve_direct(
+            use_heuristics=use_heuristics,
+            use_components=use_components,
+            strategy=strategy,
+            verbose=verbose,
+        )
+        queue.put(("RESULT", res))
+    except Exception as e:
+        import traceback
+        queue.put(("ERROR", traceback.format_exc()))
 
 
 class SolverResult:
@@ -23,6 +51,7 @@ class SolverResult:
         clauses_count=0,
         vars_count=0,
         labeling=None,
+        status="OPTIMAL",
     ):
         self.bandwidth = bandwidth
         self.runtime = runtime
@@ -30,21 +59,24 @@ class SolverResult:
         self.clauses_count = clauses_count
         self.vars_count = vars_count
         self.labeling = labeling or {}
+        self.status = status
 
     def __repr__(self):
         return (
-            f"SolverResult(bw={self.bandwidth}, time={self.runtime:.3f}s,"
-            f" iters={self.iterations}, clauses={self.clauses_count},"
-            f" vars={self.vars_count})"
+            f"SolverResult(bw={self.bandwidth}, status={self.status},"
+            f" time={self.runtime:.3f}s, iters={self.iterations},"
+            f" clauses={self.clauses_count}, vars={self.vars_count})"
         )
 
 
 class BaseBMPSolver:
 
-    def __init__(self, graph):
+    def __init__(self, graph, amo_method="pairwise", timeout=600.0):
         self.graph = graph
         self.n = graph.n
         self.edges = graph.edges
+        self.amo_method = amo_method.lower().replace("-", "_").replace(" ", "")
+        self.timeout = timeout
 
     def solve(
         self,
@@ -53,12 +85,121 @@ class BaseBMPSolver:
         strategy="binary",
         verbose=False,
     ):
-        """Phương thức giải chính điều phối tối ưu 4.4.2 và 4.4.3.
-
-        strategy: 'binary' (tìm kiếm nhị phân) hoặc 'linear' (tìm kiếm tuyến
-        tính giảm dần từ UB).
-        """
+        """Phương thức giải chính điều phối tối ưu 4.4.2, 4.4.3 và quản lý Timeout cứng qua Process Watchdog."""
         start_time = time.time()
+        self.start_time = start_time
+
+        # Kiểm tra giới hạn bộ nhớ theo yêu cầu: n > 400 không cần chạy, trả về MEM_EXCEED
+        if self.n > 400:
+            if verbose:
+                print(
+                    f"[{self.__class__.__name__}] n = {self.n} > 400 ->"
+                    " Memory Exceeded (MEM_EXCEED). Bỏ qua giải toán.",
+                    flush=True,
+                )
+            return SolverResult(
+                bandwidth="MEM_EXCEED",
+                runtime=0.0,
+                iterations=0,
+                clauses_count=0,
+                vars_count=0,
+                status="MEM_EXCEED",
+            )
+
+        # Chạy trong tiến trình con (Process Watchdog) cho đồ thị n > 30 để ngắt cứng 100% khi hết timeout
+        if getattr(self, "timeout", None) and self.timeout > 0 and self.n > 30:
+            q = mp.Queue()
+            p = mp.Process(
+                target=_worker_solve_entry,
+                args=(self, use_heuristics, use_components, strategy, verbose, q),
+            )
+            t0 = time.time()
+            p.start()
+
+            best_bw = self.graph.compute_rcm_ub() if use_heuristics else self.n - 1
+            best_lbl = self.graph.get_rcm_labeling()
+            total_iters = 0
+            total_clauses = 0
+            total_vars = 0
+
+            while time.time() - t0 < self.timeout:
+                if not p.is_alive():
+                    break
+                while not q.empty():
+                    try:
+                        msg = q.get_nowait()
+                        if msg[0] == "PROGRESS":
+                            best_bw = msg[1]
+                            total_iters = msg[2]
+                            best_lbl = msg[3]
+                            total_clauses = msg[4]
+                            total_vars = msg[5]
+                        elif msg[0] == "RESULT":
+                            p.join(timeout=1)
+                            return msg[1]
+                        elif msg[0] == "ERROR":
+                            p.join(timeout=1)
+                            raise RuntimeError(msg[1])
+                    except Exception:
+                        break
+                time.sleep(0.1)
+
+            init_ub = self.graph.compute_rcm_ub() if use_heuristics else self.n - 1
+            if p.is_alive():
+                if verbose:
+                    print(
+                        f"\n  [Timeout] Quá thời gian quy định ({self.timeout}s). Dừng tiến trình solver...",
+                        flush=True,
+                    )
+                p.terminate()
+                p.join(timeout=2)
+                if p.is_alive():
+                    p.kill()
+                    p.join()
+                reported_bw = best_bw if (total_iters > 0 and best_bw != init_ub) else "TIMEOUT"
+                return SolverResult(
+                    bandwidth=reported_bw,
+                    runtime=time.time() - t0,
+                    iterations=total_iters,
+                    clauses_count=total_clauses,
+                    vars_count=total_vars,
+                    labeling=best_lbl,
+                    status="TIMEOUT",
+                )
+            else:
+                p.join()
+                while not q.empty():
+                    msg = q.get_nowait()
+                    if msg[0] == "RESULT":
+                        return msg[1]
+                    elif msg[0] == "ERROR":
+                        raise RuntimeError(msg[1])
+                reported_bw = best_bw if (total_iters > 0 and best_bw != init_ub) else "TIMEOUT"
+                return SolverResult(
+                    bandwidth=reported_bw,
+                    runtime=time.time() - t0,
+                    iterations=total_iters,
+                    clauses_count=total_clauses,
+                    vars_count=total_vars,
+                    labeling=best_lbl,
+                    status="TIMEOUT",
+                )
+
+        return self._solve_direct(
+            use_heuristics=use_heuristics,
+            use_components=use_components,
+            strategy=strategy,
+            verbose=verbose,
+        )
+
+    def _solve_direct(
+        self,
+        use_heuristics=True,
+        use_components=True,
+        strategy="binary",
+        verbose=False,
+    ):
+        start_time = getattr(self, "start_time", None) or time.time()
 
         # Tối ưu 4.4.3: Phân rã thành phần liên thông
         if use_components:
@@ -67,7 +208,8 @@ class BaseBMPSolver:
                 if verbose:
                     print(
                         f"[{self.__class__.__name__}] Decomposed into"
-                        f" {len(components)} connected components."
+                        f" {len(components)} connected components.",
+                        flush=True,
                     )
                 max_bw = 0
                 total_iters = 0
@@ -77,6 +219,17 @@ class BaseBMPSolver:
                 total_offset = 0
 
                 for comp in components:
+                    rem_time = max(0.1, self.timeout - (time.time() - start_time))
+                    if self.timeout and time.time() - start_time >= self.timeout:
+                        return SolverResult(
+                            bandwidth="TIMEOUT",
+                            runtime=time.time() - start_time,
+                            iterations=total_iters,
+                            clauses_count=total_clauses,
+                            vars_count=total_vars,
+                            status="TIMEOUT",
+                        )
+
                     if comp.n <= 1:
                         comp_bw = 0
                         comp_labeling = {1: 1}
@@ -84,19 +237,25 @@ class BaseBMPSolver:
                         comp_bw = 1 if comp.m > 0 else 0
                         comp_labeling = {1: 1, 2: 2}
                     else:
-                        sub_solver = self.__class__(comp)
+                        sub_solver = self.__class__(
+                            comp, amo_method=self.amo_method, timeout=0.0
+                        )
+                        sub_solver.start_time = self.start_time
+                        sub_solver._queue = getattr(self, "_queue", None)
                         res = sub_solver._solve_single_graph(
                             use_heuristics=use_heuristics,
                             strategy=strategy,
                             verbose=verbose,
                         )
+                        if res.status in ("MEM_EXCEED", "TIMEOUT"):
+                            return res
                         comp_bw = res.bandwidth
                         comp_labeling = res.labeling
                         total_iters += res.iterations
                         total_clauses += res.clauses_count
                         total_vars += res.vars_count
 
-                    if comp_bw > max_bw:
+                    if isinstance(comp_bw, int) and comp_bw > max_bw:
                         max_bw = comp_bw
 
                     orig_nodes = getattr(comp, "original_nodes", list(range(1, comp.n + 1)))
@@ -113,16 +272,19 @@ class BaseBMPSolver:
                     clauses_count=total_clauses,
                     vars_count=total_vars,
                     labeling=global_labeling,
+                    status="OPTIMAL",
                 )
 
         # Nếu đồ thị liên thông hoặc không dùng phân rã
         res = self._solve_single_graph(
-            use_heuristics=use_heuristics, strategy=strategy, verbose=verbose
+            use_heuristics=use_heuristics,
+            strategy=strategy,
+            verbose=verbose,
         )
         res.runtime = time.time() - start_time
         return res
 
-    def _solve_single_graph(self, use_heuristics, verbose):
+    def _solve_single_graph(self, use_heuristics, strategy, verbose):
         raise NotImplementedError
 
 
@@ -136,29 +298,18 @@ class PairwiseIterativeSolver(BaseBMPSolver):
         return (u - 1) * self.n + i
 
     def _build_base_clauses(self):
-        clauses = []
-        n = self.n
+        """BƯỚC 1: Ràng buộc Song ánh cho biến X (Bijective Assignment)
 
-        # 1. ALO: Mỗi đỉnh nhận ít nhất 1 nhãn
-        for u in range(1, n + 1):
-            clauses.append([self._get_var_x(u, i) for i in range(1, n + 1)])
-
-        # 2. AMO: Mỗi đỉnh nhận tối đa 1 nhãn
-        for u in range(1, n + 1):
-            for i in range(1, n + 1):
-                for j in range(i + 1, n + 1):
-                    clauses.append(
-                        [-self._get_var_x(u, i), -self._get_var_x(u, j)]
-                    )
-
-        # 3. Đơn ánh (Injective): Không 2 đỉnh nào cùng nhãn
-        for i in range(1, n + 1):
-            for u in range(1, n + 1):
-                for v in range(u + 1, n + 1):
-                    clauses.append(
-                        [-self._get_var_x(u, i), -self._get_var_x(v, i)]
-                    )
-
+        (1.1) ALO: Mỗi đỉnh nhận ít nhất 1 nhãn.
+        (1.2) AMO: Mỗi đỉnh nhận tối đa 1 nhãn (qua phương pháp amo_method).
+        (1.3) Đơn ánh: Mỗi nhãn gán cho tối đa 1 đỉnh (qua phương pháp amo_method).
+        """
+        clauses, self.top_var = encode_bijective_assignment(
+            self.n,
+            self._get_var_x,
+            top_id=self.n * self.n,
+            amo_method=self.amo_method,
+        )
         return clauses
 
     def _get_bandwidth_clauses(self, k):
@@ -175,9 +326,16 @@ class PairwiseIterativeSolver(BaseBMPSolver):
         return clauses
 
     def _solve_single_graph(self, use_heuristics, strategy, verbose):
+        start_time = getattr(self, "start_time", None) or time.time()
+
         n = self.n
+        if n > 400:
+            return SolverResult(
+                bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
+            )
+
         if n <= 1 or not self.edges:
-            return SolverResult(0, 0, 0)
+            return SolverResult(0, 0, 0, status="OPTIMAL")
 
         # Tối ưu 4.4.2: Xác định khoảng [low, high]
         if use_heuristics:
@@ -189,19 +347,31 @@ class PairwiseIterativeSolver(BaseBMPSolver):
 
         if verbose:
             print(
-                f"[Pairwise-Iterative] Strategy: {strategy}, Search range:"
+                f"[Pairwise-Iterative ({self.amo_method})] Strategy: {strategy}, Search range:"
                 f" [{low}, {high}]"
             )
 
         if low >= high:
-            return SolverResult(bandwidth=high, runtime=0, iterations=0, labeling=self.graph.get_rcm_labeling())
+            return SolverResult(
+                bandwidth=high,
+                runtime=0,
+                iterations=0,
+                labeling=self.graph.get_rcm_labeling(),
+                status="OPTIMAL",
+            )
 
+        if verbose:
+            print(f"  [Pairwise-Iter] Đang khởi tạo Base Clauses (AMO={self.amo_method})...", flush=True)
         base_clauses = self._build_base_clauses()
+        if verbose:
+            print(f"  [Pairwise-Iter] Base Clauses xong: {len(base_clauses):,} clauses.", flush=True)
+
         best_bw = high
         best_labeling = self.graph.get_rcm_labeling()
         iterations = 0
         last_clauses_count = len(base_clauses)
-        vars_count = n * n
+        vars_count = getattr(self, "top_var", n * n)
+        status = "OPTIMAL"
 
         def _extract_x_labeling(solver_inst):
             model_set = set(solver_inst.get_model())
@@ -224,13 +394,19 @@ class PairwiseIterativeSolver(BaseBMPSolver):
                         solver.add_clause(cl)
 
                     last_clauses_count = len(base_clauses) + len(bw_clauses)
-                    is_sat = solver.solve()
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(f"  Iter {iterations}: Test k={k} -> {status}")
+                        print(f"  [Pairwise-Iter] Iter {iterations}: Đang kiểm tra k={k} (LB={low}, UB={best_bw} | Clauses: {last_clauses_count:,})...", flush=True)
+                    t_k = time.time()
+                    is_sat = solver.solve()
+                    dt_k = time.time() - t_k
+                    if verbose:
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Pairwise-Iter] Iter {iterations}: Test k={k} -> {s_str} ({dt_k:.2f}s)", flush=True)
                     if is_sat:
                         best_bw = k
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, last_clauses_count, vars_count))
                     else:
                         break
         else:  # binary search
@@ -246,29 +422,36 @@ class PairwiseIterativeSolver(BaseBMPSolver):
                         solver.add_clause(cl)
 
                     last_clauses_count = len(base_clauses) + len(bw_clauses)
+                    if verbose:
+                        print(f"  [Pairwise-Iter] Iter {iterations}: Đang kiểm tra k={mid} (Phạm vi: [{low}, {high}] | Clauses: {last_clauses_count:,})...", flush=True)
+                    t_k = time.time()
                     is_sat = solver.solve()
+                    dt_k = time.time() - t_k
 
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
+                        s_str = "SAT" if is_sat else "UNSAT"
                         print(
-                            f"  Iter {iterations}: Test k={mid} -> {status}"
-                            f" ({last_clauses_count} clauses)"
+                            f"  [Pairwise-Iter] Iter {iterations}: Test k={mid} -> {s_str} ({dt_k:.2f}s)",
+                            flush=True,
                         )
 
                     if is_sat:
                         best_bw = mid
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, last_clauses_count, vars_count))
                         high = mid - 1
                     else:
                         low = mid + 1
 
         return SolverResult(
-            bandwidth=best_bw,
+            bandwidth=best_bw if status != "TIMEOUT" or best_bw != high else "TIMEOUT",
             runtime=0,
             iterations=iterations,
             clauses_count=last_clauses_count,
             vars_count=vars_count,
             labeling=best_labeling,
+            status=status,
         )
 
 
@@ -278,9 +461,16 @@ class PairwiseIterativeSolver(BaseBMPSolver):
 class PairwiseIncrementalSolver(PairwiseIterativeSolver):
 
     def _solve_single_graph(self, use_heuristics, strategy, verbose):
+        start_time = getattr(self, "start_time", None) or time.time()
+
         n = self.n
+        if n > 400:
+            return SolverResult(
+                bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
+            )
+
         if n <= 1 or not self.edges:
-            return SolverResult(0, 0, 0)
+            return SolverResult(0, 0, 0, status="OPTIMAL")
 
         if use_heuristics:
             low = self.graph.compute_lb()
@@ -291,18 +481,23 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
 
         if verbose:
             print(
-                f"[Pairwise-Incremental] Strategy: {strategy}, Search range:"
+                f"[Pairwise-Incremental ({self.amo_method})] Strategy: {strategy}, Search range:"
                 f" [{low}, {high}]"
             )
 
         if low >= high:
-            return SolverResult(bandwidth=high, runtime=0, iterations=0, labeling=self.graph.get_rcm_labeling())
+            return SolverResult(
+                bandwidth=high,
+                runtime=0,
+                iterations=0,
+                labeling=self.graph.get_rcm_labeling(),
+                status="OPTIMAL",
+            )
 
         best_bw = high
         best_labeling = self.graph.get_rcm_labeling()
         iterations = 0
-        vars_count = n * n
-        total_clauses = 0
+        status = "OPTIMAL"
 
         def _extract_x_labeling(solver_inst):
             model_set = set(solver_inst.get_model())
@@ -314,10 +509,14 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
                         break
             return lbl
 
-        # Tái sử dụng hàm _build_base_clauses() từ PairwiseIterativeSolver
+        if verbose:
+            print(f"  [Pairwise-Inc] Đang khởi tạo Base Clauses (AMO={self.amo_method})...", flush=True)
         base_clauses = self._build_base_clauses()
+        vars_count = getattr(self, "top_var", n * n)
+        if verbose:
+            print(f"  [Pairwise-Inc] Base Clauses xong: {len(base_clauses):,} clauses.", flush=True)
+        total_clauses = 0
 
-        # Khởi tạo solver một lần duy nhất trong toàn bộ tiến trình
         with Cadical153() as solver:
             for cl in base_clauses:
                 solver.add_clause(cl)
@@ -331,19 +530,24 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
                     act_var_counter += 1
                     act_lit = act_var_counter
 
-                    # Tái sử dụng hàm _get_bandwidth_clauses(k) gắn kèm phủ định act_lit
                     for cl in self._get_bandwidth_clauses(k):
                         solver.add_clause([-act_lit] + cl)
                         total_clauses += 1
 
-                    is_sat = solver.solve(assumptions=[act_lit])
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(f"  [Inc] Iter {iterations}: Test k={k} -> {status}")
+                        print(f"  [Pairwise-Inc] Iter {iterations}: Đang kiểm tra k={k} (LB={low}, UB={best_bw} | Clauses: {total_clauses:,})...", flush=True)
+                    t_k = time.time()
+                    is_sat = solver.solve(assumptions=[act_lit])
+                    dt_k = time.time() - t_k
+                    if verbose:
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Pairwise-Inc] Iter {iterations}: Test k={k} -> {s_str} ({dt_k:.2f}s)", flush=True)
 
                     if is_sat:
                         best_bw = k
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, total_clauses, act_var_counter))
                     else:
                         break
             else:  # binary search
@@ -358,29 +562,33 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
                         solver.add_clause([-act_lit] + cl)
                         total_clauses += 1
 
+                    if verbose:
+                        print(f"  [Pairwise-Inc] Iter {iterations}: Đang kiểm tra k={mid} (Phạm vi: [{low}, {high}] | Clauses: {total_clauses:,})...", flush=True)
+                    t_k = time.time()
                     is_sat = solver.solve(assumptions=[act_lit])
+                    dt_k = time.time() - t_k
 
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(
-                            f"  [Inc] Iter {iterations}: Test k={mid} ->"
-                            f" {status}"
-                        )
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Pairwise-Inc] Iter {iterations}: Test k={mid} -> {s_str} ({dt_k:.2f}s)", flush=True)
 
                     if is_sat:
                         best_bw = mid
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, total_clauses, act_var_counter))
                         high = mid - 1
                     else:
                         low = mid + 1
 
         return SolverResult(
-            bandwidth=best_bw,
+            bandwidth=best_bw if status != "TIMEOUT" or best_bw != high else "TIMEOUT",
             runtime=0,
             iterations=iterations,
             clauses_count=total_clauses,
             vars_count=act_var_counter,
             labeling=best_labeling,
+            status=status,
         )
 
 
@@ -389,8 +597,8 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
 # ==============================================================================
 class OrderIterativeSolver(BaseBMPSolver):
 
-    def __init__(self, graph):
-        super().__init__(graph)
+    def __init__(self, graph, amo_method="pairwise", timeout=600.0):
+        super().__init__(graph, amo_method=amo_method, timeout=timeout)
         self.var_map = {}
         self.var_counter = 0
 
@@ -407,28 +615,28 @@ class OrderIterativeSolver(BaseBMPSolver):
         return self._get_var(f"G_{u}_{i}")
 
     def _build_base_clauses(self):
-        clauses = []
         n = self.n
 
-        # 1. ALO và AMO trên X
+        # Cấp phát toàn bộ biến X và G trước để giữ ID cố định
         for u in range(1, n + 1):
-            clauses.append([self._X(u, i) for i in range(1, n + 1)])
             for i in range(1, n + 1):
-                for j in range(i + 1, n + 1):
-                    clauses.append([-self._X(u, i), -self._X(u, j)])
+                self._X(u, i)
+            for i in range(2, n + 1):
+                self._G(u, i)
 
-        # 2. Đơn ánh trên X
-        for i in range(1, n + 1):
-            for u in range(1, n + 1):
-                for v in range(u + 1, n + 1):
-                    clauses.append([-self._X(u, i), -self._X(v, i)])
+        # 1. BƯỚC 1: Ràng buộc Song ánh cho biến X (Bijective Assignment)
+        # ALO, AMO, Injective AMO qua amo_method
+        x_clauses, self.var_counter = encode_bijective_assignment(
+            n, self._X, top_id=self.var_counter, amo_method=self.amo_method
+        )
+        clauses = list(x_clauses)
 
-        # 3. Tính chất thứ tự của G: G(u, i) -> G(u, i-1)
+        # 2. Tính chất thứ tự của G: G(u, i) -> G(u, i-1)
         for u in range(1, n + 1):
             for i in range(3, n + 1):
                 clauses.append([-self._G(u, i), self._G(u, i - 1)])
 
-        # 4. Cầu nối 2 chiều giữa X và G: X(u, i) <=> G(u, i) ^ ~G(u, i+1)
+        # 3. Cầu nối 2 chiều giữa X và G: X(u, i) <=> G(u, i) ^ ~G(u, i+1)
         for u in range(1, n + 1):
             for i in range(1, n + 1):
                 # X -> G
@@ -450,12 +658,6 @@ class OrderIterativeSolver(BaseBMPSolver):
         return clauses
 
     def _get_bandwidth_clauses(self, k):
-        """Ràng buộc Băng thông <= k (tương ứng b = k + 1) theo biến G của
-
-        Thầy:
-
-        X(u, i) -> ~G(v, i + k + 1) ^ G(v, i - k)
-        """
         clauses = []
         n = self.n
 
@@ -474,9 +676,16 @@ class OrderIterativeSolver(BaseBMPSolver):
         return clauses
 
     def _solve_single_graph(self, use_heuristics, strategy, verbose):
+        start_time = getattr(self, "start_time", None) or time.time()
+
         n = self.n
+        if n > 400:
+            return SolverResult(
+                bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
+            )
+
         if n <= 1 or not self.edges:
-            return SolverResult(0, 0, 0)
+            return SolverResult(0, 0, 0, status="OPTIMAL")
 
         if use_heuristics:
             low = self.graph.compute_lb()
@@ -487,20 +696,31 @@ class OrderIterativeSolver(BaseBMPSolver):
 
         if verbose:
             print(
-                f"[Order-Iterative] Strategy: {strategy}, Search range:"
+                f"[Order-Iterative ({self.amo_method})] Strategy: {strategy}, Search range:"
                 f" [{low}, {high}]"
             )
 
         if low >= high:
-            return SolverResult(bandwidth=high, runtime=0, iterations=0, labeling=self.graph.get_rcm_labeling())
+            return SolverResult(
+                bandwidth=high,
+                runtime=0,
+                iterations=0,
+                labeling=self.graph.get_rcm_labeling(),
+                status="OPTIMAL",
+            )
 
         self.var_map.clear()
         self.var_counter = 0
+        if verbose:
+            print(f"  [Order-Iter] Đang khởi tạo Base Clauses (AMO={self.amo_method})...", flush=True)
         base_clauses = self._build_base_clauses()
+        if verbose:
+            print(f"  [Order-Iter] Base Clauses xong: {len(base_clauses):,} clauses, {self.var_counter:,} biến.", flush=True)
         best_bw = high
         best_labeling = self.graph.get_rcm_labeling()
         iterations = 0
         last_clauses_count = len(base_clauses)
+        status = "OPTIMAL"
 
         def _extract_x_labeling(solver_inst):
             model_set = set(solver_inst.get_model())
@@ -523,13 +743,19 @@ class OrderIterativeSolver(BaseBMPSolver):
                         solver.add_clause(cl)
 
                     last_clauses_count = len(base_clauses) + len(bw_clauses)
-                    is_sat = solver.solve()
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(f"  [Order] Iter {iterations}: Test k={k} -> {status}")
+                        print(f"  [Order-Iter] Iter {iterations}: Đang kiểm tra k={k} (LB={low}, UB={best_bw} | Clauses: {last_clauses_count:,})...", flush=True)
+                    t_k = time.time()
+                    is_sat = solver.solve()
+                    dt_k = time.time() - t_k
+                    if verbose:
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Order-Iter] Iter {iterations}: Test k={k} -> {s_str} ({dt_k:.2f}s)", flush=True)
                     if is_sat:
                         best_bw = k
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, last_clauses_count, self.var_counter))
                     else:
                         break
         else:  # binary search
@@ -545,29 +771,36 @@ class OrderIterativeSolver(BaseBMPSolver):
                         solver.add_clause(cl)
 
                     last_clauses_count = len(base_clauses) + len(bw_clauses)
+                    if verbose:
+                        print(f"  [Order-Iter] Iter {iterations}: Đang kiểm tra k={mid} (Phạm vi: [{low}, {high}] | Clauses: {last_clauses_count:,})...", flush=True)
+                    t_k = time.time()
                     is_sat = solver.solve()
+                    dt_k = time.time() - t_k
 
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
+                        s_str = "SAT" if is_sat else "UNSAT"
                         print(
-                            f"  [Order] Iter {iterations}: Test k={mid} ->"
-                            f" {status} ({last_clauses_count} clauses)"
+                            f"  [Order-Iter] Iter {iterations}: Test k={mid} ->"
+                            f" {s_str} ({dt_k:.2f}s)"
                         )
 
                     if is_sat:
                         best_bw = mid
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, last_clauses_count, self.var_counter))
                         high = mid - 1
                     else:
                         low = mid + 1
 
         return SolverResult(
-            bandwidth=best_bw,
+            bandwidth=best_bw if status != "TIMEOUT" or best_bw != high else "TIMEOUT",
             runtime=0,
             iterations=iterations,
             clauses_count=last_clauses_count,
             vars_count=self.var_counter,
             labeling=best_labeling,
+            status=status,
         )
 
 
@@ -577,9 +810,16 @@ class OrderIterativeSolver(BaseBMPSolver):
 class OrderIncrementalSolver(OrderIterativeSolver):
 
     def _solve_single_graph(self, use_heuristics, strategy, verbose):
+        start_time = getattr(self, "start_time", None) or time.time()
+
         n = self.n
+        if n > 400:
+            return SolverResult(
+                bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
+            )
+
         if n <= 1 or not self.edges:
-            return SolverResult(0, 0, 0)
+            return SolverResult(0, 0, 0, status="OPTIMAL")
 
         if use_heuristics:
             low = self.graph.compute_lb()
@@ -590,19 +830,31 @@ class OrderIncrementalSolver(OrderIterativeSolver):
 
         if verbose:
             print(
-                f"[Order-Incremental] Strategy: {strategy}, Search range:"
+                f"[Order-Incremental ({self.amo_method})] Strategy: {strategy}, Search range:"
                 f" [{low}, {high}]"
             )
 
         if low >= high:
-            return SolverResult(bandwidth=high, runtime=0, iterations=0, labeling=self.graph.get_rcm_labeling())
+            return SolverResult(
+                bandwidth=high,
+                runtime=0,
+                iterations=0,
+                labeling=self.graph.get_rcm_labeling(),
+                status="OPTIMAL",
+            )
 
         self.var_map.clear()
         self.var_counter = 0
+        if verbose:
+            print(f"  [Order-Inc] Đang khởi tạo Base Clauses (AMO={self.amo_method})...", flush=True)
+        base_clauses = self._build_base_clauses()
+        if verbose:
+            print(f"  [Order-Inc] Base Clauses xong: {len(base_clauses):,} clauses, {self.var_counter:,} biến.", flush=True)
         best_bw = high
         best_labeling = self.graph.get_rcm_labeling()
         iterations = 0
         total_clauses = 0
+        status = "OPTIMAL"
 
         def _extract_x_labeling(solver_inst):
             model_set = set(solver_inst.get_model())
@@ -614,9 +866,6 @@ class OrderIncrementalSolver(OrderIterativeSolver):
                         break
             return lbl
 
-        # Tái sử dụng hàm _build_base_clauses() từ OrderIterativeSolver
-        base_clauses = self._build_base_clauses()
-
         with Cadical153() as solver:
             for cl in base_clauses:
                 solver.add_clause(cl)
@@ -627,19 +876,24 @@ class OrderIncrementalSolver(OrderIterativeSolver):
                     iterations += 1
                     act_lit = self._get_var(f"ACT_{k}")
 
-                    # Tái sử dụng hàm _get_bandwidth_clauses(k) gắn kèm phủ định act_lit
                     for cl in self._get_bandwidth_clauses(k):
                         solver.add_clause([-act_lit] + cl)
                         total_clauses += 1
 
-                    is_sat = solver.solve(assumptions=[act_lit])
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(f"  [Order-Inc] Iter {iterations}: Test k={k} -> {status}")
+                        print(f"  [Order-Inc] Iter {iterations}: Đang kiểm tra k={k} (LB={low}, UB={best_bw} | Clauses: {total_clauses:,})...", flush=True)
+                    t_k = time.time()
+                    is_sat = solver.solve(assumptions=[act_lit])
+                    dt_k = time.time() - t_k
+                    if verbose:
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Order-Inc] Iter {iterations}: Test k={k} -> {s_str} ({dt_k:.2f}s)", flush=True)
 
                     if is_sat:
                         best_bw = k
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, total_clauses, self.var_counter))
                     else:
                         break
             else:  # binary search
@@ -653,27 +907,31 @@ class OrderIncrementalSolver(OrderIterativeSolver):
                         solver.add_clause([-act_lit] + cl)
                         total_clauses += 1
 
+                    if verbose:
+                        print(f"  [Order-Inc] Iter {iterations}: Đang kiểm tra k={mid} (Phạm vi: [{low}, {high}] | Clauses: {total_clauses:,})...", flush=True)
+                    t_k = time.time()
                     is_sat = solver.solve(assumptions=[act_lit])
+                    dt_k = time.time() - t_k
 
                     if verbose:
-                        status = "SAT" if is_sat else "UNSAT"
-                        print(
-                            f"  [Order-Inc] Iter {iterations}: Test k={mid} ->"
-                            f" {status}"
-                        )
+                        s_str = "SAT" if is_sat else "UNSAT"
+                        print(f"  [Order-Inc] Iter {iterations}: Test k={mid} -> {s_str} ({dt_k:.2f}s)", flush=True)
 
                     if is_sat:
                         best_bw = mid
                         best_labeling = _extract_x_labeling(solver)
+                        if getattr(self, "_queue", None):
+                            self._queue.put(("PROGRESS", best_bw, iterations, best_labeling, total_clauses, self.var_counter))
                         high = mid - 1
                     else:
                         low = mid + 1
 
         return SolverResult(
-            bandwidth=best_bw,
+            bandwidth=best_bw if status != "TIMEOUT" or best_bw != high else "TIMEOUT",
             runtime=0,
             iterations=iterations,
             clauses_count=total_clauses,
             vars_count=self.var_counter,
             labeling=best_labeling,
+            status=status,
         )

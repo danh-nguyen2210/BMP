@@ -1,0 +1,6 @@
+Instance,n,m,AMO_Method,Bandwidth,Clauses,Clause_Reduction_Pct,Vars,Runtime_s,Iterations,Status
+pores_1,30,103,pairwise,7,56802,0.0,1773,16.404,3,OPTIMAL
+pores_1,30,103,sequential,7,35862,36.9,3513,21.848,3,OPTIMAL
+pores_1,30,103,binary,7,39702,30.1,2073,49.154,3,OPTIMAL
+pores_1,30,103,commander,7,36642,35.5,2613,24.393,3,OPTIMAL
+pores_1,30,103,product,7,35802,37.0,2433,38.587,3,OPTIMAL

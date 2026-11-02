@@ -9,6 +9,8 @@ Kiểm tra tính đúng đắn toán học 100% của:
    - PairwiseIncrementalSolver
    - OrderIterativeSolver
    - OrderIncrementalSolver
+5. Cả 5 phương pháp mã hóa AMO/ALO: pairwise, sequential, binary, commander, product.
+6. Cơ chế giới hạn bộ nhớ: n > 400 tự động trả về MEM_EXCEED.
 """
 
 import sys
@@ -118,6 +120,30 @@ class TestSolversCorrectness(unittest.TestCase):
     def test_cplex_mip_baseline(self):
         self._test_solver_on_graph(CplexMIPSolver, self.g_c4, 2)
         self._test_solver_on_graph(CplexMIPSolver, self.g_disc, 2)
+
+    def test_amo_methods(self):
+        # Kiểm tra tính đúng đắn của 5 phương pháp AMO: pairwise, sequential, binary, commander, product
+        methods = ["pairwise", "sequential", "binary", "commander", "product"]
+        for m in methods:
+            p_solver = PairwiseIncrementalSolver(self.g_c4, amo_method=m)
+            p_res = p_solver.solve(use_heuristics=False, use_components=True, verbose=False)
+            self.assertEqual(p_res.bandwidth, 2, f"Failed PairwiseIncremental with AMO {m}")
+            valid, actual_bw = self.g_c4.verify_labeling(p_res.labeling, 2)
+            self.assertTrue(valid, f"Invalid labeling for Pairwise with AMO {m}")
+
+            o_solver = OrderIncrementalSolver(self.g_c4, amo_method=m)
+            o_res = o_solver.solve(use_heuristics=False, use_components=True, verbose=False)
+            self.assertEqual(o_res.bandwidth, 2, f"Failed OrderIncremental with AMO {m}")
+            valid, actual_bw = self.g_c4.verify_labeling(o_res.labeling, 2)
+            self.assertTrue(valid, f"Invalid labeling for Order with AMO {m}")
+
+    def test_memory_exceed_limit(self):
+        # Đồ thị có n > 400: Không giải, trả về MEM_EXCEED
+        big_g = GraphData.from_edge_list(n=401, edges=[(1, 2)], name="big_401")
+        solver = OrderIncrementalSolver(big_g)
+        res = solver.solve()
+        self.assertEqual(res.status, "MEM_EXCEED")
+        self.assertEqual(res.bandwidth, "MEM_EXCEED")
 
 
 if __name__ == "__main__":
