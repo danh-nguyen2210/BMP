@@ -2,6 +2,11 @@
 
 Dự án Bài tập lớn số 2 - Môn Các vấn đề hiện đại trong Khoa học Máy tính.
 
+**Chạy tiếp sau khi tắt máy:** `run_benchmarks.py` đã hỗ trợ checkpoint SQLite sau
+từng lượt solver, tự resume, chọn danh sách 23 instance của người 1 và giới hạn phiên
+chạy ban ngày. Xem [hướng dẫn resume](docs/RESUME.md). Runner mới dùng CSV dạng dài
+`results/benchmark_runs.csv`; các file kết quả cũ được giữ nguyên.
+
 ---
 
 ## 1. Giới thiệu Bài toán

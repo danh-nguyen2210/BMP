@@ -1,0 +1,24 @@
+# Người 1: 23 instance nhỏ, theo phân công của nhóm.
+pores_1
+ibm32
+bcspwr01
+bcsstk01
+bcspwr02
+curtis54
+will57
+impcol_b
+steam3
+ash85
+nos4
+gent113
+gre_115
+bcspwr03
+arc130
+lns_131
+bcsstk04
+west0132
+impcol_c
+bcsstk22
+can_144
+lund_a
+lund_b

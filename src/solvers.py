@@ -17,6 +17,8 @@ Tích hợp:
 """
 
 import multiprocessing as mp
+from queue import Empty
+import signal
 import sys
 import time
 from pysat.solvers import Cadical153
@@ -26,6 +28,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 
 def _worker_solve_entry(solver_instance, use_heuristics, use_components, strategy, verbose, queue):
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
     try:
         sys.stdout.reconfigure(encoding="utf-8")
         solver_instance._queue = queue
@@ -106,84 +109,11 @@ class BaseBMPSolver:
                 status="MEM_EXCEED",
             )
 
-        # Chạy trong tiến trình con (Process Watchdog) cho đồ thị n > 30 để ngắt cứng 100% khi hết timeout
-        if getattr(self, "timeout", None) and self.timeout > 0 and self.n > 30:
-            q = mp.Queue()
-            p = mp.Process(
-                target=_worker_solve_entry,
-                args=(self, use_heuristics, use_components, strategy, verbose, q),
+        # All sizes use the watchdog, including pores_1 (n=30).
+        if self.timeout and self.timeout > 0:
+            return self._solve_with_watchdog(
+                use_heuristics, use_components, strategy, verbose
             )
-            t0 = time.time()
-            p.start()
-
-            best_bw = self.graph.compute_rcm_ub() if use_heuristics else self.n - 1
-            best_lbl = self.graph.get_rcm_labeling()
-            total_iters = 0
-            total_clauses = 0
-            total_vars = 0
-
-            while time.time() - t0 < self.timeout:
-                if not p.is_alive():
-                    break
-                while not q.empty():
-                    try:
-                        msg = q.get_nowait()
-                        if msg[0] == "PROGRESS":
-                            best_bw = msg[1]
-                            total_iters = msg[2]
-                            best_lbl = msg[3]
-                            total_clauses = msg[4]
-                            total_vars = msg[5]
-                        elif msg[0] == "RESULT":
-                            p.join(timeout=1)
-                            return msg[1]
-                        elif msg[0] == "ERROR":
-                            p.join(timeout=1)
-                            raise RuntimeError(msg[1])
-                    except Exception:
-                        break
-                time.sleep(0.1)
-
-            init_ub = self.graph.compute_rcm_ub() if use_heuristics else self.n - 1
-            if p.is_alive():
-                if verbose:
-                    print(
-                        f"\n  [Timeout] Quá thời gian quy định ({self.timeout}s). Dừng tiến trình solver...",
-                        flush=True,
-                    )
-                p.terminate()
-                p.join(timeout=2)
-                if p.is_alive():
-                    p.kill()
-                    p.join()
-                reported_bw = best_bw if (total_iters > 0 and best_bw != init_ub) else "TIMEOUT"
-                return SolverResult(
-                    bandwidth=reported_bw,
-                    runtime=time.time() - t0,
-                    iterations=total_iters,
-                    clauses_count=total_clauses,
-                    vars_count=total_vars,
-                    labeling=best_lbl,
-                    status="TIMEOUT",
-                )
-            else:
-                p.join()
-                while not q.empty():
-                    msg = q.get_nowait()
-                    if msg[0] == "RESULT":
-                        return msg[1]
-                    elif msg[0] == "ERROR":
-                        raise RuntimeError(msg[1])
-                reported_bw = best_bw if (total_iters > 0 and best_bw != init_ub) else "TIMEOUT"
-                return SolverResult(
-                    bandwidth=reported_bw,
-                    runtime=time.time() - t0,
-                    iterations=total_iters,
-                    clauses_count=total_clauses,
-                    vars_count=total_vars,
-                    labeling=best_lbl,
-                    status="TIMEOUT",
-                )
 
         return self._solve_direct(
             use_heuristics=use_heuristics,
@@ -191,6 +121,57 @@ class BaseBMPSolver:
             strategy=strategy,
             verbose=verbose,
         )
+
+    def _solve_with_watchdog(self, use_heuristics, use_components, strategy, verbose):
+        q = mp.Queue()
+        p = mp.Process(
+            target=_worker_solve_entry,
+            args=(self, use_heuristics, use_components, strategy, verbose, q),
+        )
+        started = time.monotonic()
+        initial_ub = self.graph.compute_rcm_ub() if use_heuristics else self.n - 1
+        best_bw = initial_ub
+        best_labeling = self.graph.get_rcm_labeling()
+        iterations = clauses = variables = 0
+        try:
+            p.start()
+            while True:
+                remaining = self.timeout - (time.monotonic() - started)
+                if remaining <= 0:
+                    break
+                try:
+                    msg = q.get(timeout=min(0.1, remaining))
+                except Empty:
+                    if not p.is_alive():
+                        raise RuntimeError(f"Solver worker exited without a result (exitcode={p.exitcode})")
+                    continue
+                if msg[0] == "RESULT":
+                    return msg[1]
+                if msg[0] == "ERROR":
+                    raise RuntimeError(msg[1])
+                if msg[0] == "PROGRESS":
+                    # Component progress uses local vertex IDs, not a global certificate.
+                    # Until it is aggregated, retain the full-graph RCM incumbent.
+                    if len(msg[3]) == self.n:
+                        best_bw, iterations, best_labeling, clauses, variables = msg[1:]
+            return SolverResult(
+                bandwidth=best_bw if iterations > 0 and best_bw != initial_ub else "TIMEOUT",
+                runtime=time.monotonic() - started, iterations=iterations,
+                clauses_count=clauses, vars_count=variables,
+                labeling=best_labeling, status="TIMEOUT",
+            )
+        finally:
+            if p.pid is not None:
+                p.join(timeout=0.1)
+                if p.is_alive():
+                    p.terminate()
+                    p.join(timeout=2)
+                if p.is_alive():
+                    p.kill()
+                    p.join()
+                p.close()
+            q.close()
+            q.join_thread()
 
     def _solve_direct(
         self,

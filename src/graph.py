@@ -43,7 +43,9 @@ class GraphData:
         if name is None:
             name = os.path.splitext(os.path.basename(file_path))[0]
 
-        mat = mmread(file_path).tocoo()
+        # Passing a binary stream also handles Unicode Windows paths reliably.
+        with open(file_path, "rb") as stream:
+            mat = mmread(stream).tocoo()
         n = max(mat.shape[0], mat.shape[1])
         edges = set()
 
@@ -157,7 +159,7 @@ class GraphData:
         perm = csgraph.reverse_cuthill_mckee(csr, symmetric_mode=True)
         label = {}
         for new_pos, old_node in enumerate(perm):
-            label[old_node + 1] = new_pos + 1
+            label[int(old_node) + 1] = new_pos + 1
         return label
 
     def get_connected_components(self):

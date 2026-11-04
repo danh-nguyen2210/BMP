@@ -10,28 +10,28 @@ Hỗ trợ:
 - Đầy đủ 72 ma trận từ Bảng 6 và Bảng 7 (Part I) kèm link tải NIST chính thức.
 - Tự động tải dataset nếu chưa có trong thư mục data/.
 - Cấu hình ALO/AMO: pairwise, sequential, binary, commander, product.
-- Giới hạn kích thước ma trận: n > 400 tự động đánh dấu MEM_EXCEED (Memory Exceeded), không chạy solver.
+- n >= 400: LIMIT. Lưu SQLite sau từng lượt solver và tự động resume.
 - Giới hạn thời gian (Timeout): Mỗi bài toán tối đa 10 phút (600 giây).
 - Tối ưu 4.4.2 (Heuristic Bounds RCM) & 4.4.3 (Connected Components).
 """
 
 import argparse
-import csv
-import os
+from contextlib import contextmanager
+from importlib import metadata as package_metadata
+import math
+import platform
+from pathlib import Path
+import signal
 import sys
 import time
 
-sys.stdout.reconfigure(encoding="utf-8")
-from src.graph import GraphData
-from src.solvers import (
-    OrderIncrementalSolver,
-    OrderIterativeSolver,
-    PairwiseIncrementalSolver,
-    PairwiseIterativeSolver,
-)
+from src.benchmark_store import BenchmarkStore, digest, file_digest
 from src.downloader import download_hb_matrix, get_matrix_url
 
-# Toàn bộ danh mục 72 ma trận benchmark theo Table 6 và Table 7
+ROOT = Path(__file__).resolve().parent
+SOLVER_KEYS = ("order-inc", "order-iter", "pairwise-inc", "pairwise-iter")
+AMO_METHODS = ("pairwise", "sequential", "binary", "commander", "product")
+
 BENCHMARK_SUITE = [
     # ==========================================================================
     # BẢNG 6 (TABLE 6): 31 ma trận nhỏ (Torres-Jimenez et al., 2015)
@@ -115,171 +115,250 @@ BENCHMARK_SUITE = [
 ]
 
 
-def run_benchmark(
-    table_filter=None,
-    strategy="linear",
-    amo="pairwise",
-    timeout=600.0,
-    output_csv="results/benchmark_summary.csv",
-):
-    os.makedirs(os.path.dirname(output_csv), exist_ok=True)
-
-    print("=" * 80)
-    print("BẮT ĐẦU CHẠY THỰC NGHIỆM ĐỐI CHUẨN 4 BỘ GIẢI SAT TRÊN HARWELL-BOEING")
-    print(f"Chiến lược tìm kiếm: {strategy.upper()} SEARCH | Phương pháp AMO: {amo.upper()}")
-    print(f"Giới hạn thời gian (Timeout): {timeout}s (10 phút) | Giới hạn bộ nhớ: n > 400 -> MEM_EXCEED")
-    print("Tối ưu kích hoạt: 4.4.2 (Heuristic Bounds RCM) & 4.4.3 (Connected Components)")
-    print("=" * 80)
-
-    # Lọc danh sách theo bảng
-    items = BENCHMARK_SUITE
-    if table_filter in (6, "6"):
-        items = [x for x in items if x["table"] == 6]
-    elif table_filter in (7, "7"):
-        items = [x for x in items if x["table"] == 7]
-
-    results_table = []
-
-    for item in items:
-        name = item["name"]
-        file_path = item["file"]
-        p_n = item["paper_n"]
-        p_lb = item["paper_lb"]
-        p_best = item["paper_best"]
-        table_num = item["table"]
-
-        # Tự động tải nếu file chưa có
-        if not os.path.exists(file_path):
-            print(f"\n[Auto-Download] Đang tải {name} từ NIST Matrix Market...")
-            dl_res = download_hb_matrix(name, target_dir="data")
-            if not dl_res or not os.path.exists(file_path):
-                print(f"[Skip] Không thể tải {name}, bỏ qua.")
-                continue
-
-        graph = GraphData.from_mtx(file_path, name=name)
-        lb = graph.compute_lb()
-        rcm_ub = graph.compute_rcm_ub()
-        comps = len(graph.get_connected_components())
-
-        print(f"\n>>> [Table {table_num}] INSTANCE: {name} | n={graph.n}, m={graph.m} | Comps={comps}")
-        print(f"    Link NIST: {get_matrix_url(name)}")
-        print(f"    Cận tính toán: LB={lb}, RCM UB={rcm_ub} | Bài báo: LB={p_lb}, Best={p_best}")
-
-        row = {
-            "Table": table_num,
-            "Instance": name,
-            "n": graph.n,
-            "m": graph.m,
-            "Comps": comps,
-            "LB_Heuristic": lb,
-            "UB_RCM": rcm_ub,
-            "Paper_LB": p_lb,
-            "Paper_Best": p_best,
-            "AMO_Method": amo,
-            "Strategy": strategy,
-            "NIST_URL": get_matrix_url(name),
-        }
-
-        # Kiểm tra điều kiện n > 400: Không giải, trực tiếp ghi nhận MEM_EXCEED
-        if graph.n > 400:
-            print(f"    [MEM_EXCEED] n = {graph.n} > 400: Đã ghi nhận Memory Exceeded theo quy định.")
-            for s_name in ["Order_Inc", "Order_Iter", "Pairwise_Inc", "Pairwise_Iter"]:
-                row[f"{s_name}_Bw"] = "MEM_EXCEED"
-                row[f"{s_name}_Time"] = 0.0
-                row[f"{s_name}_Iters"] = 0
-                row[f"{s_name}_Clauses"] = 0
-                row[f"{s_name}_Vars"] = 0
-                row[f"{s_name}_Status"] = "MEM_EXCEED"
-            results_table.append(row)
-            _save_row_to_csv(output_csv, row)
-            continue
-
-        solvers = [
-            ("Order_Inc", OrderIncrementalSolver(graph, amo_method=amo, timeout=timeout)),
-            ("Order_Iter", OrderIterativeSolver(graph, amo_method=amo, timeout=timeout)),
-            ("Pairwise_Inc", PairwiseIncrementalSolver(graph, amo_method=amo, timeout=timeout)),
-            ("Pairwise_Iter", PairwiseIterativeSolver(graph, amo_method=amo, timeout=timeout)),
-        ]
-
-        for solver_name, solver in solvers:
-            print(f"    -> Đang chạy {solver_name} (AMO={amo}) ...", end=" ", flush=True)
-            t0 = time.time()
-            try:
-                res = solver.solve(
-                    use_heuristics=True,
-                    use_components=True,
-                    strategy=strategy,
-                    verbose=False,
-                )
-                dt = time.time() - t0
-                status_str = f" [{res.status}]" if res.status != "OPTIMAL" else ""
-                print(
-                    f"Xong! Bw={res.bandwidth}{status_str} ({dt:.2f}s, {res.iterations} iters)"
-                )
-
-                row[f"{solver_name}_Bw"] = res.bandwidth
-                row[f"{solver_name}_Time"] = round(dt, 3)
-                row[f"{solver_name}_Iters"] = res.iterations
-                row[f"{solver_name}_Clauses"] = res.clauses_count
-                row[f"{solver_name}_Vars"] = res.vars_count
-                row[f"{solver_name}_Status"] = res.status
-            except Exception as e:
-                print(f"Lỗi: {e}")
-                row[f"{solver_name}_Bw"] = "ERROR"
-                row[f"{solver_name}_Time"] = "N/A"
-                row[f"{solver_name}_Iters"] = "N/A"
-                row[f"{solver_name}_Clauses"] = "N/A"
-                row[f"{solver_name}_Vars"] = "N/A"
-                row[f"{solver_name}_Status"] = "ERROR"
-
-        results_table.append(row)
-        _save_row_to_csv(output_csv, row)
-        print(f"    [Saved] Đã ghi kết quả {name} vào {output_csv}")
-
-    # In bảng tổng kết
-    print("\n" + "=" * 92)
-    print("BẢNG TỔNG KẾT KẾT QUẢ THỰC NGHIỆM (SO SÁNH 4 BỘ GIẢI SAT)")
-    print("=" * 92)
-    print(
-        f"{'Instance':<10} | {'n':<4} | {'Best':<4} | {'Order_Inc':<16} |"
-        f" {'Order_Iter':<16} | {'Pair_Inc':<16} | {'Pair_Iter':<16}"
+def _load_runtime():
+    # Help/checkpoint tooling does not require optional SAT packages.
+    from src.graph import GraphData
+    from src.solvers import (
+        OrderIncrementalSolver, OrderIterativeSolver,
+        PairwiseIncrementalSolver, PairwiseIterativeSolver,
     )
-    print("-" * 92)
-    for r in results_table:
-        o_inc = f"{r.get('Order_Inc_Bw', '-') } ({r.get('Order_Inc_Time', '-') }s)"
-        o_iter = f"{r.get('Order_Iter_Bw', '-') } ({r.get('Order_Iter_Time', '-') }s)"
-        p_inc = f"{r.get('Pairwise_Inc_Bw', '-') } ({r.get('Pairwise_Inc_Time', '-') }s)"
-        p_iter = f"{r.get('Pairwise_Iter_Bw', '-') } ({r.get('Pairwise_Iter_Time', '-') }s)"
-        print(
-            f"{r['Instance']:<10} | {r['n']:<4} | {r['Paper_Best']:<4} |"
-            f" {o_inc:<16} | {o_iter:<16} | {p_inc:<16} | {p_iter:<16}"
-        )
-    print("=" * 92)
+    return GraphData, dict(zip(SOLVER_KEYS, (
+        OrderIncrementalSolver, OrderIterativeSolver,
+        PairwiseIncrementalSolver, PairwiseIterativeSolver,
+    )))
 
 
-def _save_row_to_csv(output_csv, row):
-    file_exists = os.path.exists(output_csv)
-    fieldnames = list(row.keys())
-    with open(output_csv, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(row)
+def _environment():
+    versions = {"python": platform.python_version(), "system": platform.system(),
+                "architecture": platform.machine()}
+    for name in ("python-sat", "numpy", "scipy"):
+        try:
+            versions[name] = package_metadata.version(name)
+        except package_metadata.PackageNotFoundError:
+            versions[name] = "not-installed"
+    return versions
+
+
+def _code_hash():
+    return digest({name: file_digest(ROOT / name) for name in (
+        "run_benchmarks.py", "src/benchmark_store.py", "src/solvers.py",
+        "src/cardinality.py", "src/graph.py", "src/downloader.py",
+    )})
+
+
+@contextmanager
+def _graceful_stop():
+    requested = [False]
+
+    def handler(signum, frame):
+        requested[0] = True
+        print("\n[Stop] Sẽ lưu lượt hiện tại rồi dừng. Hãy chờ thông báo đã dừng.", flush=True)
+
+    previous = signal.signal(signal.SIGINT, handler)
+    try:
+        yield requested
+    finally:
+        signal.signal(signal.SIGINT, previous)
+
+
+def _export(store, output):
+    try:
+        store.export_csv(output)
+    except OSError as exc:
+        print(f"[CSV] Chưa xuất được CSV (có thể đang mở trong Excel): {exc}. "
+              "Kết quả đã lưu trong SQLite; chạy lại để xuất lại.", flush=True)
+
+
+def run_benchmark(
+    table_filter=None, strategy="linear", amo="pairwise", timeout=600.0,
+    output_csv="results/benchmark_runs.csv",
+    checkpoint="results/benchmark_resume.sqlite3", instances=None,
+    solver_keys=None, session_hours=None, max_jobs=None, retry_errors=False,
+    stop_file=None,
+):
+    """Resume between solver jobs, not inside an unfinished SAT search."""
+    if not math.isfinite(timeout) or timeout <= 0:
+        raise ValueError("timeout phải là số dương hữu hạn.")
+    if session_hours is not None and (not math.isfinite(session_hours) or session_hours <= 0):
+        raise ValueError("session-hours phải là số dương hữu hạn.")
+    if max_jobs is not None and max_jobs <= 0:
+        raise ValueError("max-jobs phải lớn hơn 0.")
+    if strategy not in ("linear", "binary"):
+        raise ValueError("strategy không hợp lệ.")
+    methods = list(AMO_METHODS) if amo == "all" else [amo]
+    selected_solvers = list(dict.fromkeys(solver_keys or SOLVER_KEYS))
+    if any(m not in AMO_METHODS for m in methods) or any(k not in SOLVER_KEYS for k in selected_solvers):
+        raise ValueError("Solver hoặc AMO không hợp lệ.")
+    if table_filter not in (None, "all", 6, "6", 7, "7"):
+        raise ValueError("table phải là 6, 7 hoặc all.")
+    items = [x for x in BENCHMARK_SUITE
+             if table_filter in (None, "all") or x["table"] == int(table_filter)]
+    if instances is not None:
+        names = list(dict.fromkeys(instances))
+        lookup = {x["name"]: x for x in items}
+        unknown = set(names) - set(lookup)
+        if unknown:
+            raise ValueError(f"Instance không thuộc bảng đã chọn: {', '.join(sorted(unknown))}")
+        items = [lookup[name] for name in names]
+
+    checkpoint, output = Path(checkpoint).resolve(), Path(output_csv).resolve()
+    stop_path = Path(stop_file).resolve() if stop_file else Path(str(checkpoint) + ".stop")
+    if len({checkpoint, output, stop_path}) != 3:
+        raise ValueError("Checkpoint, CSV và stop-file phải là các đường dẫn khác nhau.")
+    # Do not overwrite the old wide-format experimental results.
+    if output.exists():
+        import csv
+        with output.open(encoding="utf-8-sig", newline="") as stream:
+            header = next(csv.reader(stream), [])
+        if "Job_ID" not in header or "Attempt" not in header:
+            raise ValueError(f"{output} không phải CSV resume. Hãy chọn --output khác; file cũ được giữ nguyên.")
+
+    deadline = time.monotonic() + session_hours * 3600 if session_hours else None
+    versions = _environment()
+    code_hash = _code_hash()
+    runtime = None
+    counters = {"completed": 0, "skipped": 0}
+    print(f"Checkpoint: {checkpoint}\nCSV: {output}\nStop-file: {stop_path}")
+    print(f"{len(items)} instances × {len(methods)} AMO × {len(selected_solvers)} SAT. "
+          "Resume tự động; n >= 400: LIMIT. Nhấn Ctrl+C để dừng sau lượt hiện tại.", flush=True)
+
+    with BenchmarkStore(checkpoint) as store, _graceful_stop() as stopping:
+        def should_stop(reserve=0):
+            return (stopping[0] or stop_path.exists()
+                    or (max_jobs is not None and counters["completed"] >= max_jobs)
+                    or (deadline is not None and time.monotonic() + reserve >= deadline))
+
+        def saved(attempt, status, result):
+            store.finish(attempt, status, result)
+            counters["completed"] += 1
+            _export(store, output)
+            print(f"  [Saved] {status}", flush=True)
+            if result.get("Error"):
+                print(f"  {result['Error']}", flush=True)
+
+        _export(store, output)
+        try:
+            for item in items:
+                if should_stop():
+                    break
+                path = ROOT / item["file"]
+                size_limited = item["paper_n"] >= 400
+                input_error = None
+                if not size_limited and not path.exists():
+                    try:
+                        downloaded = download_hb_matrix(item["name"], target_dir=str(path.parent))
+                        if not downloaded or not path.exists():
+                            input_error = "DOWNLOAD_ERROR", "Không tải được dataset."
+                    except Exception as exc:
+                        input_error = "DOWNLOAD_ERROR", str(exc)
+                try:
+                    data_hash = (f"size-limit:{item['paper_n']}" if size_limited
+                                 else file_digest(path) if path.exists() and not input_error else "unavailable")
+                except OSError as exc:
+                    data_hash = "unavailable"
+                    input_error = "ERROR", str(exc)
+                graph = None
+                graph_attempted = False
+                for method in methods:
+                    for solver_key in selected_solvers:
+                        if should_stop():
+                            return counters
+                        identity = {
+                            "Instance": item["name"], "Data_SHA256": data_hash,
+                            "Code_SHA256": code_hash, "Environment": versions,
+                            "Solver": solver_key, "AMO_Method": method, "Strategy": strategy,
+                            "Timeout_s": float(timeout), "Use_Heuristics": True,
+                            "Use_Components": True, "Size_Limit_Exclusive": 400,
+                        }
+                        job_id = digest(identity)
+                        if not store.should_run(job_id, retry_errors=retry_errors):
+                            counters["skipped"] += 1
+                            print(f"[Resume] Bỏ qua {item['name']} / {solver_key} / {method}", flush=True)
+                            continue
+                        if should_stop(reserve=0 if size_limited else timeout):
+                            print("[Session] Không bắt đầu lượt mới vì không đủ ngân sách thời gian.")
+                            return counters
+                        if not size_limited and not input_error and not graph_attempted:
+                            graph_attempted = True
+                            try:
+                                if runtime is None:
+                                    runtime = _load_runtime()
+                                graph = runtime[0].from_mtx(str(path), name=item["name"])
+                            except Exception as exc:
+                                input_error = "ERROR", str(exc)
+                        info = dict(identity, Table=item["table"], n=graph.n if graph else item["paper_n"],
+                                    m=graph.m if graph else "", Paper_LB=item["paper_lb"],
+                                    Paper_Best=item["paper_best"], NIST_URL=get_matrix_url(item["name"]),
+                                    Machine=platform.node(), Platform=platform.platform())
+                        if should_stop(reserve=0 if size_limited or input_error else timeout):
+                            return counters
+                        attempt = store.start(job_id, info)
+                        print(f"[Run] {item['name']} / {solver_key} / {method}", flush=True)
+                        if size_limited or (graph is not None and graph.n >= 400):
+                            saved(attempt, "LIMIT", {"Reason": "n >= 400", "Runtime_s": 0})
+                            continue
+                        if input_error:
+                            saved(attempt, input_error[0], {"Error": input_error[1]})
+                            continue
+                        started = time.monotonic()
+                        try:
+                            solver = runtime[1][solver_key](graph, amo_method=method, timeout=timeout)
+                            result = solver.solve(use_heuristics=True, use_components=True,
+                                                  strategy=strategy, verbose=False)
+                            elapsed = time.monotonic() - started
+                            saved(attempt, result.status, {
+                                "Bandwidth": result.bandwidth, "Runtime_s": elapsed,
+                                "Iterations": result.iterations, "Clauses": result.clauses_count,
+                                "Vars": result.vars_count, "Labeling": result.labeling,
+                            })
+                        except KeyboardInterrupt:
+                            saved(attempt, "INTERRUPTED", {"Runtime_s": time.monotonic() - started})
+                            return counters
+                        except Exception as exc:
+                            saved(attempt, "ERROR", {"Error": str(exc), "Runtime_s": time.monotonic() - started})
+        finally:
+            _export(store, output)
+            print(f"\nĐã dừng an toàn. Phiên này lưu {counters['completed']} lượt; "
+                  f"bỏ qua {counters['skipped']} lượt đã có. Chạy lại cùng lệnh để tiếp tục.", flush=True)
+            if stop_path.exists():
+                print(f"Xóa stop-file trước khi chạy tiếp: {stop_path}")
+    return counters
+
+
+def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    parser = argparse.ArgumentParser(description="Benchmark SAT với checkpoint/resume sau từng lượt solver")
+    parser.add_argument("--table", choices=["6", "7", "all"], default="all")
+    parser.add_argument("--amo", choices=[*AMO_METHODS, "all"], default="pairwise")
+    parser.add_argument("--strategy", choices=["linear", "binary"], default="linear")
+    parser.add_argument("--timeout", type=float, default=600.0)
+    parser.add_argument("--output", default="results/benchmark_runs.csv", help="CSV dạng dài, tự xuất từ checkpoint")
+    parser.add_argument("--checkpoint", default="results/benchmark_resume.sqlite3")
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--instances", nargs="+", help="Danh sách tên instance")
+    selection.add_argument("--instances-file", help="File UTF-8: tên instance cách nhau bởi khoảng trắng; # là chú thích")
+    parser.add_argument("--solvers", nargs="+", choices=SOLVER_KEYS)
+    parser.add_argument("--session-hours", type=float, help="Ngừng nhận lượt mới khi không đủ thời gian cho timeout")
+    parser.add_argument("--max-jobs", type=int, help="Dừng sau số lượt mới chỉ định")
+    parser.add_argument("--retry-errors", action="store_true", help="Chạy lại ERROR/DOWNLOAD_ERROR; không chạy lại TIMEOUT")
+    parser.add_argument("--stop-file", help="Tạo file này để dừng sau lượt hiện tại")
+    parser.add_argument("--resume", action="store_true", help="Resume luôn bật; cờ này được giữ để lệnh dễ đọc")
+    args = parser.parse_args()
+    instances = args.instances
+    try:
+        if args.instances_file:
+            instances = [word for line in Path(args.instances_file).read_text(encoding="utf-8-sig").splitlines()
+                         for word in line.split("#", 1)[0].split()]
+            if not instances:
+                raise ValueError("instances-file không có instance nào.")
+        run_benchmark(table_filter=args.table, strategy=args.strategy, amo=args.amo,
+                      timeout=args.timeout, output_csv=args.output, checkpoint=args.checkpoint,
+                      instances=instances, solver_keys=args.solvers, session_hours=args.session_hours,
+                      max_jobs=args.max_jobs, retry_errors=args.retry_errors, stop_file=args.stop_file)
+    except (ValueError, RuntimeError, OSError) as exc:
+        parser.exit(1, f"Lỗi: {exc}\n")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Chạy Benchmark Harwell-Boeing Bảng 6 & 7")
-    parser.add_argument("--table", choices=["6", "7", "all"], default="all", help="Chọn Bảng 6, Bảng 7 hoặc tất cả")
-    parser.add_argument("--amo", choices=["pairwise", "sequential", "binary", "commander", "product"], default="pairwise", help="Phương pháp mã hóa AMO/ALO")
-    parser.add_argument("--strategy", choices=["linear", "binary"], default="linear", help="Chiến lược tìm kiếm")
-    parser.add_argument("--timeout", type=float, default=600.0, help="Thời gian tối đa cho mỗi bài toán (giây)")
-    parser.add_argument("--output", default="results/benchmark_summary.csv", help="File CSV đầu ra")
-    args = parser.parse_args()
-
-    run_benchmark(
-        table_filter=args.table if args.table != "all" else None,
-        strategy=args.strategy,
-        amo=args.amo,
-        timeout=args.timeout,
-        output_csv=args.output,
-    )
+    main()

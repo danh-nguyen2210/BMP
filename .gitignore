@@ -54,3 +54,10 @@ data/*.zip
 
 # Logs
 *.log
+
+# Local benchmark checkpoints (keep these files to resume; do not commit).
+results/*.sqlite3
+results/*.sqlite3-journal
+results/*.sqlite3-wal
+results/*.sqlite3-shm
+results/*.stop
