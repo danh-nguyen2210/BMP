@@ -1,0 +1,18 @@
+# Table 6 + Table 7, n < 400. Person 2: 14 instances.
+# Small (8)
+steam3
+ash85
+nos4
+gent113
+gre_115
+bcspwr03
+arc130
+lns_131
+# Medium (4)
+mcca
+fs_183_1
+gre_185
+will199
+# Large (2)
+can_292
+dwt_310

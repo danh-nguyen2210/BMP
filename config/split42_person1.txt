@@ -1,0 +1,18 @@
+# Table 6 + Table 7, n < 400. Person 1: 14 instances.
+# Small (8)
+pores_1
+ibm32
+bcspwr01
+bcsstk01
+bcspwr02
+curtis54
+will57
+impcol_b
+# Medium (4)
+bcsstk05
+west0156
+can_161
+west0167
+# Large (2)
+bcspwr04
+ash292

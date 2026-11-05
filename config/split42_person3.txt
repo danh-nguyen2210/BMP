@@ -1,0 +1,18 @@
+# Table 6 + Table 7, n < 400. Person 3: 14 instances.
+# Small (7)
+bcsstk04
+west0132
+impcol_c
+bcsstk22
+can_144
+lund_a
+lund_b
+# Medium (5)
+dwt_209
+gre_216a
+dwt_221
+dwt_234
+dwt_245
+# Large (2)
+gre_343
+dwt_361

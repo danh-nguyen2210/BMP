@@ -1,0 +1,8 @@
+Instance,Solver,AMO,Attempt,Status,Reported_Bandwidth,Actual_Bandwidth,Paper_LB,Paper_Best,Validation
+pores_1,order-inc,pairwise,1,OPTIMAL,7,7,7,7,VALID_MATCHES_REFERENCE_LB
+pores_1,order-iter,pairwise,2,OPTIMAL,7,7,7,7,VALID_MATCHES_REFERENCE_LB
+pores_1,pairwise-inc,pairwise,3,OPTIMAL,7,7,7,7,VALID_MATCHES_REFERENCE_LB
+pores_1,pairwise-iter,pairwise,4,OPTIMAL,7,7,7,7,VALID_MATCHES_REFERENCE_LB
+ibm32,order-inc,pairwise,5,TIMEOUT,11,11,11,11,VALID_MATCHES_REFERENCE_LB
+ibm32,order-iter,pairwise,6,TIMEOUT,12,12,11,11,VALID_ABOVE_REFERENCE_BEST
+ibm32,pairwise-inc,pairwise,7,TIMEOUT,11,11,11,11,VALID_MATCHES_REFERENCE_LB
