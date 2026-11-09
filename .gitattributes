@@ -1,0 +1,2 @@
+# Giữ nguyên định dạng xuống dòng LF cho các file ma trận MatrixMarket
+*.mtx text eol=lf

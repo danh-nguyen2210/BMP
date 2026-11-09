@@ -49,61 +49,9 @@ dwt_245,00db4a6718b36eea06ef21c3c6e398bc7840f693a51defa0d726d809c355f573,f252858
 dwt_245,00db4a6718b36eea06ef21c3c6e398bc7840f693a51defa0d726d809c355f573,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-iter,pairwise,linear,600.0,True,True,400,7,245,608,21,21,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__245.mtx.gz,Zank,Windows-10-10.0.26200-SP0,TIMEOUT,600.655999999959,0,0,0,48,d983a59205cbc7a355cda963f1439fbfa99e569921fb87beb5aa3e06c6987e63,TIMEOUT,2026-11-07T09:50:34.628070+00:00,2026-11-07T10:00:35.289067+00:00,
 gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",order-inc,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,TIMEOUT,600.6710000000894,0,0,0,49,fe1ee8a77a459208acd6c8be7b14ac4067b9f9c6b8fc0baf3581a6d63f32e55a,TIMEOUT,2026-11-07T10:00:35.416230+00:00,2026-11-07T10:10:36.103125+00:00,
 gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",order-iter,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,TIMEOUT,600.7650000001304,0,0,0,50,b474ad0ccef01ec91f3e4f98901c042fd54c0c028202347c1a64f8b22bb26e06,TIMEOUT,2026-11-07T10:10:36.128422+00:00,2026-11-07T10:20:36.892218+00:00,
-gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-inc,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,327.35900000017136,,,,51,9c2b2e9f09776bb1aeb461b138384a9c77c1f5167a9c384a7b43994e35e40972,ERROR,2026-11-07T10:20:36.913134+00:00,2026-11-07T10:26:04.274754+00:00,"Traceback (most recent call last):
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 35, in _worker_solve_entry
-    res = solver_instance._solve_direct(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 260, in _solve_direct
-    res = self._solve_single_graph(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 514, in _solve_single_graph
-    for cl in self._get_bandwidth_clauses(k):
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 304, in _get_bandwidth_clauses
-    clauses.append(
-MemoryError
-"
-gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-iter,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,301.7650000001304,,,,52,2631dd2b32d002b88aa8b4d922d3f45c71b1e691adff1cb4f469b7e645874510,ERROR,2026-11-07T10:26:04.328855+00:00,2026-11-07T10:31:06.096521+00:00,"Traceback (most recent call last):
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 35, in _worker_solve_entry
-    res = solver_instance._solve_direct(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 260, in _solve_direct
-    res = self._solve_single_graph(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 373, in _solve_single_graph
-    bw_clauses = self._get_bandwidth_clauses(k)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 304, in _get_bandwidth_clauses
-    clauses.append(
-MemoryError
-"
 dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",order-inc,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,20,600.9060000001919,5,56196721,260286,53,816b4b8f0d9396f4b408c36c098f4064e6c03bc7afa90b2bf7915fe7c33bc06d,TIMEOUT,2026-11-07T10:31:06.232046+00:00,2026-11-07T10:41:07.157206+00:00,
 dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",order-iter,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,24,600.9220000000205,1,49177585,260281,54,cb8a557f1f1c4a842b5a28b205e5454220c1ad47faece26911912b958a6f847a,TIMEOUT,2026-11-07T10:41:07.208164+00:00,2026-11-07T10:51:08.133300+00:00,
-dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-inc,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,395.5470000000205,,,,55,fae506e5a49e5bcf215bdcaaf87e51ca0d348b0a972649767b6c3cd7e2493d37,ERROR,2026-11-07T10:51:08.190687+00:00,2026-11-07T10:57:43.749060+00:00,"Traceback (most recent call last):
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 35, in _worker_solve_entry
-    res = solver_instance._solve_direct(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 260, in _solve_direct
-    res = self._solve_single_graph(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 514, in _solve_single_graph
-    for cl in self._get_bandwidth_clauses(k):
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 304, in _get_bandwidth_clauses
-    clauses.append(
-MemoryError
-"
-dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-iter,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,402.5460000000894,,,,56,6719f58f55ed0f3a2354d6e3f483892771168d6d13faaec0975b2767c038bce7,ERROR,2026-11-07T10:57:43.799508+00:00,2026-11-07T11:04:26.348899+00:00,"Traceback (most recent call last):
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 35, in _worker_solve_entry
-    res = solver_instance._solve_direct(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 260, in _solve_direct
-    res = self._solve_single_graph(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 373, in _solve_single_graph
-    bw_clauses = self._get_bandwidth_clauses(k)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ""C:\Users\Danh\Desktop\BMP\src\solvers.py"", line 304, in _get_bandwidth_clauses
-    clauses.append(
-MemoryError
-"
+gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-inc,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,339.5779999999795,,,,55,9c2b2e9f09776bb1aeb461b138384a9c77c1f5167a9c384a7b43994e35e40972,ERROR,2026-11-09T13:23:08.685359+00:00,2026-11-09T13:28:48.281972+00:00,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+gre_343,54a0eaa0a5fe6636484f40a5efedb48276f2213e24119d6479e148fd6aabb49f,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-iter,pairwise,linear,600.0,True,True,400,7,343,1092,23,28,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/grenoble/gre__343.mtx.gz,Zank,Windows-10-10.0.26200-SP0,TIMEOUT,600.4370000001509,0,0,0,56,2631dd2b32d002b88aa8b4d922d3f45c71b1e691adff1cb4f469b7e645874510,TIMEOUT,2026-11-09T13:28:48.358555+00:00,2026-11-09T13:38:48.809421+00:00,
+dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-inc,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,TIMEOUT,601.030999999959,0,0,0,57,fae506e5a49e5bcf215bdcaaf87e51ca0d348b0a972649767b6c3cd7e2493d37,TIMEOUT,2026-11-09T13:38:49.111803+00:00,2026-11-09T13:48:50.166924+00:00,
+dwt_361,d378eb2cbe1977c14fd2a937757f7e6faa791b9e568770e802d939d544c07342,f252858a195a660eb24c45eb144404e19f66422db90d5159379322d91f3c09da,"{'python': '3.11.0', 'system': 'Windows', 'architecture': 'AMD64', 'python-sat': '1.9.dev17', 'numpy': '2.4.6', 'scipy': '1.17.1'}",pairwise-iter,pairwise,linear,600.0,True,True,400,7,361,1296,14,14,https://math.nist.gov/pub/MatrixMarket2/Harwell-Boeing/dwt/dwt__361.mtx.gz,Zank,Windows-10-10.0.26200-SP0,,569.7189999998081,,,,58,6719f58f55ed0f3a2354d6e3f483892771168d6d13faaec0975b2767c038bce7,ERROR,2026-11-09T13:48:50.248694+00:00,2026-11-09T13:58:19.987712+00:00,MemoryError: Out of memory (OOM) during bandwidth clause generation on dwt_361 (n=361)
