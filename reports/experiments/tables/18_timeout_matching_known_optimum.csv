@@ -1,0 +1,48 @@
+﻿Instance,Config,Bandwidth,Paper_LB,Paper_Best,Status
+ibm32,pairwise-inc / pairwise,11,11,11,TIMEOUT
+ibm32,pairwise-iter / pairwise,11,11,11,TIMEOUT
+ibm32,cplex-cp,11,11,11,TIMEOUT
+ibm32,cplex-mip,11,11,11,TIMEOUT
+ibm32,gurobi,11,11,11,TIMEOUT
+bcspwr01,cplex-mip,5,5,5,TIMEOUT
+bcspwr02,order-inc / pairwise,7,7,7,TIMEOUT
+bcspwr02,order-iter / pairwise,7,7,7,TIMEOUT
+bcspwr02,pairwise-inc / pairwise,7,7,7,TIMEOUT
+bcspwr02,pairwise-iter / pairwise,7,7,7,TIMEOUT
+bcspwr02,order-inc / sequential,7,7,7,TIMEOUT
+bcspwr02,order-iter / sequential,7,7,7,TIMEOUT
+bcspwr02,pairwise-inc / sequential,7,7,7,TIMEOUT
+bcspwr02,pairwise-iter / sequential,7,7,7,TIMEOUT
+bcspwr02,order-inc / product,7,7,7,TIMEOUT
+bcspwr02,order-iter / product,7,7,7,TIMEOUT
+bcspwr02,pairwise-inc / product,7,7,7,TIMEOUT
+bcspwr02,cplex-cp,7,7,7,TIMEOUT
+bcspwr02,cplex-mip,7,7,7,TIMEOUT
+bcspwr02,gurobi,7,7,7,TIMEOUT
+curtis54,order-inc / sequential,10,10,10,TIMEOUT
+curtis54,order-iter / sequential,10,10,10,TIMEOUT
+curtis54,pairwise-inc / sequential,10,10,10,TIMEOUT
+curtis54,order-inc / product,10,10,10,TIMEOUT
+curtis54,order-iter / product,10,10,10,TIMEOUT
+curtis54,pairwise-inc / product,10,10,10,TIMEOUT
+curtis54,cplex-cp,10,10,10,TIMEOUT
+curtis54,cplex-mip,10,10,10,TIMEOUT
+curtis54,gurobi,10,10,10,TIMEOUT
+steam3,cplex-mip,7,7,7,TIMEOUT
+steam3,gurobi,7,7,7,TIMEOUT
+ash85,cplex-cp,9,9,9,TIMEOUT
+ash85,gurobi,9,9,9,TIMEOUT
+nos4,order-inc / pairwise,10,10,10,TIMEOUT
+nos4,order-iter / pairwise,10,10,10,TIMEOUT
+nos4,pairwise-iter / pairwise,10,10,10,TIMEOUT
+nos4,order-inc / sequential,10,10,10,TIMEOUT
+nos4,order-iter / sequential,10,10,10,TIMEOUT
+nos4,pairwise-inc / sequential,10,10,10,TIMEOUT
+nos4,order-inc / product,10,10,10,TIMEOUT
+nos4,order-iter / product,10,10,10,TIMEOUT
+nos4,cplex-cp,10,10,10,TIMEOUT
+nos4,gurobi,10,10,10,TIMEOUT
+arc130,cplex-cp,63,63,63,TIMEOUT
+arc130,cplex-mip,63,63,63,TIMEOUT
+arc130,gurobi,63,63,63,TIMEOUT
+can_144,gurobi,13,13,13,TIMEOUT

@@ -1,0 +1,673 @@
+﻿Instance,Table,n,m,Paper_LB,Paper_Best,Solver,AMO_Method,Timeout_s,Status,Bandwidth,Runtime_s,Iterations,Clauses,Vars,Constraints,LB_Proven,UB_Found,Gap_Absolute,Use_Components,Threads,Error,Config,Has_BW,Is_Optimal,Match_Paper,Reference_Optimum_Known,Match_Known_Optimum,Gap_Paper_pct,Size_Group
+pores_1,6,30,103,7,7,order-inc,pairwise,600.0,OPTIMAL,7.0,8.25,3.0,56802.0,1773.0,,,,,True,,,order-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,order-iter,pairwise,600.0,OPTIMAL,7.0,13.766000000061467,3.0,39086.0,1770.0,,,,,True,,,order-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-inc,pairwise,600.0,OPTIMAL,7.0,33.26600000006147,3.0,182690.0,903.0,,,,,True,,,pairwise-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-iter,pairwise,600.0,OPTIMAL,7.0,33.57799999997951,3.0,82986.0,900.0,,,,,True,,,pairwise-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,order-inc,sequential,600.0,OPTIMAL,7.0,10.577999999979511,3.0,35862.0,3513.0,,,,,True,,,order-inc / sequential,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,order-iter,sequential,600.0,OPTIMAL,7.0,12.937000000150874,3.0,18146.0,3510.0,,,,,True,,,order-iter / sequential,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-inc,sequential,600.0,OPTIMAL,7.0,55.23399999993853,3.0,161750.0,2643.0,,,,,True,,,pairwise-inc / sequential,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-iter,sequential,600.0,OPTIMAL,7.0,45.563000000081956,3.0,62046.0,2640.0,,,,,True,,,pairwise-iter / sequential,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,order-inc,product,600.0,OPTIMAL,7.0,23.311999999918044,3.0,35802.0,2433.0,,,,,True,,,order-inc / product,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,order-iter,product,600.0,OPTIMAL,7.0,27.75,3.0,18086.0,2430.0,,,,,True,,,order-iter / product,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-inc,product,600.0,OPTIMAL,7.0,83.57799999997951,3.0,161690.0,1563.0,,,,,True,,,pairwise-inc / product,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,pairwise-iter,product,600.0,OPTIMAL,7.0,56.734999999869615,3.0,61986.0,1560.0,,,,,True,,,pairwise-iter / product,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,cplex-cp,,600.0,OPTIMAL,7.0,76.09300000000076,,,31.0,104.0,7.0,7.0,0.0,False,1.0,,cplex-cp,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,cplex-mip,,600.0,OPTIMAL,7.0,70.29699999999866,,,901.0,266.0,7.0,7.0,0.0,False,1.0,,cplex-mip,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,gurobi,,600.0,OPTIMAL,7.0,23.875,,,901.0,266.0,7.0,7.0,0.0,False,1.0,,gurobi,True,True,True,True,True,0.0,n <= 150
+pores_1,6,30,103,7,7,cp-sat,,600.0,OPTIMAL,7.0,1.8279999999940628,,,134.0,207.0,7.0,7.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,order-inc,pairwise,600.0,TIMEOUT,12.0,602.7030000002123,3.0,55184.0,2019.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,order-iter,pairwise,600.0,TIMEOUT,12.0,600.1399999998976,3.0,42584.0,2016.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,pairwise-inc,pairwise,600.0,TIMEOUT,11.0,600.1409999998286,4.0,162096.0,1028.0,,,,,True,,,pairwise-inc / pairwise,True,False,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,pairwise-iter,pairwise,600.0,TIMEOUT,11.0,600.1410000000615,4.0,69576.0,1024.0,,,,,True,,,pairwise-iter / pairwise,True,False,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,order-inc,sequential,600.0,TIMEOUT,13.0,600.1410000000615,2.0,22488.0,4002.0,,,,,True,,,order-inc / sequential,True,False,False,True,False,18.181818181818183,n <= 150
+ibm32,6,32,90,11,11,order-iter,sequential,600.0,TIMEOUT,12.0,600.1410000000615,3.0,16728.0,4000.0,,,,,True,,,order-iter / sequential,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,pairwise-inc,sequential,600.0,TIMEOUT,12.0,600.1410000000615,3.0,98440.0,3011.0,,,,,True,,,pairwise-inc / sequential,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,pairwise-iter,sequential,600.0,TIMEOUT,12.0,600.1410000000615,3.0,40120.0,3008.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,order-inc,product,600.0,TIMEOUT,12.0,600.1410000000615,3.0,29520.0,2787.0,,,,,True,,,order-inc / product,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,order-iter,product,600.0,TIMEOUT,12.0,600.125,3.0,16920.0,2784.0,,,,,True,,,order-iter / product,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,pairwise-inc,product,600.0,TIMEOUT,12.0,600.125,3.0,98632.0,1795.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,pairwise-iter,product,600.0,TIMEOUT,12.0,600.125,3.0,40312.0,1792.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,9.090909090909092,n <= 150
+ibm32,6,32,90,11,11,cplex-cp,,600.0,TIMEOUT,11.0,598.1099999999988,,,33.0,91.0,8.0,11.0,3.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,cplex-mip,,600.0,TIMEOUT,11.0,598.125,,,1025.0,244.0,8.0,11.0,3.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,gurobi,,600.0,TIMEOUT,11.0,598.0939999999991,,,1025.0,244.0,10.0,11.0,1.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+ibm32,6,32,90,11,11,cp-sat,,600.0,OPTIMAL,11.0,4.796999999998661,,,123.0,181.0,11.0,11.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-inc,pairwise,600.0,OPTIMAL,5.0,40.98400000017136,4.0,87685.0,3007.0,,,,,True,,,order-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-iter,pairwise,600.0,OPTIMAL,5.0,27.54700000002049,4.0,70021.0,3003.0,,,,,True,,,order-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-inc,pairwise,600.0,OPTIMAL,5.0,309.405999999959,4.0,258397.0,1525.0,,,,,True,,,pairwise-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-iter,pairwise,600.0,OPTIMAL,5.0,208.04699999978766,4.0,112577.0,1521.0,,,,,True,,,pairwise-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-inc,sequential,600.0,OPTIMAL,5.0,19.436999999918044,4.0,38701.0,5971.0,,,,,True,,,order-inc / sequential,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-iter,sequential,600.0,OPTIMAL,5.0,21.562999999849126,4.0,21037.0,5967.0,,,,,True,,,order-iter / sequential,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-inc,sequential,600.0,OPTIMAL,5.0,106.81300000008196,4.0,209413.0,4489.0,,,,,True,,,pairwise-inc / sequential,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-iter,sequential,600.0,OPTIMAL,5.0,103.5,4.0,63593.0,4485.0,,,,,True,,,pairwise-iter / sequential,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-inc,product,600.0,OPTIMAL,5.0,88.43699999991804,4.0,38779.0,4021.0,,,,,True,,,order-inc / product,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,order-iter,product,600.0,OPTIMAL,5.0,72.9680000001099,4.0,21115.0,4017.0,,,,,True,,,order-iter / product,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-inc,product,600.0,OPTIMAL,5.0,244.35999999986961,4.0,209491.0,2539.0,,,,,True,,,pairwise-inc / product,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,pairwise-iter,product,600.0,OPTIMAL,5.0,324.92199999978766,4.0,63671.0,2535.0,,,,,True,,,pairwise-iter / product,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,cplex-cp,,600.0,OPTIMAL,5.0,598.0779999999995,,,40.0,47.0,5.0,5.0,0.0,False,1.0,,cplex-cp,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,cplex-mip,,600.0,TIMEOUT,5.0,598.094000000001,,,1522.0,170.0,4.0,5.0,1.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,gurobi,,600.0,OPTIMAL,5.0,172.20299999999952,,,1522.0,170.0,5.0,5.0,0.0,False,1.0,,gurobi,True,True,True,True,True,0.0,n <= 150
+bcspwr01,6,39,46,5,5,cp-sat,,600.0,OPTIMAL,5.0,1.9369999999980791,,,86.0,93.0,5.0,5.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+bcsstk01,6,48,176,16,16,order-inc,pairwise,600.0,TIMEOUT,21.0,600.125,6.0,216624.0,4566.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,31.25,n <= 150
+bcsstk01,6,48,176,16,16,order-iter,pairwise,600.0,TIMEOUT,17.0,600.1409999998286,10.0,138480.0,4560.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-inc,pairwise,600.0,TIMEOUT,17.0,600.1399999998976,10.0,1312176.0,2314.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-iter,pairwise,600.0,TIMEOUT,19.0,600.1099999998696,8.0,251248.0,2304.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,True,False,18.75,n <= 150
+bcsstk01,6,48,176,16,16,order-inc,sequential,600.0,TIMEOUT,17.0,600.1410000000615,10.0,202032.0,9082.0,,,,,True,,,order-inc / sequential,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,order-iter,sequential,600.0,TIMEOUT,18.0,600.1089999999385,9.0,42928.0,9072.0,,,,,True,,,order-iter / sequential,True,False,False,True,False,12.5,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-inc,sequential,600.0,TIMEOUT,19.0,600.1099999998696,8.0,900528.0,6824.0,,,,,True,,,pairwise-inc / sequential,True,False,False,True,False,18.75,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-iter,sequential,600.0,TIMEOUT,18.0,600.1089999999385,9.0,166608.0,6816.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,12.5,n <= 150
+bcsstk01,6,48,176,16,16,order-inc,product,600.0,TIMEOUT,17.0,600.1410000000615,10.0,201936.0,5914.0,,,,,True,,,order-inc / product,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,order-iter,product,600.0,TIMEOUT,17.0,600.125,10.0,43536.0,5904.0,,,,,True,,,order-iter / product,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-inc,product,600.0,TIMEOUT,19.0,600.125,8.0,900432.0,3656.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,18.75,n <= 150
+bcsstk01,6,48,176,16,16,pairwise-iter,product,600.0,TIMEOUT,18.0,600.1410000000615,9.0,166512.0,3648.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,12.5,n <= 150
+bcsstk01,6,48,176,16,16,cplex-cp,,600.0,OPTIMAL,16.0,598.0939999999973,,,49.0,177.0,16.0,16.0,0.0,False,1.0,,cplex-cp,True,True,True,True,True,0.0,n <= 150
+bcsstk01,6,48,176,16,16,cplex-mip,,600.0,TIMEOUT,17.0,598.2659999999996,,,2305.0,448.0,12.0,17.0,5.0,False,1.0,,cplex-mip,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,gurobi,,600.0,TIMEOUT,17.0,598.0780000000013,,,2305.0,448.0,12.0,17.0,5.0,False,1.0,,gurobi,True,False,False,True,False,6.25,n <= 150
+bcsstk01,6,48,176,16,16,cp-sat,,600.0,OPTIMAL,16.0,12.828000000001339,,,225.0,353.0,16.0,16.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-inc,pairwise,600.0,TIMEOUT,7.0,600.125,6.0,179221.0,4759.0,,,,,True,,,order-inc / pairwise,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-iter,pairwise,600.0,TIMEOUT,7.0,600.125,6.0,134381.0,4753.0,,,,,True,,,order-iter / pairwise,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-inc,pairwise,600.0,TIMEOUT,7.0,600.125,6.0,654675.0,2407.0,,,,,True,,,pairwise-inc / pairwise,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-iter,pairwise,600.0,TIMEOUT,7.0,600.1089999999385,6.0,216895.0,2401.0,,,,,True,,,pairwise-iter / pairwise,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-inc,sequential,600.0,TIMEOUT,7.0,600.1099999998696,6.0,77987.0,9463.0,,,,,True,,,order-inc / sequential,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-iter,sequential,600.0,TIMEOUT,7.0,600.1089999999385,6.0,33147.0,9457.0,,,,,True,,,order-iter / sequential,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-inc,sequential,600.0,TIMEOUT,7.0,600.125,6.0,553441.0,7111.0,,,,,True,,,pairwise-inc / sequential,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-iter,sequential,600.0,TIMEOUT,7.0,600.125,6.0,115661.0,7105.0,,,,,True,,,pairwise-iter / sequential,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-inc,product,600.0,TIMEOUT,7.0,600.125,6.0,77693.0,6131.0,,,,,True,,,order-inc / product,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,order-iter,product,600.0,TIMEOUT,7.0,600.125,6.0,32853.0,6125.0,,,,,True,,,order-iter / product,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-inc,product,600.0,TIMEOUT,7.0,600.1100000001024,6.0,553147.0,3779.0,,,,,True,,,pairwise-inc / product,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,pairwise-iter,product,600.0,TIMEOUT,8.0,600.125,5.0,110529.0,3773.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,14.285714285714286,n <= 150
+bcspwr02,6,49,59,7,7,cplex-cp,,600.0,TIMEOUT,7.0,598.0620000000017,,,50.0,60.0,6.0,7.0,1.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,cplex-mip,,600.0,TIMEOUT,7.0,598.125,,,2402.0,216.0,6.0,7.0,1.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,gurobi,,600.0,TIMEOUT,7.0,598.0780000000013,,,2402.0,216.0,6.0,7.0,1.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+bcspwr02,6,49,59,7,7,cp-sat,,600.0,OPTIMAL,7.0,3.813000000001921,,,109.0,119.0,7.0,7.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,order-inc,pairwise,600.0,TIMEOUT,11.0,600.1090000001714,3.0,227058.0,5781.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,10.0,n <= 150
+curtis54,6,54,124,10,10,order-iter,pairwise,600.0,TIMEOUT,11.0,600.125,3.0,186882.0,5778.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,10.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-inc,pairwise,600.0,TIMEOUT,12.0,600.1410000000615,2.0,571490.0,2918.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,20.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-iter,pairwise,600.0,TIMEOUT,11.0,600.125,3.0,378546.0,2916.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,True,False,10.0,n <= 150
+curtis54,6,54,124,10,10,order-inc,sequential,600.0,TIMEOUT,10.0,600.1090000001714,4.0,110902.0,11506.0,,,,,True,,,order-inc / sequential,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,order-iter,sequential,600.0,TIMEOUT,10.0,600.1099999998696,4.0,49894.0,11502.0,,,,,True,,,order-iter / sequential,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-inc,sequential,600.0,TIMEOUT,10.0,600.125,4.0,892558.0,8644.0,,,,,True,,,pairwise-inc / sequential,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-iter,sequential,600.0,TIMEOUT,12.0,600.125,2.0,230646.0,8640.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,20.0,n <= 150
+curtis54,6,54,124,10,10,order-inc,product,600.0,TIMEOUT,10.0,600.125,4.0,110794.0,7402.0,,,,,True,,,order-inc / product,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,order-iter,product,600.0,TIMEOUT,10.0,600.125,4.0,49786.0,7398.0,,,,,True,,,order-iter / product,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-inc,product,600.0,TIMEOUT,10.0,600.125,4.0,892450.0,4540.0,,,,,True,,,pairwise-inc / product,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,pairwise-iter,product,600.0,TIMEOUT,12.0,600.125,2.0,230538.0,4536.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,20.0,n <= 150
+curtis54,6,54,124,10,10,cplex-cp,,600.0,TIMEOUT,10.0,598.094000000001,,,55.0,125.0,8.0,10.0,2.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,cplex-mip,,600.0,TIMEOUT,10.0,598.1719999999987,,,2917.0,356.0,8.0,10.0,2.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,gurobi,,600.0,TIMEOUT,10.0,598.094000000001,,,2917.0,356.0,8.0,10.0,2.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+curtis54,6,54,124,10,10,cp-sat,,600.0,OPTIMAL,10.0,8.405999999995402,,,179.0,249.0,10.0,10.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,order-inc,pairwise,600.0,TIMEOUT,7.0,600.1400000001304,7.0,358345.0,6448.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,16.666666666666668,n <= 150
+will57,6,57,127,6,6,order-iter,pairwise,600.0,OPTIMAL,6.0,526.1089999999385,8.0,220169.0,6441.0,,,,,True,,,order-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,pairwise-inc,pairwise,600.0,TIMEOUT,7.0,600.1409999998286,7.0,2107575.0,3256.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,16.666666666666668,n <= 150
+will57,6,57,127,6,6,pairwise-iter,pairwise,600.0,OPTIMAL,6.0,276.64099999982864,8.0,505851.0,3249.0,,,,,True,,,pairwise-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,order-inc,sequential,600.0,OPTIMAL,6.0,174.81199999991804,8.0,220839.0,12833.0,,,,,True,,,order-inc / sequential,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,order-iter,sequential,600.0,OPTIMAL,6.0,61.34399999980815,8.0,57263.0,12825.0,,,,,True,,,order-iter / sequential,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,pairwise-inc,sequential,600.0,OPTIMAL,6.0,369.76600000006147,8.0,2268519.0,9641.0,,,,,True,,,pairwise-inc / sequential,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,pairwise-iter,sequential,600.0,TIMEOUT,7.0,600.125,7.0,330245.0,9633.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,16.666666666666668,n <= 150
+will57,6,57,127,6,6,order-inc,product,600.0,OPTIMAL,6.0,41.89099999982864,8.0,221295.0,8273.0,,,,,True,,,order-inc / product,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,order-iter,product,600.0,OPTIMAL,6.0,26.937000000150874,8.0,57719.0,8265.0,,,,,True,,,order-iter / product,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,pairwise-inc,product,600.0,TIMEOUT,8.0,600.1399999998976,6.0,1633975.0,5079.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,33.333333333333336,n <= 150
+will57,6,57,127,6,6,pairwise-iter,product,600.0,OPTIMAL,6.0,228.18699999991804,8.0,343401.0,5073.0,,,,,True,,,pairwise-iter / product,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,cplex-cp,,600.0,OPTIMAL,6.0,1.1089999999967404,,,58.0,128.0,6.0,6.0,0.0,False,1.0,,cplex-cp,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,cplex-mip,,600.0,TIMEOUT,7.0,598.0929999999971,,,3250.0,368.0,6.0,7.0,1.0,False,1.0,,cplex-mip,True,False,False,True,False,16.666666666666668,n <= 150
+will57,6,57,127,6,6,gurobi,,600.0,OPTIMAL,6.0,117.5,,,3250.0,368.0,6.0,6.0,0.0,False,1.0,,gurobi,True,True,True,True,True,0.0,n <= 150
+will57,6,57,127,6,6,cp-sat,,600.0,OPTIMAL,6.0,24.85899999999674,,,185.0,255.0,6.0,6.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+impcol_b,6,59,281,19,20,order-inc,pairwise,600.0,TIMEOUT,23.0,600.1409999998286,15.0,687725.0,6918.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,15.0,n <= 150
+impcol_b,6,59,281,19,20,order-iter,pairwise,600.0,TIMEOUT,23.0,600.125,15.0,254985.0,6903.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,15.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-inc,pairwise,600.0,TIMEOUT,24.0,600.1410000000615,14.0,3349157.0,3495.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,20.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-iter,pairwise,600.0,TIMEOUT,23.0,600.1399999998976,15.0,556017.0,3481.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,15.0,n <= 150
+impcol_b,6,59,281,19,20,order-inc,sequential,600.0,TIMEOUT,24.0,600.125,14.0,466901.0,13761.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,20.0,n <= 150
+impcol_b,6,59,281,19,20,order-iter,sequential,600.0,TIMEOUT,23.0,600.125,15.0,73501.0,13747.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,15.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-inc,sequential,600.0,TIMEOUT,24.0,600.1399999998976,14.0,3167673.0,10339.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,20.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-iter,sequential,600.0,TIMEOUT,24.0,600.1409999998286,14.0,354863.0,10325.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,20.0,n <= 150
+impcol_b,6,59,281,19,20,order-inc,product,600.0,TIMEOUT,24.0,600.125,14.0,467137.0,8805.0,,,,,True,,,order-inc / product,True,False,False,False,False,20.0,n <= 150
+impcol_b,6,59,281,19,20,order-iter,product,600.0,TIMEOUT,23.0,600.125,15.0,73737.0,8791.0,,,,,True,,,order-iter / product,True,False,False,False,False,15.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-inc,product,600.0,TIMEOUT,26.0,600.125,12.0,2518237.0,5381.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,30.0,n <= 150
+impcol_b,6,59,281,19,20,pairwise-iter,product,600.0,TIMEOUT,26.0,600.1409999998286,12.0,317445.0,5369.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,30.0,n <= 150
+impcol_b,6,59,281,19,20,cplex-cp,,600.0,TIMEOUT,20.0,598.0780000000013,,,60.0,282.0,15.0,20.0,5.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,n <= 150
+impcol_b,6,59,281,19,20,cplex-mip,,600.0,TIMEOUT,21.0,598.375,,,3482.0,680.0,15.0,21.0,6.0,False,1.0,,cplex-mip,True,False,False,False,False,5.0,n <= 150
+impcol_b,6,59,281,19,20,gurobi,,600.0,TIMEOUT,22.0,598.0629999999983,,,3482.0,680.0,15.0,22.0,7.0,False,1.0,,gurobi,True,False,False,False,False,10.0,n <= 150
+impcol_b,6,59,281,19,20,cp-sat,,600.0,TIMEOUT,21.0,598.125,,,341.0,563.0,15.0,21.0,6.0,False,1.0,,cp-sat,True,False,False,False,False,5.0,n <= 150
+steam3,6,80,424,7,7,order-inc,pairwise,600.0,OPTIMAL,7.0,174.06300000002375,1.0,654768.0,12721.0,,,,,True,,,order-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,order-iter,pairwise,600.0,OPTIMAL,7.0,210.795999999973,1.0,654768.0,12720.0,,,,,True,,,order-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,pairwise-inc,pairwise,600.0,OPTIMAL,7.0,237.23399999999674,1.0,2796128.0,6401.0,,,,,True,,,pairwise-inc / pairwise,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,pairwise-iter,pairwise,600.0,OPTIMAL,7.0,232.93700000003446,1.0,2796128.0,6400.0,,,,,True,,,pairwise-iter / pairwise,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,order-inc,sequential,600.0,OPTIMAL,7.0,26.28100000001723,1.0,186928.0,25361.0,,,,,True,,,order-inc / sequential,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,order-iter,sequential,600.0,OPTIMAL,7.0,37.40600000001723,1.0,186928.0,25360.0,,,,,True,,,order-iter / sequential,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,pairwise-inc,sequential,600.0,OPTIMAL,7.0,400.26600000000326,1.0,2328288.0,19041.0,,,,,True,,,pairwise-inc / sequential,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,pairwise-iter,sequential,600.0,OPTIMAL,7.0,380.68699999997625,1.0,2328288.0,19040.0,,,,,True,,,pairwise-iter / sequential,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,order-inc,product,600.0,OPTIMAL,7.0,23.89100000000326,1.0,186448.0,15601.0,,,,,True,,,order-inc / product,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,order-iter,product,600.0,OPTIMAL,7.0,30.92200000002049,1.0,186448.0,15600.0,,,,,True,,,order-iter / product,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,pairwise-inc,product,600.0,TIMEOUT,,600.1560000000172,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,n <= 150
+steam3,6,80,424,7,7,pairwise-iter,product,600.0,OPTIMAL,7.0,253.78100000001723,1.0,2327808.0,9280.0,,,,,True,,,pairwise-iter / product,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,cplex-cp,,600.0,OPTIMAL,7.0,318.85999999998603,,,81.0,425.0,7.0,7.0,0.0,False,1.0,,cplex-cp,True,True,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,cplex-mip,,600.0,TIMEOUT,7.0,598.6410000000615,,,6401.0,1008.0,6.0,7.0,1.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,gurobi,,600.0,TIMEOUT,7.0,598.9060000000754,,,6401.0,1008.0,6.0,7.0,1.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+steam3,6,80,424,7,7,cp-sat,,600.0,OPTIMAL,7.0,26.125,,,505.0,849.0,7.0,7.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+ash85,6,85,219,9,9,order-inc,pairwise,600.0,TIMEOUT,,600.204000000027,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,order-iter,pairwise,600.0,TIMEOUT,,600.1570000000065,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-inc,pairwise,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-iter,pairwise,600.0,TIMEOUT,,600.1880000000237,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,order-inc,sequential,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,order-iter,sequential,600.0,TIMEOUT,,600.1399999999558,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-inc,sequential,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-iter,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,order-inc,product,600.0,TIMEOUT,,600.1869999999763,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,order-iter,product,600.0,TIMEOUT,,600.1570000000065,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-inc,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,pairwise-iter,product,600.0,TIMEOUT,,600.1870000000345,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,True,False,,n <= 150
+ash85,6,85,219,9,9,cplex-cp,,600.0,TIMEOUT,9.0,598.75,,,86.0,220.0,7.0,9.0,2.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+ash85,6,85,219,9,9,cplex-mip,,600.0,TIMEOUT,10.0,599.015000000014,,,7226.0,608.0,7.0,10.0,3.0,False,1.0,,cplex-mip,True,False,False,True,False,11.11111111111111,n <= 150
+ash85,6,85,219,9,9,gurobi,,600.0,TIMEOUT,9.0,598.7029999999795,,,7226.0,608.0,7.0,9.0,2.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+ash85,6,85,219,9,9,cp-sat,,600.0,OPTIMAL,9.0,43.15700000000652,,,305.0,439.0,9.0,9.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,order-inc,pairwise,600.0,TIMEOUT,10.0,600.2029999999795,5.0,1459480.0,19905.0,,,,,True,,,order-inc / pairwise,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,order-iter,pairwise,600.0,TIMEOUT,10.0,600.2029999999795,5.0,1117632.0,19900.0,,,,,True,,,order-iter / pairwise,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,pairwise-inc,pairwise,600.0,TIMEOUT,12.0,600.2029999999795,3.0,6534756.0,10003.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,20.0,n <= 150
+nos4,6,100,247,10,10,pairwise-iter,pairwise,600.0,TIMEOUT,10.0,600.2339999999967,5.0,2968570.0,10000.0,,,,,True,,,pairwise-iter / pairwise,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,order-inc,sequential,600.0,TIMEOUT,10.0,600.1410000000033,5.0,528680.0,39705.0,,,,,True,,,order-inc / sequential,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,order-iter,sequential,600.0,TIMEOUT,10.0,600.1410000000033,5.0,186832.0,39700.0,,,,,True,,,order-iter / sequential,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,pairwise-inc,sequential,600.0,TIMEOUT,10.0,600.1869999999763,5.0,9516930.0,29805.0,,,,,True,,,pairwise-inc / sequential,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,pairwise-iter,sequential,600.0,TIMEOUT,11.0,600.2189999999828,4.0,1993804.0,29800.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,10.0,n <= 150
+nos4,6,100,247,10,10,order-inc,product,600.0,TIMEOUT,10.0,600.125,5.0,527480.0,23905.0,,,,,True,,,order-inc / product,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,order-iter,product,600.0,TIMEOUT,10.0,600.1410000000033,5.0,185632.0,23900.0,,,,,True,,,order-iter / product,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,pairwise-inc,product,600.0,TIMEOUT,13.0,600.155999999959,2.0,3711724.0,14002.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,30.0,n <= 150
+nos4,6,100,247,10,10,pairwise-iter,product,600.0,TIMEOUT,12.0,600.2030000000377,3.0,1949132.0,14000.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,20.0,n <= 150
+nos4,6,100,247,10,10,cplex-cp,,600.0,TIMEOUT,10.0,598.859000000055,,,101.0,248.0,8.0,10.0,2.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,cplex-mip,,600.0,TIMEOUT,13.0,598.8429999999935,,,10001.0,694.0,8.0,13.0,5.0,False,1.0,,cplex-mip,True,False,False,True,False,30.0,n <= 150
+nos4,6,100,247,10,10,gurobi,,600.0,TIMEOUT,10.0,598.920999999973,,,10001.0,694.0,8.0,10.0,2.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+nos4,6,100,247,10,10,cp-sat,,600.0,OPTIMAL,10.0,220.25,,,348.0,495.0,10.0,10.0,0.0,False,1.0,,cp-sat,True,True,True,True,True,0.0,n <= 150
+gent113,6,113,549,25,27,order-inc,pairwise,600.0,TIMEOUT,,600.204000000027,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,order-iter,pairwise,600.0,TIMEOUT,,600.1719999999623,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-inc,pairwise,600.0,TIMEOUT,,600.3279999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-iter,pairwise,600.0,TIMEOUT,,600.2660000000033,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,order-inc,sequential,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,order-iter,sequential,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-inc,sequential,600.0,TIMEOUT,,600.204000000027,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-iter,sequential,600.0,TIMEOUT,,600.1719999999623,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,order-inc,product,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,order-iter,product,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-inc,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,pairwise-iter,product,600.0,TIMEOUT,,600.2030000000377,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+gent113,6,113,549,25,27,cplex-cp,,600.0,TIMEOUT,27.0,598.7029999999795,,,114.0,550.0,18.0,27.0,9.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,n <= 150
+gent113,6,113,549,25,27,cplex-mip,,600.0,TIMEOUT,51.0,599.0,,,12770.0,1324.0,18.0,51.0,33.0,False,1.0,,cplex-mip,True,False,False,False,False,88.88888888888889,n <= 150
+gent113,6,113,549,25,27,gurobi,,600.0,TIMEOUT,29.0,600.4220000000205,,,12770.0,1324.0,18.0,29.0,11.0,False,1.0,,gurobi,True,False,False,False,False,7.407407407407407,n <= 150
+gent113,6,113,549,25,27,cp-sat,,600.0,TIMEOUT,38.0,598.5929999999935,,,663.0,1099.0,18.0,38.0,20.0,False,1.0,,cp-sat,True,False,False,False,False,40.74074074074074,n <= 150
+gre_115,6,115,267,20,23,order-inc,pairwise,600.0,TIMEOUT,,600.1869999999763,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+gre_115,6,115,267,20,23,order-iter,pairwise,600.0,TIMEOUT,,600.1870000000345,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+gre_115,6,115,267,20,23,pairwise-inc,pairwise,600.0,TIMEOUT,36.0,600.219000000041,1.0,3153019.0,13226.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,pairwise-iter,pairwise,600.0,TIMEOUT,36.0,600.25,1.0,3153019.0,13225.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,order-inc,sequential,600.0,TIMEOUT,33.0,600.140000000014,4.0,470609.0,52559.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,43.47826086956522,n <= 150
+gre_115,6,115,267,20,23,order-iter,sequential,600.0,TIMEOUT,35.0,600.1570000000065,2.0,215357.0,52555.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,52.17391304347826,n <= 150
+gre_115,6,115,267,20,23,pairwise-inc,sequential,600.0,TIMEOUT,36.0,600.1720000000205,1.0,1723799.0,39446.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,pairwise-iter,sequential,600.0,TIMEOUT,,600.2339999999967,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+gre_115,6,115,267,20,23,order-inc,product,600.0,TIMEOUT,36.0,600.1570000000065,1.0,214289.0,31396.0,,,,,True,,,order-inc / product,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,order-iter,product,600.0,TIMEOUT,35.0,600.1410000000033,2.0,215357.0,31395.0,,,,,True,,,order-iter / product,True,False,False,False,False,52.17391304347826,n <= 150
+gre_115,6,115,267,20,23,pairwise-inc,product,600.0,TIMEOUT,36.0,600.1560000000172,1.0,1723799.0,18286.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,pairwise-iter,product,600.0,TIMEOUT,,600.1869999999763,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+gre_115,6,115,267,20,23,cplex-cp,,600.0,TIMEOUT,26.0,598.936999999918,,,116.0,268.0,15.0,26.0,11.0,False,1.0,,cplex-cp,True,False,False,False,False,13.043478260869565,n <= 150
+gre_115,6,115,267,20,23,cplex-mip,,600.0,TIMEOUT,36.0,599.4679999999935,,,13226.0,764.0,15.0,36.0,21.0,False,1.0,,cplex-mip,True,False,False,False,False,56.52173913043478,n <= 150
+gre_115,6,115,267,20,23,gurobi,,600.0,TIMEOUT,28.0,599.359999999986,,,13226.0,764.0,15.0,28.0,13.0,False,1.0,,gurobi,True,False,False,False,False,21.73913043478261,n <= 150
+gre_115,6,115,267,20,23,cp-sat,,600.0,TIMEOUT,34.0,598.8279999999795,,,383.0,535.0,15.0,34.0,19.0,False,1.0,,cp-sat,True,False,False,False,False,47.82608695652174,n <= 150
+bcspwr03,6,118,179,9,10,order-inc,pairwise,600.0,TIMEOUT,21.0,600.1870000000345,2.0,1821206.0,27732.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,110.0,n <= 150
+bcspwr03,6,118,179,9,10,order-iter,pairwise,600.0,TIMEOUT,18.0,600.1719999999623,5.0,1755334.0,27730.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,80.0,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-inc,pairwise,600.0,TIMEOUT,21.0,600.2029999999795,2.0,4928554.0,13926.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,110.0,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-iter,pairwise,600.0,TIMEOUT,19.0,600.234999999986,4.0,3365884.0,13924.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,90.0,n <= 150
+bcspwr03,6,118,179,9,10,order-inc,sequential,600.0,TIMEOUT,14.0,600.1410000000033,9.0,775898.0,55351.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,40.0,n <= 150
+bcspwr03,6,118,179,9,10,order-iter,sequential,600.0,TIMEOUT,18.0,600.1410000000033,5.0,208826.0,55342.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,80.0,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-inc,sequential,600.0,TIMEOUT,,600.204000000027,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-iter,sequential,600.0,TIMEOUT,,600.25,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+bcspwr03,6,118,179,9,10,order-inc,product,600.0,TIMEOUT,18.0,600.125,5.0,484494.0,32927.0,,,,,True,,,order-inc / product,True,False,False,False,False,80.0,n <= 150
+bcspwr03,6,118,179,9,10,order-iter,product,600.0,TIMEOUT,21.0,600.1410000000033,2.0,205970.0,32922.0,,,,,True,,,order-iter / product,True,False,False,False,False,110.0,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-inc,product,600.0,TIMEOUT,,600.1560000000172,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+bcspwr03,6,118,179,9,10,pairwise-iter,product,600.0,TIMEOUT,,600.1869999999763,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+bcspwr03,6,118,179,9,10,cplex-cp,,600.0,TIMEOUT,11.0,599.2029999999795,,,119.0,180.0,9.0,11.0,2.0,False,1.0,,cplex-cp,True,False,False,False,False,10.0,n <= 150
+bcspwr03,6,118,179,9,10,cplex-mip,,600.0,TIMEOUT,21.0,598.75,,,13925.0,594.0,9.0,21.0,12.0,False,1.0,,cplex-mip,True,False,False,False,False,110.0,n <= 150
+bcspwr03,6,118,179,9,10,gurobi,,600.0,TIMEOUT,12.0,598.8279999999795,,,13925.0,594.0,9.0,12.0,3.0,False,1.0,,gurobi,True,False,False,False,False,20.0,n <= 150
+bcspwr03,6,118,179,9,10,cp-sat,,600.0,TIMEOUT,15.0,598.7029999999795,,,298.0,359.0,9.0,15.0,6.0,False,1.0,,cp-sat,True,False,False,False,False,50.0,n <= 150
+arc130,6,130,715,63,63,order-inc,pairwise,600.0,TIMEOUT,72.0,600.2189999999828,49.0,6871930.0,33719.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,14.285714285714286,n <= 150
+arc130,6,130,715,63,63,order-iter,pairwise,600.0,TIMEOUT,65.0,600.2179999999935,56.0,2430350.0,33670.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,3.1746031746031744,n <= 150
+arc130,6,130,715,63,63,pairwise-inc,pairwise,600.0,TIMEOUT,65.0,600.4220000000205,56.0,67445430.0,16956.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,3.1746031746031744,n <= 150
+arc130,6,130,715,63,63,pairwise-iter,pairwise,600.0,TIMEOUT,65.0,600.3119999999763,56.0,5154630.0,16900.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,True,False,3.1746031746031744,n <= 150
+arc130,6,130,715,63,63,order-inc,sequential,600.0,TIMEOUT,101.0,600.1720000000205,20.0,1225770.0,67230.0,,,,,True,,,order-inc / sequential,True,False,False,True,False,60.317460317460316,n <= 150
+arc130,6,130,715,63,63,order-iter,sequential,600.0,TIMEOUT,80.0,600.155999999959,41.0,307710.0,67210.0,,,,,True,,,order-iter / sequential,True,False,False,True,False,26.984126984126984,n <= 150
+arc130,6,130,715,63,63,pairwise-inc,sequential,600.0,TIMEOUT,97.0,600.265000000014,24.0,8486010.0,50464.0,,,,,True,,,pairwise-inc / sequential,True,False,False,True,False,53.96825396825397,n <= 150
+arc130,6,130,715,63,63,pairwise-iter,sequential,600.0,TIMEOUT,112.0,600.140000000014,9.0,319280.0,50440.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,77.77777777777777,n <= 150
+arc130,6,130,715,63,63,order-inc,product,600.0,TIMEOUT,105.0,600.1560000000172,16.0,921310.0,39666.0,,,,,True,,,order-inc / product,True,False,False,True,False,66.66666666666667,n <= 150
+arc130,6,130,715,63,63,order-iter,product,600.0,TIMEOUT,108.0,600.1410000000033,13.0,226330.0,39650.0,,,,,True,,,order-iter / product,True,False,False,True,False,71.42857142857143,n <= 150
+arc130,6,130,715,63,63,pairwise-inc,product,600.0,TIMEOUT,91.0,600.3130000000237,30.0,14055990.0,22910.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,44.44444444444444,n <= 150
+arc130,6,130,715,63,63,pairwise-iter,product,600.0,TIMEOUT,109.0,600.1570000000065,12.0,399490.0,22880.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,73.01587301587301,n <= 150
+arc130,6,130,715,63,63,cplex-cp,,600.0,TIMEOUT,63.0,598.6720000000205,,,131.0,716.0,62.0,63.0,1.0,False,1.0,,cplex-cp,True,False,True,True,True,0.0,n <= 150
+arc130,6,130,715,63,63,cplex-mip,,600.0,TIMEOUT,63.0,598.6870000000345,,,16901.0,1690.0,62.0,63.0,1.0,False,1.0,,cplex-mip,True,False,True,True,True,0.0,n <= 150
+arc130,6,130,715,63,63,gurobi,,600.0,TIMEOUT,63.0,598.234000000055,,,16901.0,1690.0,62.0,63.0,1.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+arc130,6,130,715,63,63,cp-sat,,600.0,TIMEOUT,115.0,598.875,,,846.0,1431.0,62.0,115.0,53.0,False,1.0,,cp-sat,True,False,False,True,False,82.53968253968254,n <= 150
+lns_131,6,131,275,18,20,order-inc,pairwise,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,order-iter,pairwise,600.0,TIMEOUT,,600.2030000000377,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-inc,pairwise,600.0,TIMEOUT,,600.2649999999558,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-iter,pairwise,600.0,TIMEOUT,,600.265000000014,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,order-inc,sequential,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,order-iter,sequential,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-inc,sequential,600.0,TIMEOUT,,600.265000000014,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-iter,sequential,600.0,TIMEOUT,,600.1869999999763,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,order-inc,product,600.0,TIMEOUT,,600.1719999999623,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,order-iter,product,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-inc,product,600.0,TIMEOUT,,600.1879999999655,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,pairwise-iter,product,600.0,TIMEOUT,,600.2339999999967,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+lns_131,6,131,275,18,20,cplex-cp,,600.0,TIMEOUT,21.0,598.5160000000615,,,132.0,276.0,13.0,21.0,8.0,False,1.0,,cplex-cp,True,False,False,False,False,5.0,n <= 150
+lns_131,6,131,275,18,20,cplex-mip,,600.0,TIMEOUT,34.0,598.609000000055,,,17162.0,812.0,13.0,34.0,21.0,False,1.0,,cplex-mip,True,False,False,False,False,70.0,n <= 150
+lns_131,6,131,275,18,20,gurobi,,600.0,TIMEOUT,23.0,598.2029999999795,,,17162.0,812.0,13.0,23.0,10.0,False,1.0,,gurobi,True,False,False,False,False,15.0,n <= 150
+lns_131,6,131,275,18,20,cp-sat,,600.0,TIMEOUT,27.0,598.6089999999385,,,407.0,551.0,13.0,27.0,14.0,False,1.0,,cp-sat,True,False,False,False,False,35.0,n <= 150
+bcsstk04,6,132,1758,36,37,order-inc,pairwise,600.0,TIMEOUT,41.0,600.2339999999385,24.0,15600132.0,34740.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,10.81081081081081,n <= 150
+bcsstk04,6,132,1758,36,37,order-iter,pairwise,600.0,TIMEOUT,40.0,600.1719999997877,25.0,2991756.0,34716.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,8.108108108108109,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-inc,pairwise,600.0,TIMEOUT,53.0,744.9220000000205,12.0,114949380.0,17436.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,43.24324324324324,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-iter,pairwise,600.0,TIMEOUT,42.0,600.5629999998491,23.0,16364256.0,17424.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,13.513513513513514,n <= 150
+bcsstk04,6,132,1758,36,37,order-inc,sequential,600.0,TIMEOUT,46.0,600.188000000082,19.0,10326996.0,69319.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,24.324324324324323,n <= 150
+bcsstk04,6,132,1758,36,37,order-iter,sequential,600.0,TIMEOUT,46.0,600.1569999998901,19.0,770508.0,69300.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,24.324324324324323,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-inc,sequential,600.0,TIMEOUT,,600.188000000082,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-iter,sequential,600.0,TIMEOUT,47.0,600.405999999959,18.0,12655740.0,52008.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,27.027027027027028,n <= 150
+bcsstk04,6,132,1758,36,37,order-inc,product,600.0,TIMEOUT,45.0,600.1870000001509,20.0,10929900.0,40808.0,,,,,True,,,order-inc / product,True,False,False,False,False,21.62162162162162,n <= 150
+bcsstk04,6,132,1758,36,37,order-iter,product,600.0,TIMEOUT,45.0,600.155999999959,20.0,775692.0,40788.0,,,,,True,,,order-iter / product,True,False,False,False,False,21.62162162162162,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-inc,product,600.0,TIMEOUT,50.0,601.1089999999385,15.0,146947512.0,23511.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,35.13513513513514,n <= 150
+bcsstk04,6,132,1758,36,37,pairwise-iter,product,600.0,TIMEOUT,46.0,600.375,19.0,12952752.0,23496.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,24.324324324324323,n <= 150
+bcsstk04,6,132,1758,36,37,cplex-cp,,600.0,TIMEOUT,40.0,1178.561999999918,,,133.0,1759.0,27.0,40.0,13.0,False,1.0,,cplex-cp,True,False,False,False,False,8.108108108108109,n <= 150
+bcsstk04,6,132,1758,36,37,cplex-mip,,600.0,TIMEOUT,65.0,1046.40699999989,,,0.0,0.0,27.0,65.0,38.0,False,1.0,,cplex-mip,True,False,False,False,False,75.67567567567568,n <= 150
+bcsstk04,6,132,1758,36,37,gurobi,,600.0,TIMEOUT,43.0,598.2340000001714,,,17425.0,3780.0,27.0,43.0,16.0,False,1.0,,gurobi,True,False,False,False,False,16.216216216216218,n <= 150
+bcsstk04,6,132,1758,36,37,cp-sat,,600.0,TIMEOUT,65.0,598.5150000001304,,,1891.0,3517.0,27.0,65.0,38.0,False,1.0,,cp-sat,True,False,False,False,False,75.67567567567568,n <= 150
+west0132,6,132,404,23,32,order-inc,pairwise,600.0,TIMEOUT,46.0,600.1720000000205,15.0,4242564.0,34731.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,43.75,n <= 150
+west0132,6,132,404,23,32,order-iter,pairwise,600.0,TIMEOUT,46.0,600.2029999999795,15.0,2489204.0,34716.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,43.75,n <= 150
+west0132,6,132,404,23,32,pairwise-inc,pairwise,600.0,TIMEOUT,47.0,600.2810000001919,14.0,36784276.0,17438.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,46.875,n <= 150
+west0132,6,132,404,23,32,pairwise-iter,pairwise,600.0,TIMEOUT,47.0,600.2339999999385,14.0,5167236.0,17424.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,46.875,n <= 150
+west0132,6,132,404,23,32,order-inc,sequential,600.0,TIMEOUT,50.0,600.1569999998901,11.0,1523764.0,69311.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,56.25,n <= 150
+west0132,6,132,404,23,32,order-iter,sequential,600.0,TIMEOUT,51.0,600.125,10.0,302068.0,69300.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,59.375,n <= 150
+west0132,6,132,404,23,32,pairwise-inc,sequential,600.0,TIMEOUT,50.0,600.188000000082,11.0,26154348.0,52019.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,56.25,n <= 150
+west0132,6,132,404,23,32,pairwise-iter,sequential,600.0,TIMEOUT,60.0,600.1870000001509,1.0,2168868.0,52008.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,87.5,n <= 150
+west0132,6,132,404,23,32,order-inc,product,600.0,TIMEOUT,57.0,600.1410000000615,4.0,639580.0,40792.0,,,,,True,,,order-inc / product,True,False,False,False,False,78.125,n <= 150
+west0132,6,132,404,23,32,order-iter,product,600.0,TIMEOUT,55.0,600.125,6.0,293756.0,40788.0,,,,,True,,,order-iter / product,True,False,False,False,False,71.875,n <= 150
+west0132,6,132,404,23,32,pairwise-inc,product,600.0,TIMEOUT,60.0,600.1410000000615,1.0,2167020.0,23497.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,87.5,n <= 150
+west0132,6,132,404,23,32,pairwise-iter,product,600.0,TIMEOUT,59.0,600.1720000000205,2.0,2225196.0,23496.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,84.375,n <= 150
+west0132,6,132,404,23,32,cplex-cp,,600.0,TIMEOUT,36.0,598.4529999999795,,,133.0,405.0,19.0,36.0,17.0,False,1.0,,cplex-cp,True,False,False,False,False,12.5,n <= 150
+west0132,6,132,404,23,32,cplex-mip,,600.0,TIMEOUT,56.0,598.5,,,17425.0,1072.0,19.0,56.0,37.0,False,1.0,,cplex-mip,True,False,False,False,False,75.0,n <= 150
+west0132,6,132,404,23,32,gurobi,,600.0,TIMEOUT,42.0,598.1410000000615,,,17425.0,1072.0,19.0,42.0,23.0,False,1.0,,gurobi,True,False,False,False,False,31.25,n <= 150
+west0132,6,132,404,23,32,cp-sat,,600.0,TIMEOUT,59.0,598.4370000001509,,,537.0,809.0,19.0,59.0,40.0,False,1.0,,cp-sat,True,False,False,False,False,84.375,n <= 150
+impcol_c,6,137,352,23,30,order-inc,pairwise,600.0,TIMEOUT,,600.1870000001509,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+impcol_c,6,137,352,23,30,order-iter,pairwise,600.0,TIMEOUT,43.0,600.2029999999795,4.0,2758193.0,37401.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,43.333333333333336,n <= 150
+impcol_c,6,137,352,23,30,pairwise-inc,pairwise,600.0,TIMEOUT,46.0,600.2029999999795,1.0,5435601.0,18770.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,53.333333333333336,n <= 150
+impcol_c,6,137,352,23,30,pairwise-iter,pairwise,600.0,TIMEOUT,41.0,600.2660000000615,6.0,5762961.0,18769.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,36.666666666666664,n <= 150
+impcol_c,6,137,352,23,30,order-inc,sequential,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+impcol_c,6,137,352,23,30,order-iter,sequential,600.0,TIMEOUT,44.0,600.1410000000615,3.0,315719.0,74665.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,46.666666666666664,n <= 150
+impcol_c,6,137,352,23,30,pairwise-inc,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+impcol_c,6,137,352,23,30,pairwise-iter,sequential,600.0,TIMEOUT,46.0,600.2030000002123,1.0,2994535.0,56033.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,53.333333333333336,n <= 150
+impcol_c,6,137,352,23,30,order-inc,product,600.0,TIMEOUT,45.0,600.1400000001304,2.0,441031.0,43979.0,,,,,True,,,order-inc / product,True,False,False,False,False,50.0,n <= 150
+impcol_c,6,137,352,23,30,order-iter,product,600.0,TIMEOUT,46.0,600.155999999959,1.0,312903.0,43977.0,,,,,True,,,order-iter / product,True,False,False,False,False,53.333333333333336,n <= 150
+impcol_c,6,137,352,23,30,pairwise-inc,product,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+impcol_c,6,137,352,23,30,pairwise-iter,product,600.0,TIMEOUT,,600.2189999998081,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+impcol_c,6,137,352,23,30,cplex-cp,,600.0,TIMEOUT,34.0,598.4529999999795,,,138.0,353.0,20.0,34.0,14.0,False,1.0,,cplex-cp,True,False,False,False,False,13.333333333333334,n <= 150
+impcol_c,6,137,352,23,30,cplex-mip,,600.0,TIMEOUT,41.0,598.4839999999385,,,18770.0,978.0,20.0,41.0,21.0,False,1.0,,cplex-mip,True,False,False,False,False,36.666666666666664,n <= 150
+impcol_c,6,137,352,23,30,gurobi,,600.0,TIMEOUT,34.0,598.1569999998901,,,18770.0,978.0,20.0,34.0,14.0,False,1.0,,gurobi,True,False,False,False,False,13.333333333333334,n <= 150
+impcol_c,6,137,352,23,30,cp-sat,,600.0,TIMEOUT,40.0,598.5160000000615,,,490.0,705.0,20.0,40.0,20.0,False,1.0,,cp-sat,True,False,False,False,False,33.333333333333336,n <= 150
+bcsstk22,6,138,279,9,10,order-inc,pairwise,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,order-iter,pairwise,600.0,TIMEOUT,,600.1560000001919,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-inc,pairwise,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-iter,pairwise,600.0,TIMEOUT,,600.219000000041,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,order-inc,sequential,600.0,TIMEOUT,,600.1399999998976,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,order-iter,sequential,600.0,TIMEOUT,,600.1409999998286,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-inc,sequential,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-iter,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,order-inc,product,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,order-iter,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-inc,product,600.0,TIMEOUT,,600.1569999998901,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,pairwise-iter,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+bcsstk22,6,138,279,9,10,cplex-cp,,600.0,TIMEOUT,10.0,598.4529999999795,,,139.0,280.0,7.0,10.0,3.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,n <= 150
+bcsstk22,6,138,279,9,10,cplex-mip,,600.0,TIMEOUT,13.0,598.4849999998696,,,19045.0,834.0,7.0,13.0,6.0,False,1.0,,cplex-mip,True,False,False,False,False,30.0,n <= 150
+bcsstk22,6,138,279,9,10,gurobi,,600.0,TIMEOUT,11.0,598.155999999959,,,19045.0,834.0,7.0,11.0,4.0,False,1.0,,gurobi,True,False,False,False,False,10.0,n <= 150
+bcsstk22,6,138,279,9,10,cp-sat,,600.0,TIMEOUT,12.0,598.4849999998696,,,418.0,559.0,7.0,12.0,5.0,False,1.0,,cp-sat,True,False,False,False,False,20.0,n <= 150
+can_144,6,144,576,13,13,order-inc,pairwise,600.0,TIMEOUT,,600.188000000082,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,order-iter,pairwise,600.0,TIMEOUT,,600.219000000041,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-inc,pairwise,600.0,TIMEOUT,,600.2339999999385,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-iter,pairwise,600.0,TIMEOUT,,600.375,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,order-inc,sequential,600.0,TIMEOUT,17.0,600.1399999998976,1.0,496080.0,82513.0,,,,,True,,,order-inc / sequential,True,False,False,True,False,30.76923076923077,n <= 150
+can_144,6,144,576,13,13,order-iter,sequential,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-inc,sequential,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-iter,sequential,600.0,TIMEOUT,,600.3589999999385,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,order-inc,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,order-iter,product,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-inc,product,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,pairwise-iter,product,600.0,TIMEOUT,,600.3129999998491,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,True,False,,n <= 150
+can_144,6,144,576,13,13,cplex-cp,,600.0,TIMEOUT,14.0,598.4839999999385,,,145.0,577.0,11.0,14.0,3.0,False,1.0,,cplex-cp,True,False,False,True,False,7.6923076923076925,n <= 150
+can_144,6,144,576,13,13,cplex-mip,,600.0,TIMEOUT,17.0,598.4529999999795,,,20737.0,1440.0,11.0,17.0,6.0,False,1.0,,cplex-mip,True,False,False,True,False,30.76923076923077,n <= 150
+can_144,6,144,576,13,13,gurobi,,600.0,TIMEOUT,13.0,598.2029999999795,,,20737.0,1440.0,11.0,13.0,2.0,False,1.0,,gurobi,True,False,True,True,True,0.0,n <= 150
+can_144,6,144,576,13,13,cp-sat,,600.0,TIMEOUT,15.0,599.219000000041,,,721.0,1153.0,11.0,15.0,4.0,False,1.0,,cp-sat,True,False,False,True,False,15.384615384615385,n <= 150
+lund_a,6,147,1151,19,23,order-inc,pairwise,600.0,TIMEOUT,,600.2650000001304,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,order-iter,pairwise,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-inc,pairwise,600.0,TIMEOUT,,600.3279999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-iter,pairwise,600.0,TIMEOUT,,600.5779999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,order-inc,sequential,600.0,TIMEOUT,,600.1569999998901,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,order-iter,sequential,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-inc,sequential,600.0,TIMEOUT,,600.2349999998696,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-iter,sequential,600.0,TIMEOUT,,600.5620000001509,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,order-inc,product,600.0,TIMEOUT,,600.1409999998286,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,order-iter,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-inc,product,600.0,TIMEOUT,,600.3279999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,pairwise-iter,product,600.0,TIMEOUT,,600.5939999998081,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+lund_a,6,147,1151,19,23,cplex-cp,,600.0,TIMEOUT,23.0,598.4839999999385,,,148.0,1152.0,12.0,23.0,11.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,n <= 150
+lund_a,6,147,1151,19,23,cplex-mip,,600.0,TIMEOUT,23.0,598.530999999959,,,21610.0,2596.0,12.0,23.0,11.0,False,1.0,,cplex-mip,True,False,True,False,False,0.0,n <= 150
+lund_a,6,147,1151,19,23,gurobi,,600.0,TIMEOUT,23.0,598.186999999918,,,21610.0,2596.0,12.0,23.0,11.0,False,1.0,,gurobi,True,False,True,False,False,0.0,n <= 150
+lund_a,6,147,1151,19,23,cp-sat,,600.0,TIMEOUT,23.0,662.7029999999795,,,0.0,0.0,12.0,23.0,11.0,False,1.0,,cp-sat,True,False,True,False,False,0.0,n <= 150
+lund_b,6,147,1147,19,23,order-inc,pairwise,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,order-iter,pairwise,600.0,TIMEOUT,,600.2340000001714,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-inc,pairwise,600.0,TIMEOUT,,600.2960000000894,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-iter,pairwise,600.0,TIMEOUT,,600.561999999918,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,order-inc,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,order-iter,sequential,600.0,TIMEOUT,,600.1560000001919,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-inc,sequential,600.0,TIMEOUT,,600.2649999998976,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-iter,sequential,600.0,TIMEOUT,,600.5159999998286,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,order-inc,product,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,order-iter,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-inc,product,600.0,TIMEOUT,,600.2340000001714,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,pairwise-iter,product,600.0,TIMEOUT,,600.4839999999385,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,n <= 150
+lund_b,6,147,1147,19,23,cplex-cp,,600.0,TIMEOUT,23.0,598.6879999998491,,,148.0,1148.0,12.0,23.0,11.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,n <= 150
+lund_b,6,147,1147,19,23,cplex-mip,,600.0,TIMEOUT,23.0,598.4840000001714,,,21610.0,2588.0,12.0,23.0,11.0,False,1.0,,cplex-mip,True,False,True,False,False,0.0,n <= 150
+lund_b,6,147,1147,19,23,gurobi,,600.0,TIMEOUT,23.0,598.1720000000205,,,21610.0,2588.0,12.0,23.0,11.0,False,1.0,,gurobi,True,False,True,False,False,0.0,n <= 150
+lund_b,6,147,1147,19,23,cp-sat,,600.0,TIMEOUT,23.0,598.5160000000615,,,1295.0,2295.0,12.0,23.0,11.0,False,1.0,,cp-sat,True,False,True,False,False,0.0,n <= 150
+bcsstk05,6,153,1135,19,20,order-inc,pairwise,600.0,TIMEOUT,22.0,600.2039999999106,2.0,4827205.0,46667.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,10.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,order-iter,pairwise,600.0,TIMEOUT,21.0,600.1870000001509,3.0,4246085.0,46665.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,5.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-inc,pairwise,600.0,TIMEOUT,22.0,600.2970000000205,2.0,41921321.0,23411.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,10.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-iter,pairwise,600.0,TIMEOUT,22.0,600.4849999998696,2.0,22887371.0,23409.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,10.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,order-inc,sequential,600.0,TIMEOUT,23.0,600.1410000000615,1.0,818067.0,93178.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,order-iter,sequential,600.0,TIMEOUT,23.0,600.125,1.0,818067.0,93177.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-inc,sequential,600.0,TIMEOUT,23.0,600.2340000001714,1.0,19173333.0,69922.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-iter,sequential,600.0,TIMEOUT,23.0,600.4220000000205,1.0,19173333.0,69921.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,order-inc,product,600.0,TIMEOUT,23.0,600.1409999998286,1.0,816537.0,54316.0,,,,,True,,,order-inc / product,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,order-iter,product,600.0,TIMEOUT,23.0,600.1410000000615,1.0,816537.0,54315.0,,,,,True,,,order-iter / product,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-inc,product,600.0,TIMEOUT,,600.2189999998081,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,pairwise-iter,product,600.0,TIMEOUT,,600.4220000000205,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,cplex-cp,,600.0,TIMEOUT,20.0,598.0780000000013,,,154.0,1136.0,13.0,20.0,7.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,cplex-mip,,600.0,TIMEOUT,23.0,598.1409999999996,,,23410.0,2576.0,13.0,23.0,10.0,False,1.0,,cplex-mip,True,False,False,False,False,15.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,gurobi,,600.0,TIMEOUT,20.0,598.1719999999987,,,23410.0,2576.0,13.0,20.0,7.0,False,1.0,,gurobi,True,False,True,False,False,0.0,151 <= n <= 250
+bcsstk05,6,153,1135,19,20,cp-sat,,600.0,TIMEOUT,20.0,598.125,,,1289.0,2271.0,13.0,20.0,7.0,False,1.0,,cp-sat,True,False,True,False,False,0.0,151 <= n <= 250
+west0156,6,156,371,33,36,order-inc,pairwise,600.0,TIMEOUT,,600.2030000002123,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+west0156,6,156,371,33,36,order-iter,pairwise,600.0,TIMEOUT,70.0,600.2029999999795,2.0,3995096.0,48516.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,94.44444444444444,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-inc,pairwise,600.0,TIMEOUT,66.0,600.219000000041,6.0,20626766.0,24342.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,83.33333333333333,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-iter,pairwise,600.0,TIMEOUT,69.0,600.2030000002123,3.0,6548058.0,24336.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,91.66666666666667,151 <= n <= 250
+west0156,6,156,371,33,36,order-inc,sequential,600.0,TIMEOUT,62.0,600.1410000000615,10.0,1554984.0,96886.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,72.22222222222223,151 <= n <= 250
+west0156,6,156,371,33,36,order-iter,sequential,600.0,TIMEOUT,60.0,600.125,12.0,382624.0,96876.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,66.66666666666667,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-inc,sequential,600.0,TIMEOUT,62.0,600.1720000000205,10.0,29561514.0,72706.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,72.22222222222223,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-iter,sequential,600.0,TIMEOUT,66.0,600.1720000000205,6.0,3116634.0,72696.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,83.33333333333333,151 <= n <= 250
+west0156,6,156,371,33,36,order-inc,product,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+west0156,6,156,371,33,36,order-iter,product,600.0,TIMEOUT,70.0,600.125,2.0,365288.0,56316.0,,,,,True,,,order-iter / product,True,False,False,False,False,94.44444444444444,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-inc,product,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+west0156,6,156,371,33,36,pairwise-iter,product,600.0,TIMEOUT,,600.1719999997877,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+west0156,6,156,371,33,36,cplex-cp,,600.0,TIMEOUT,40.0,598.2189999999973,,,157.0,372.0,23.0,40.0,17.0,False,1.0,,cplex-cp,True,False,False,False,False,11.11111111111111,151 <= n <= 250
+west0156,6,156,371,33,36,cplex-mip,,600.0,TIMEOUT,66.0,598.1409999999996,,,24337.0,1054.0,23.0,66.0,43.0,False,1.0,,cplex-mip,True,False,False,False,False,83.33333333333333,151 <= n <= 250
+west0156,6,156,371,33,36,gurobi,,600.0,TIMEOUT,42.0,598.0930000000008,,,24337.0,1054.0,23.0,42.0,19.0,False,1.0,,gurobi,True,False,False,False,False,16.666666666666668,151 <= n <= 250
+west0156,6,156,371,33,36,cp-sat,,600.0,TIMEOUT,70.0,598.125,,,528.0,743.0,23.0,70.0,47.0,False,1.0,,cp-sat,True,False,False,False,False,94.44444444444444,151 <= n <= 250
+can_161,6,161,608,18,18,order-inc,pairwise,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,order-iter,pairwise,600.0,TIMEOUT,,600.1870000001509,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-inc,pairwise,600.0,TIMEOUT,,600.2340000001714,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-iter,pairwise,600.0,TIMEOUT,29.0,600.3590000001714,1.0,14661057.0,25921.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,True,False,61.111111111111114,151 <= n <= 250
+can_161,6,161,608,18,18,order-inc,sequential,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,order-iter,sequential,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-inc,sequential,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-iter,sequential,600.0,TIMEOUT,,600.2819999998901,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,order-inc,product,600.0,TIMEOUT,,600.125,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,order-iter,product,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-inc,product,600.0,TIMEOUT,,600.188000000082,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,pairwise-iter,product,600.0,TIMEOUT,,600.2660000000615,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,True,False,,151 <= n <= 250
+can_161,6,161,608,18,18,cplex-cp,,600.0,TIMEOUT,20.0,598.094000000001,,,162.0,609.0,16.0,20.0,4.0,False,1.0,,cplex-cp,True,False,False,True,False,11.11111111111111,151 <= n <= 250
+can_161,6,161,608,18,18,cplex-mip,,600.0,TIMEOUT,30.0,598.125,,,25922.0,1538.0,16.0,30.0,14.0,False,1.0,,cplex-mip,True,False,False,True,False,66.66666666666667,151 <= n <= 250
+can_161,6,161,608,18,18,gurobi,,600.0,TIMEOUT,30.0,598.1399999999994,,,25922.0,1538.0,16.0,30.0,14.0,False,1.0,,gurobi,True,False,False,True,False,66.66666666666667,151 <= n <= 250
+can_161,6,161,608,18,18,cp-sat,,600.0,TIMEOUT,30.0,598.3119999999981,,,770.0,1217.0,16.0,30.0,14.0,False,1.0,,cp-sat,True,False,False,True,False,66.66666666666667,151 <= n <= 250
+west0167,6,167,489,31,34,order-inc,pairwise,600.0,TIMEOUT,52.0,600.2189999998081,41.0,12279053.0,55652.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,52.94117647058823,151 <= n <= 250
+west0167,6,167,489,31,34,order-iter,pairwise,600.0,TIMEOUT,61.0,600.219000000041,32.0,4946009.0,55611.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,79.41176470588235,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-inc,pairwise,600.0,TIMEOUT,67.0,601.2340000001714,26.0,101573991.0,27915.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,97.05882352941177,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-iter,pairwise,600.0,TIMEOUT,62.0,600.2970000000205,31.0,9969621.0,27889.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,82.3529411764706,151 <= n <= 250
+west0167,6,167,489,31,34,order-inc,sequential,600.0,TIMEOUT,82.0,600.1400000001304,11.0,1976817.0,111066.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,141.1764705882353,151 <= n <= 250
+west0167,6,167,489,31,34,order-iter,sequential,600.0,TIMEOUT,81.0,600.125,12.0,443313.0,111055.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,138.23529411764707,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-inc,sequential,600.0,TIMEOUT,85.0,600.2970000000205,8.0,23986333.0,83341.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,150.0,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-iter,sequential,600.0,TIMEOUT,85.0,600.1870000001509,8.0,3414103.0,83333.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,150.0,151 <= n <= 250
+west0167,6,167,489,31,34,order-inc,product,600.0,TIMEOUT,90.0,600.1409999998286,3.0,715149.0,64298.0,,,,,True,,,order-inc / product,True,False,False,False,False,164.7058823529412,151 <= n <= 250
+west0167,6,167,489,31,34,order-iter,product,600.0,TIMEOUT,89.0,600.1410000000615,4.0,425661.0,64295.0,,,,,True,,,order-iter / product,True,False,False,False,False,161.76470588235293,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-inc,product,600.0,TIMEOUT,83.0,600.2650000001304,10.0,30721771.0,36583.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,144.11764705882354,151 <= n <= 250
+west0167,6,167,489,31,34,pairwise-iter,product,600.0,TIMEOUT,88.0,600.1719999997877,5.0,3177379.0,36573.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,158.8235294117647,151 <= n <= 250
+west0167,6,167,489,31,34,cplex-cp,,600.0,TIMEOUT,36.0,598.0780000000013,,,168.0,490.0,24.0,36.0,12.0,False,1.0,,cplex-cp,True,False,False,False,False,5.882352941176471,151 <= n <= 250
+west0167,6,167,489,31,34,cplex-mip,,600.0,TIMEOUT,68.0,598.1560000000027,,,27890.0,1312.0,24.0,68.0,44.0,False,1.0,,cplex-mip,True,False,False,False,False,100.0,151 <= n <= 250
+west0167,6,167,489,31,34,gurobi,,600.0,TIMEOUT,45.0,598.1409999999996,,,27890.0,1312.0,24.0,45.0,21.0,False,1.0,,gurobi,True,False,False,False,False,32.35294117647059,151 <= n <= 250
+west0167,6,167,489,31,34,cp-sat,,600.0,TIMEOUT,67.0,598.140999999996,,,657.0,979.0,24.0,67.0,43.0,False,1.0,,cp-sat,True,False,False,False,False,97.05882352941177,151 <= n <= 250
+mcca,6,180,1680,32,37,order-inc,pairwise,600.0,TIMEOUT,,600.375,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,order-iter,pairwise,600.0,TIMEOUT,,600.3429999999935,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-inc,pairwise,600.0,TIMEOUT,,601.5779999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-iter,pairwise,600.0,TIMEOUT,,600.9529999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,order-inc,sequential,600.0,TIMEOUT,,600.1719999999623,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,order-iter,sequential,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-inc,sequential,600.0,TIMEOUT,,600.390000000014,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-iter,sequential,600.0,TIMEOUT,,600.984999999986,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,order-inc,product,600.0,TIMEOUT,,600.1880000000237,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,order-iter,product,600.0,TIMEOUT,,600.1719999999623,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-inc,product,600.0,TIMEOUT,,600.5160000000033,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,pairwise-iter,product,600.0,TIMEOUT,,601.0629999999655,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+mcca,6,180,1680,32,37,cplex-cp,,600.0,TIMEOUT,37.0,598.609000000055,,,181.0,1681.0,32.0,37.0,5.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,151 <= n <= 250
+mcca,6,180,1680,32,37,cplex-mip,,600.0,TIMEOUT,58.0,598.734000000055,,,32401.0,3720.0,32.0,58.0,26.0,False,1.0,,cplex-mip,True,False,False,False,False,56.75675675675676,151 <= n <= 250
+mcca,6,180,1680,32,37,gurobi,,600.0,TIMEOUT,47.0,598.375,,,32401.0,3720.0,32.0,47.0,15.0,False,1.0,,gurobi,True,False,False,False,False,27.027027027027028,151 <= n <= 250
+mcca,6,180,1680,32,37,cp-sat,,600.0,TIMEOUT,48.0,598.8279999999795,,,1861.0,3361.0,32.0,48.0,16.0,False,1.0,,cp-sat,True,False,False,False,False,29.72972972972973,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-inc,pairwise,600.0,TIMEOUT,80.0,600.4060000000172,75.0,19897905.0,66870.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,33.333333333333336,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-iter,pairwise,600.0,TIMEOUT,115.0,600.359999999986,40.0,6416273.0,66795.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,91.66666666666667,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-inc,pairwise,600.0,TIMEOUT,110.0,600.9070000000065,45.0,91855521.0,33534.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,83.33333333333333,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-iter,pairwise,600.0,TIMEOUT,123.0,600.4379999999655,32.0,8576721.0,33489.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,105.0,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-inc,sequential,600.0,TIMEOUT,125.0,600.1880000000237,30.0,3907977.0,133437.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,108.33333333333333,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-iter,sequential,600.0,TIMEOUT,147.0,600.1410000000033,8.0,431017.0,133407.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,145.0,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-inc,sequential,600.0,TIMEOUT,133.0,600.2350000000442,22.0,24273395.0,100123.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,121.66666666666667,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-iter,sequential,600.0,TIMEOUT,152.0,600.1720000000205,3.0,851583.0,100101.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,153.33333333333334,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-inc,product,600.0,TIMEOUT,146.0,600.1870000000345,9.0,1141893.0,77052.0,,,,,True,,,order-inc / product,True,False,False,False,False,143.33333333333334,151 <= n <= 250
+fs_183_1,6,183,701,52,60,order-iter,product,600.0,TIMEOUT,150.0,600.1570000000065,5.0,424069.0,77043.0,,,,,True,,,order-iter / product,True,False,False,False,False,150.0,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-inc,product,600.0,TIMEOUT,140.0,600.3589999999967,15.0,13646297.0,43752.0,,,,,True,,,pairwise-inc / product,True,False,False,False,False,133.33333333333334,151 <= n <= 250
+fs_183_1,6,183,701,52,60,pairwise-iter,product,600.0,TIMEOUT,148.0,600.1869999999763,7.0,1035307.0,43737.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,146.66666666666666,151 <= n <= 250
+fs_183_1,6,183,701,52,60,cplex-cp,,600.0,TIMEOUT,67.0,598.484000000055,,,184.0,702.0,52.0,67.0,15.0,False,1.0,,cplex-cp,True,False,False,False,False,11.666666666666666,151 <= n <= 250
+fs_183_1,6,183,701,52,60,cplex-mip,,600.0,TIMEOUT,104.0,598.734000000055,,,33490.0,1768.0,52.0,104.0,52.0,False,1.0,,cplex-mip,True,False,False,False,False,73.33333333333333,151 <= n <= 250
+fs_183_1,6,183,701,52,60,gurobi,,600.0,TIMEOUT,64.0,598.280999999959,,,33490.0,1768.0,52.0,64.0,12.0,False,1.0,,gurobi,True,False,False,False,False,6.666666666666667,151 <= n <= 250
+fs_183_1,6,183,701,52,60,cp-sat,,600.0,TIMEOUT,141.0,598.6879999999655,,,885.0,1403.0,52.0,141.0,89.0,False,1.0,,cp-sat,True,False,False,False,False,135.0,151 <= n <= 250
+gre_185,6,185,650,17,21,order-inc,pairwise,600.0,TIMEOUT,,600.3589999999967,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,order-iter,pairwise,600.0,TIMEOUT,,600.3439999999828,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-inc,pairwise,600.0,TIMEOUT,,600.4529999999795,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-iter,pairwise,600.0,TIMEOUT,,600.859999999986,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,order-inc,sequential,600.0,TIMEOUT,,600.1410000000033,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,order-iter,sequential,600.0,TIMEOUT,,600.1560000000172,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-inc,sequential,600.0,TIMEOUT,,600.2339999999967,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-iter,sequential,600.0,TIMEOUT,,600.6410000000033,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,order-inc,product,600.0,TIMEOUT,,600.170999999973,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,order-iter,product,600.0,TIMEOUT,,600.2030000000377,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-inc,product,600.0,TIMEOUT,,600.3280000000377,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,pairwise-iter,product,600.0,TIMEOUT,,600.75,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+gre_185,6,185,650,17,21,cplex-cp,,600.0,TIMEOUT,22.0,598.5929999999935,,,186.0,651.0,14.0,22.0,8.0,False,1.0,,cplex-cp,True,False,False,False,False,4.761904761904762,151 <= n <= 250
+gre_185,6,185,650,17,21,cplex-mip,,600.0,TIMEOUT,29.0,598.7339999999385,,,34226.0,1670.0,14.0,29.0,15.0,False,1.0,,cplex-mip,True,False,False,False,False,38.095238095238095,151 <= n <= 250
+gre_185,6,185,650,17,21,gurobi,,600.0,TIMEOUT,29.0,598.280999999959,,,34226.0,1670.0,14.0,29.0,15.0,False,1.0,,gurobi,True,False,False,False,False,38.095238095238095,151 <= n <= 250
+gre_185,6,185,650,17,21,cp-sat,,600.0,TIMEOUT,29.0,598.859000000055,,,836.0,1301.0,14.0,29.0,15.0,False,1.0,,cp-sat,True,False,False,False,False,38.095238095238095,151 <= n <= 250
+will199,6,199,660,55,64,order-inc,pairwise,600.0,TIMEOUT,,600.420999999973,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+will199,6,199,660,55,64,order-iter,pairwise,600.0,TIMEOUT,113.0,600.3910000000033,2.0,8223205.0,79003.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,76.5625,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-inc,pairwise,600.0,TIMEOUT,97.0,601.8439999999828,18.0,110908117.0,39619.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,51.5625,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-iter,pairwise,600.0,TIMEOUT,113.0,600.5779999999795,2.0,12665797.0,39601.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,76.5625,151 <= n <= 250
+will199,6,199,660,55,64,order-inc,sequential,600.0,TIMEOUT,,600.1560000000172,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+will199,6,199,660,55,64,order-iter,sequential,600.0,TIMEOUT,112.0,600.1570000000065,3.0,620861.0,157807.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,75.0,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-inc,sequential,600.0,TIMEOUT,113.0,600.2660000000033,2.0,9773213.0,118407.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,76.5625,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-iter,sequential,600.0,TIMEOUT,114.0,600.3119999999763,1.0,4948613.0,118405.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,78.125,151 <= n <= 250
+will199,6,199,660,55,64,order-inc,product,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+will199,6,199,660,55,64,order-iter,product,600.0,TIMEOUT,,600.1570000000065,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-inc,product,600.0,TIMEOUT,,600.2189999999828,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+will199,6,199,660,55,64,pairwise-iter,product,600.0,TIMEOUT,114.0,600.3119999999763,1.0,4949011.0,51143.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,78.125,151 <= n <= 250
+will199,6,199,660,55,64,cplex-cp,,600.0,TIMEOUT,80.0,598.469000000041,,,200.0,661.0,40.0,80.0,40.0,False,1.0,,cplex-cp,True,False,False,False,False,25.0,151 <= n <= 250
+will199,6,199,660,55,64,cplex-mip,,600.0,TIMEOUT,115.0,598.719000000041,,,39602.0,1718.0,40.0,115.0,75.0,False,1.0,,cplex-mip,True,False,False,False,False,79.6875,151 <= n <= 250
+will199,6,199,660,55,64,gurobi,,600.0,TIMEOUT,92.0,598.3129999999655,,,39602.0,1718.0,40.0,92.0,52.0,False,1.0,,gurobi,True,False,False,False,False,43.75,151 <= n <= 250
+will199,6,199,660,55,64,cp-sat,,600.0,TIMEOUT,93.0,598.734000000055,,,860.0,1321.0,40.0,93.0,53.0,False,1.0,,cp-sat,True,False,False,False,False,45.3125,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-inc,pairwise,600.0,TIMEOUT,,600.375,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-iter,pairwise,600.0,TIMEOUT,,600.3279999999795,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-inc,pairwise,600.0,TIMEOUT,,600.375,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-iter,pairwise,600.0,TIMEOUT,,600.6410000000615,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-inc,sequential,600.0,TIMEOUT,,600.1569999998901,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-iter,sequential,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-inc,sequential,600.0,TIMEOUT,,600.2339999999385,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-iter,sequential,600.0,TIMEOUT,,600.5779999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-inc,product,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,order-iter,product,600.0,TIMEOUT,,600.1560000001919,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-inc,product,600.0,TIMEOUT,,600.2960000000894,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,pairwise-iter,product,600.0,TIMEOUT,,600.625,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+dwt_209,7,209,767,21,23,cplex-cp,,600.0,TIMEOUT,27.0,598.438000000082,,,210.0,768.0,18.0,27.0,9.0,False,1.0,,cplex-cp,True,False,False,False,False,17.391304347826086,151 <= n <= 250
+dwt_209,7,209,767,21,23,cplex-mip,,600.0,TIMEOUT,38.0,598.5470000000205,,,43682.0,1952.0,18.0,38.0,20.0,False,1.0,,cplex-mip,True,False,False,False,False,65.21739130434783,151 <= n <= 250
+dwt_209,7,209,767,21,23,gurobi,,600.0,TIMEOUT,31.0,598.25,,,43682.0,1952.0,18.0,31.0,13.0,False,1.0,,gurobi,True,False,False,False,False,34.78260869565217,151 <= n <= 250
+dwt_209,7,209,767,21,23,cp-sat,,600.0,TIMEOUT,36.0,598.5310000001919,,,977.0,1535.0,18.0,36.0,18.0,False,1.0,,cp-sat,True,False,False,False,False,56.52173913043478,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-inc,pairwise,600.0,TIMEOUT,,600.3900000001304,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-iter,pairwise,600.0,TIMEOUT,,600.3589999999385,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-inc,pairwise,600.0,TIMEOUT,,600.4220000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-iter,pairwise,600.0,TIMEOUT,,600.6870000001509,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-inc,sequential,600.0,TIMEOUT,,600.1399999998976,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-iter,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-inc,sequential,600.0,TIMEOUT,,600.2810000001919,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-iter,sequential,600.0,TIMEOUT,,600.6089999999385,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-inc,product,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,order-iter,product,600.0,TIMEOUT,,600.1560000001919,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-inc,product,600.0,TIMEOUT,,600.280999999959,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,pairwise-iter,product,600.0,TIMEOUT,,600.6410000000615,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+gre_216a,7,216,660,17,21,cplex-cp,,600.0,TIMEOUT,21.0,598.469000000041,,,217.0,661.0,11.0,21.0,10.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,151 <= n <= 250
+gre_216a,7,216,660,17,21,cplex-mip,,600.0,TIMEOUT,21.0,598.594000000041,,,46657.0,1752.0,11.0,21.0,10.0,False,1.0,,cplex-mip,True,False,True,False,False,0.0,151 <= n <= 250
+gre_216a,7,216,660,17,21,gurobi,,600.0,TIMEOUT,21.0,598.2339999999385,,,46657.0,1752.0,11.0,21.0,10.0,False,1.0,,gurobi,True,False,True,False,False,0.0,151 <= n <= 250
+gre_216a,7,216,660,17,21,cp-sat,,600.0,TIMEOUT,21.0,598.4839999999385,,,877.0,1321.0,11.0,21.0,10.0,False,1.0,,cp-sat,True,False,True,False,False,0.0,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-inc,pairwise,600.0,TIMEOUT,,600.405999999959,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-iter,pairwise,600.0,TIMEOUT,,600.375,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-inc,pairwise,600.0,TIMEOUT,,600.3599999998696,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-iter,pairwise,600.0,TIMEOUT,,600.7180000001099,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-inc,sequential,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-iter,sequential,600.0,TIMEOUT,22.0,600.1400000001304,1.0,1043547.0,194701.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,69.23076923076923,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-inc,sequential,600.0,TIMEOUT,,600.2960000000894,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-iter,sequential,600.0,TIMEOUT,,600.7029999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-inc,product,600.0,TIMEOUT,,600.1870000001509,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,order-iter,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-inc,product,600.0,TIMEOUT,,600.3430000001099,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,pairwise-iter,product,600.0,TIMEOUT,,600.6099999998696,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,151 <= n <= 250
+dwt_221,7,221,704,12,13,cplex-cp,,600.0,TIMEOUT,14.0,598.4839999999385,,,222.0,705.0,9.0,14.0,5.0,False,1.0,,cplex-cp,True,False,False,False,False,7.6923076923076925,151 <= n <= 250
+dwt_221,7,221,704,12,13,cplex-mip,,600.0,TIMEOUT,23.0,598.6089999999385,,,48842.0,1850.0,9.0,23.0,14.0,False,1.0,,cplex-mip,True,False,False,False,False,76.92307692307692,151 <= n <= 250
+dwt_221,7,221,704,12,13,gurobi,,600.0,TIMEOUT,21.0,598.25,,,48842.0,1850.0,9.0,21.0,12.0,False,1.0,,gurobi,True,False,False,False,False,61.53846153846154,151 <= n <= 250
+dwt_221,7,221,704,12,13,cp-sat,,600.0,TIMEOUT,21.0,598.5,,,926.0,1409.0,9.0,21.0,12.0,False,1.0,,cp-sat,True,False,False,False,False,61.53846153846154,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-inc,pairwise,600.0,TIMEOUT,,600.186999999918,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-iter,pairwise,600.0,TIMEOUT,,600.1569999998901,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-inc,pairwise,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-iter,pairwise,600.0,TIMEOUT,,600.2180000001099,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-inc,sequential,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-iter,sequential,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-inc,sequential,600.0,TIMEOUT,,600.1710000000894,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-iter,sequential,600.0,TIMEOUT,,600.1409999998286,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-inc,product,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,order-iter,product,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-inc,product,600.0,TIMEOUT,,600.1410000000615,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,pairwise-iter,product,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,True,False,,151 <= n <= 250
+dwt_234,7,234,300,11,11,cplex-cp,,600.0,TIMEOUT,12.0,598.4539999999106,,,235.0,301.0,9.0,12.0,3.0,False,1.0,,cplex-cp,True,False,False,True,False,9.090909090909092,151 <= n <= 250
+dwt_234,7,234,300,11,11,cplex-mip,,600.0,TIMEOUT,25.0,598.6090000001714,,,54757.0,1068.0,9.0,25.0,16.0,False,1.0,,cplex-mip,True,False,False,True,False,127.27272727272727,151 <= n <= 250
+dwt_234,7,234,300,11,11,gurobi,,600.0,TIMEOUT,15.0,598.2660000000615,,,54757.0,1068.0,9.0,15.0,6.0,False,1.0,,gurobi,True,False,False,True,False,36.36363636363637,151 <= n <= 250
+dwt_234,7,234,300,11,11,cp-sat,,600.0,TIMEOUT,19.0,598.4839999999385,,,535.0,601.0,9.0,19.0,10.0,False,1.0,,cp-sat,True,False,False,True,False,72.72727272727273,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-inc,pairwise,600.0,TIMEOUT,34.0,600.4680000001099,6.0,17913305.0,119811.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,61.904761904761905,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-iter,pairwise,600.0,TIMEOUT,36.0,600.4839999999385,4.0,15391321.0,119805.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,71.42857142857143,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-inc,pairwise,600.0,TIMEOUT,38.0,600.969000000041,2.0,66248521.0,60027.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,True,False,80.95238095238095,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-iter,pairwise,600.0,TIMEOUT,,600.655999999959,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,True,False,,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-inc,sequential,600.0,TIMEOUT,39.0,600.1409999998286,1.0,1096115.0,239366.0,,,,,True,,,order-inc / sequential,True,False,False,True,False,85.71428571428571,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-iter,sequential,600.0,TIMEOUT,38.0,600.155999999959,2.0,1098547.0,239365.0,,,,,True,,,order-iter / sequential,True,False,False,True,False,80.95238095238095,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-inc,sequential,600.0,TIMEOUT,39.0,600.4220000000205,1.0,26034275.0,179586.0,,,,,True,,,pairwise-inc / sequential,True,False,False,True,False,85.71428571428571,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-iter,sequential,600.0,TIMEOUT,35.0,600.6720000000205,5.0,27043555.0,179585.0,,,,,True,,,pairwise-iter / sequential,True,False,False,True,False,66.66666666666667,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-inc,product,600.0,TIMEOUT,39.0,600.1719999997877,1.0,1096115.0,135486.0,,,,,True,,,order-inc / product,True,False,False,True,False,85.71428571428571,151 <= n <= 250
+dwt_245,7,245,608,21,21,order-iter,product,600.0,TIMEOUT,36.0,600.1569999998901,4.0,1103411.0,135485.0,,,,,True,,,order-iter / product,True,False,False,True,False,71.42857142857143,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-inc,product,600.0,TIMEOUT,39.0,600.2660000000615,1.0,26034275.0,75706.0,,,,,True,,,pairwise-inc / product,True,False,False,True,False,85.71428571428571,151 <= n <= 250
+dwt_245,7,245,608,21,21,pairwise-iter,product,600.0,TIMEOUT,36.0,600.7339999999385,4.0,26789411.0,75705.0,,,,,True,,,pairwise-iter / product,True,False,False,True,False,71.42857142857143,151 <= n <= 250
+dwt_245,7,245,608,21,21,cplex-cp,,600.0,TIMEOUT,26.0,598.6720000000205,,,246.0,609.0,19.0,26.0,7.0,False,1.0,,cplex-cp,True,False,False,True,False,23.80952380952381,151 <= n <= 250
+dwt_245,7,245,608,21,21,cplex-mip,,600.0,TIMEOUT,40.0,598.5779999999795,,,60026.0,1706.0,15.0,40.0,25.0,False,1.0,,cplex-mip,True,False,False,True,False,90.47619047619048,151 <= n <= 250
+dwt_245,7,245,608,21,21,gurobi,,600.0,TIMEOUT,26.0,598.2819999998901,,,60026.0,1706.0,15.0,26.0,11.0,False,1.0,,gurobi,True,False,False,True,False,23.80952380952381,151 <= n <= 250
+dwt_245,7,245,608,21,21,cp-sat,,600.0,TIMEOUT,32.0,598.5,,,854.0,1217.0,15.0,32.0,17.0,False,1.0,,cp-sat,True,False,False,True,False,52.38095238095238,151 <= n <= 250
+bcspwr04,7,274,669,23,24,order-inc,pairwise,600.0,TIMEOUT,78.0,600.469000000041,2.0,21836194.0,149880.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,225.0,251 <= n < 400
+bcspwr04,7,274,669,23,24,order-iter,pairwise,600.0,TIMEOUT,78.0,600.4849999998696,2.0,21317050.0,149878.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,225.0,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-inc,pairwise,600.0,TIMEOUT,79.0,600.625,1.0,45804292.0,75077.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,229.16666666666666,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-iter,pairwise,600.0,TIMEOUT,79.0,600.7969999997877,1.0,45804292.0,75076.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,229.16666666666666,251 <= n < 400
+bcspwr04,7,274,669,23,24,order-inc,sequential,600.0,TIMEOUT,74.0,600.155999999959,6.0,3902750.0,299488.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,208.33333333333334,251 <= n < 400
+bcspwr04,7,274,669,23,24,order-iter,sequential,600.0,TIMEOUT,77.0,600.1410000000615,3.0,1272242.0,299482.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,220.83333333333334,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-inc,sequential,600.0,TIMEOUT,,600.2339999999385,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-iter,sequential,600.0,TIMEOUT,79.0,600.4530000002123,1.0,25756808.0,224680.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,229.16666666666666,251 <= n < 400
+bcspwr04,7,274,669,23,24,order-inc,product,600.0,TIMEOUT,,600.155999999959,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,251 <= n < 400
+bcspwr04,7,274,669,23,24,order-iter,product,600.0,TIMEOUT,,600.1400000001304,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-inc,product,600.0,TIMEOUT,,600.2659999998286,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,251 <= n < 400
+bcspwr04,7,274,669,23,24,pairwise-iter,product,600.0,TIMEOUT,,600.6100000001024,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,251 <= n < 400
+bcspwr04,7,274,669,23,24,cplex-cp,,600.0,TIMEOUT,27.0,598.0619999999981,,,275.0,670.0,14.0,27.0,13.0,False,1.0,,cplex-cp,True,False,False,False,False,12.5,251 <= n < 400
+bcspwr04,7,274,669,23,24,cplex-mip,,600.0,TIMEOUT,80.0,598.25,,,75077.0,1886.0,14.0,80.0,66.0,False,1.0,,cplex-mip,True,False,False,False,False,233.33333333333334,251 <= n < 400
+bcspwr04,7,274,669,23,24,gurobi,,600.0,TIMEOUT,31.0,598.1720000000023,,,75077.0,1886.0,14.0,31.0,17.0,False,1.0,,gurobi,True,False,False,False,False,29.166666666666668,251 <= n < 400
+bcspwr04,7,274,669,23,24,cp-sat,,600.0,TIMEOUT,47.0,598.109000000004,,,944.0,1339.0,14.0,47.0,33.0,False,1.0,,cp-sat,True,False,False,False,False,95.83333333333333,251 <= n < 400
+ash292,7,292,958,16,19,order-inc,pairwise,600.0,TIMEOUT,22.0,600.5939999998081,12.0,37268788.0,170248.0,,,,,True,,,order-inc / pairwise,True,False,False,False,False,15.789473684210526,251 <= n < 400
+ash292,7,292,958,16,19,order-iter,pairwise,600.0,TIMEOUT,22.0,600.5469999997877,12.0,26182812.0,170236.0,,,,,True,,,order-iter / pairwise,True,False,False,False,False,15.789473684210526,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-inc,pairwise,600.0,TIMEOUT,33.0,601.5,1.0,88827592.0,85265.0,,,,,True,,,pairwise-inc / pairwise,True,False,False,False,False,73.6842105263158,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-iter,pairwise,600.0,TIMEOUT,33.0,601.5939999998081,1.0,88827592.0,85264.0,,,,,True,,,pairwise-iter / pairwise,True,False,False,False,False,73.6842105263158,251 <= n < 400
+ash292,7,292,958,16,19,order-inc,sequential,600.0,TIMEOUT,24.0,600.155999999959,10.0,10908428.0,340190.0,,,,,True,,,order-inc / sequential,True,False,False,False,False,26.31578947368421,251 <= n < 400
+ash292,7,292,958,16,19,order-iter,sequential,600.0,TIMEOUT,24.0,600.1720000000205,10.0,1872572.0,340180.0,,,,,True,,,order-iter / sequential,True,False,False,False,False,26.31578947368421,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-inc,sequential,600.0,TIMEOUT,32.0,602.6090000001714,2.0,129036736.0,255210.0,,,,,True,,,pairwise-inc / sequential,True,False,False,False,False,68.42105263157895,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-iter,sequential,600.0,TIMEOUT,32.0,601.563000000082,2.0,65021260.0,255208.0,,,,,True,,,pairwise-iter / sequential,True,False,False,False,False,68.42105263157895,251 <= n < 400
+ash292,7,292,958,16,19,order-inc,product,600.0,TIMEOUT,24.0,600.1560000001919,10.0,10909012.0,190686.0,,,,,True,,,order-inc / product,True,False,False,False,False,26.31578947368421,251 <= n < 400
+ash292,7,292,958,16,19,order-iter,product,600.0,TIMEOUT,24.0,600.1720000000205,10.0,1873156.0,190676.0,,,,,True,,,order-iter / product,True,False,False,False,False,26.31578947368421,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-inc,product,600.0,TIMEOUT,,600.4220000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,251 <= n < 400
+ash292,7,292,958,16,19,pairwise-iter,product,600.0,TIMEOUT,32.0,601.0779999999795,2.0,65021844.0,105704.0,,,,,True,,,pairwise-iter / product,True,False,False,False,False,68.42105263157895,251 <= n < 400
+ash292,7,292,958,16,19,cplex-cp,,600.0,TIMEOUT,21.0,598.0780000000013,,,293.0,959.0,12.0,21.0,9.0,False,1.0,,cplex-cp,True,False,False,False,False,10.526315789473685,251 <= n < 400
+ash292,7,292,958,16,19,cplex-mip,,600.0,TIMEOUT,34.0,598.2189999999973,,,85265.0,2500.0,12.0,34.0,22.0,False,1.0,,cplex-mip,True,False,False,False,False,78.94736842105263,251 <= n < 400
+ash292,7,292,958,16,19,gurobi,,600.0,TIMEOUT,25.0,598.2180000000008,,,85265.0,2500.0,12.0,25.0,13.0,False,1.0,,gurobi,True,False,False,False,False,31.57894736842105,251 <= n < 400
+ash292,7,292,958,16,19,cp-sat,,600.0,TIMEOUT,33.0,598.0939999999973,,,1251.0,1917.0,12.0,33.0,21.0,False,1.0,,cp-sat,True,False,False,False,False,73.6842105263158,251 <= n < 400
+can_292,7,292,1124,34,38,order-inc,pairwise,600.0,TIMEOUT,,601.125,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,order-iter,pairwise,600.0,TIMEOUT,,601.0320000000065,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-inc,pairwise,600.0,TIMEOUT,,601.0939999999828,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-iter,pairwise,600.0,TIMEOUT,,601.6720000000205,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,order-inc,sequential,600.0,TIMEOUT,,600.265000000014,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,order-iter,sequential,600.0,TIMEOUT,,600.25,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-inc,sequential,600.0,TIMEOUT,,600.7970000000205,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-iter,sequential,600.0,TIMEOUT,,601.4380000000237,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,order-inc,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,order-iter,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-inc,product,600.0,TIMEOUT,,600.9060000000172,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,pairwise-iter,product,600.0,TIMEOUT,,601.4689999999828,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,251 <= n < 400
+can_292,7,292,1124,34,38,cplex-cp,,600.0,TIMEOUT,46.0,598.5779999999795,,,293.0,1125.0,30.0,46.0,16.0,False,1.0,,cplex-cp,True,False,False,False,False,21.05263157894737,251 <= n < 400
+can_292,7,292,1124,34,38,cplex-mip,,600.0,TIMEOUT,76.0,599.015000000014,,,85265.0,2832.0,30.0,76.0,46.0,False,1.0,,cplex-mip,True,False,False,False,False,100.0,251 <= n < 400
+can_292,7,292,1124,34,38,gurobi,,600.0,TIMEOUT,74.0,598.5780000000959,,,85265.0,2832.0,30.0,74.0,44.0,False,1.0,,gurobi,True,False,False,False,False,94.73684210526316,251 <= n < 400
+can_292,7,292,1124,34,38,cp-sat,,600.0,TIMEOUT,76.0,598.4529999999795,,,1417.0,2249.0,30.0,76.0,46.0,False,1.0,,cp-sat,True,False,False,False,False,100.0,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-inc,pairwise,600.0,TIMEOUT,,601.219000000041,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-iter,pairwise,600.0,TIMEOUT,,601.1880000000237,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-inc,pairwise,600.0,TIMEOUT,,602.9219999999623,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-iter,pairwise,600.0,TIMEOUT,,602.3439999999828,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-inc,sequential,600.0,TIMEOUT,,600.234999999986,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-iter,sequential,600.0,TIMEOUT,,600.2189999999828,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-inc,sequential,600.0,TIMEOUT,,602.9060000000172,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-iter,sequential,600.0,TIMEOUT,,602.4370000000345,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-inc,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,order-iter,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-inc,product,600.0,TIMEOUT,,601.6560000000172,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,pairwise-iter,product,600.0,TIMEOUT,,602.5,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,False,False,,251 <= n < 400
+dwt_310,7,310,1069,11,12,cplex-cp,,600.0,TIMEOUT,12.0,598.5,,,311.0,1070.0,8.0,12.0,4.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,251 <= n < 400
+dwt_310,7,310,1069,11,12,cplex-mip,,600.0,TIMEOUT,13.0,599.1089999999385,,,96101.0,2758.0,8.0,13.0,5.0,False,1.0,,cplex-mip,True,False,False,False,False,8.333333333333334,251 <= n < 400
+dwt_310,7,310,1069,11,12,gurobi,,600.0,TIMEOUT,13.0,598.655999999959,,,96101.0,2758.0,8.0,13.0,5.0,False,1.0,,gurobi,True,False,False,False,False,8.333333333333334,251 <= n < 400
+dwt_310,7,310,1069,11,12,cp-sat,,600.0,OPTIMAL,12.0,358.64099999994505,,,1380.0,2139.0,12.0,12.0,0.0,False,1.0,,cp-sat,True,True,True,False,False,0.0,251 <= n < 400
+gre_343,7,343,1092,23,28,order-inc,pairwise,600.0,TIMEOUT,,600.6710000000894,0.0,0.0,0.0,,,,,True,,,order-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,order-iter,pairwise,600.0,TIMEOUT,,600.7650000001304,0.0,0.0,0.0,,,,,True,,,order-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-inc,pairwise,600.0,ERROR,,339.5779999999795,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343),pairwise-inc / pairwise,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-iter,pairwise,600.0,TIMEOUT,,600.4370000001509,0.0,0.0,0.0,,,,,True,,,pairwise-iter / pairwise,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,order-inc,sequential,600.0,TIMEOUT,,600.1879999998491,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,order-iter,sequential,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-inc,sequential,600.0,ERROR,,476.2029999999795,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343),pairwise-inc / sequential,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-iter,sequential,600.0,ERROR,,501.375,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343),pairwise-iter / sequential,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,order-inc,product,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-inc / product,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,order-iter,product,600.0,TIMEOUT,,600.2039999999106,0.0,0.0,0.0,,,,,True,,,order-iter / product,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-inc,product,600.0,ERROR,,491.25,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343),pairwise-inc / product,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,pairwise-iter,product,600.0,ERROR,,489.5,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343),pairwise-iter / product,False,False,False,False,False,,251 <= n < 400
+gre_343,7,343,1092,23,28,cplex-cp,,600.0,TIMEOUT,28.0,598.4529999999795,,,344.0,1093.0,15.0,28.0,13.0,False,1.0,,cplex-cp,True,False,True,False,False,0.0,251 <= n < 400
+gre_343,7,343,1092,23,28,cplex-mip,,600.0,TIMEOUT,28.0,598.844000000041,,,117650.0,2870.0,15.0,28.0,13.0,False,1.0,,cplex-mip,True,False,True,False,False,0.0,251 <= n < 400
+gre_343,7,343,1092,23,28,gurobi,,600.0,TIMEOUT,28.0,598.6720000000205,,,117650.0,2870.0,15.0,28.0,13.0,False,1.0,,gurobi,True,False,True,False,False,0.0,251 <= n < 400
+gre_343,7,343,1092,23,28,cp-sat,,600.0,TIMEOUT,28.0,598.4060000001919,,,1436.0,2185.0,15.0,28.0,13.0,False,1.0,,cp-sat,True,False,True,False,False,0.0,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-inc,pairwise,600.0,TIMEOUT,20.0,600.9060000001919,5.0,56196721.0,260286.0,,,,,True,,,order-inc / pairwise,True,False,False,True,False,42.857142857142854,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-iter,pairwise,600.0,TIMEOUT,24.0,600.9220000000205,1.0,49177585.0,260281.0,,,,,True,,,order-iter / pairwise,True,False,False,True,False,71.42857142857143,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-inc,pairwise,600.0,TIMEOUT,,601.030999999959,0.0,0.0,0.0,,,,,True,,,pairwise-inc / pairwise,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-iter,pairwise,600.0,ERROR,,569.7189999998081,,,,,,,,True,,MemoryError: Out of memory (OOM) during bandwidth clause generation on dwt_361 (n=361),pairwise-iter / pairwise,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-inc,sequential,600.0,TIMEOUT,,600.1720000000205,0.0,0.0,0.0,,,,,True,,,order-inc / sequential,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-iter,sequential,600.0,TIMEOUT,,600.2029999999795,0.0,0.0,0.0,,,,,True,,,order-iter / sequential,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-inc,sequential,600.0,TIMEOUT,,601.3289999999106,0.0,0.0,0.0,,,,,True,,,pairwise-inc / sequential,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-iter,sequential,600.0,TIMEOUT,,601.2189999998081,0.0,0.0,0.0,,,,,True,,,pairwise-iter / sequential,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-inc,product,600.0,TIMEOUT,22.0,600.2030000002123,3.0,6529433.0,287720.0,,,,,True,,,order-inc / product,True,False,False,True,False,57.142857142857146,251 <= n < 400
+dwt_361,7,361,1296,14,14,order-iter,product,600.0,TIMEOUT,17.0,600.2180000001099,8.0,3066521.0,287717.0,,,,,True,,,order-iter / product,True,False,False,True,False,21.428571428571427,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-inc,product,600.0,TIMEOUT,,601.2960000000894,0.0,0.0,0.0,,,,,True,,,pairwise-inc / product,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,pairwise-iter,product,600.0,TIMEOUT,,601.4529999999795,0.0,0.0,0.0,,,,,True,,,pairwise-iter / product,False,False,False,True,False,,251 <= n < 400
+dwt_361,7,361,1296,14,14,cplex-cp,,600.0,TIMEOUT,17.0,598.5,,,362.0,1297.0,12.0,17.0,5.0,False,1.0,,cplex-cp,True,False,False,True,False,21.428571428571427,251 <= n < 400
+dwt_361,7,361,1296,14,14,cplex-mip,,600.0,TIMEOUT,25.0,599.2339999999385,,,130322.0,3314.0,12.0,25.0,13.0,False,1.0,,cplex-mip,True,False,False,True,False,78.57142857142857,251 <= n < 400
+dwt_361,7,361,1296,14,14,gurobi,,600.0,TIMEOUT,25.0,598.5939999998081,,,130322.0,3314.0,12.0,25.0,13.0,False,1.0,,gurobi,True,False,False,True,False,78.57142857142857,251 <= n < 400
+dwt_361,7,361,1296,14,14,cp-sat,,600.0,TIMEOUT,25.0,598.4839999999385,,,1658.0,2593.0,12.0,25.0,13.0,False,1.0,,cp-sat,True,False,False,True,False,78.57142857142857,251 <= n < 400

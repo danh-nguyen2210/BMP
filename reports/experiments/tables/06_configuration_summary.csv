@@ -1,0 +1,17 @@
+﻿Config,Runs,Optimal,Timeout,Error,Feasible,Match_paper,Match_known_optimum,Optimal_pct,Feasible_pct,Median_gap_paper_pct,Median_runtime_optimal_s
+order-inc / pairwise,42,3,39,0,21,5,5,7.14286,50,15,40.984
+order-inc / sequential,42,4,38,0,23,7,7,9.52381,54.7619,24.3243,22.859
+order-inc / product,42,4,38,0,22,7,7,9.52381,52.381,20.8108,32.891
+order-iter / pairwise,42,4,38,0,24,6,6,9.52381,57.1429,12.5,119.171
+order-iter / sequential,42,4,38,0,25,7,7,9.52381,59.5238,26.3158,29.4845
+order-iter / product,42,4,38,0,23,7,7,9.52381,54.7619,21.4286,29.336
+pairwise-inc / pairwise,42,3,38,1,24,5,5,7.14286,57.1429,31.6216,237.234
+pairwise-inc / sequential,42,4,37,1,20,7,7,9.52381,47.619,19.375,238.29
+pairwise-inc / product,42,2,39,1,16,4,4,4.7619,38.0952,31.6667,163.969
+pairwise-iter / pairwise,42,4,37,1,24,7,7,9.52381,57.1429,16.875,220.492
+pairwise-iter / sequential,42,3,38,1,22,4,4,7.14286,52.381,23.5135,103.5
+pairwise-iter / product,42,4,37,1,18,4,4,9.52381,42.8571,22.1622,240.984
+cplex-cp,42,5,37,0,42,21,11,11.9048,100,2.38095,318.86
+cplex-mip,42,1,41,0,42,11,7,2.38095,100,37.381,70.297
+gurobi,42,3,39,0,42,16,11,7.14286,100,10,117.5
+cp-sat,42,11,31,0,42,16,10,26.1905,100,34.1667,12.828

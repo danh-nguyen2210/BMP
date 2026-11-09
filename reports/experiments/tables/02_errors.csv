@@ -1,0 +1,7 @@
+﻿Instance,n,Config,Status,Error
+gre_343,343,pairwise-inc / pairwise,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+gre_343,343,pairwise-inc / sequential,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+gre_343,343,pairwise-iter / sequential,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+gre_343,343,pairwise-inc / product,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+gre_343,343,pairwise-iter / product,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on gre_343 (n=343)
+dwt_361,361,pairwise-iter / pairwise,ERROR,MemoryError: Out of memory (OOM) during bandwidth clause generation on dwt_361 (n=361)

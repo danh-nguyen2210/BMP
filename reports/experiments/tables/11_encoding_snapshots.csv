@@ -1,0 +1,13 @@
+﻿Solver,AMO_Method,Rows,Clause_snapshots,Positive_clause_snapshots,Median_clauses,Max_clauses,Median_vars,Errors
+order-inc,pairwise,42,42,21,1.82121e+06,5.61967e+07,27732,0
+order-inc,product,42,42,22,475816,1.09299e+07,32161.5,0
+order-inc,sequential,42,42,23,528680,1.09084e+07,55351,0
+order-iter,pairwise,42,42,24,2.45978e+06,4.91776e+07,34193,0
+order-iter,product,42,42,23,215357,3.06652e+06,32922,0
+order-iter,sequential,42,42,25,302068,1.87257e+06,67210,0
+pairwise-inc,pairwise,42,41,24,5.98518e+06,1.14949e+08,15441,1
+pairwise-inc,product,42,41,16,1.94541e+06,1.46948e+08,9691.5,1
+pairwise-inc,sequential,42,41,20,5.82684e+06,1.29037e+08,34625.5,1
+pairwise-iter,pairwise,42,41,24,4.26026e+06,8.88276e+07,15412,1
+pairwise-iter,product,42,41,18,717398,6.50218e+07,11640,1
+pairwise-iter,sequential,42,41,22,2.08134e+06,6.50213e+07,51224,1

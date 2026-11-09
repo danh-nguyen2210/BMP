@@ -1,0 +1,5 @@
+﻿Solver,Runs,With_bounds,Closed_gap,Median_absolute_gap,Max_absolute_gap
+cplex-cp,42,42,5,6,40
+cplex-mip,42,42,1,13,75
+gurobi,42,42,3,11,52
+cp-sat,42,42,11,12.5,89

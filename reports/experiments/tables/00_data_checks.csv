@@ -1,0 +1,10 @@
+﻿Check,Count
+Instances,42
+Configurations,16
+Runs,672
+Numeric bandwidth,430
+Missing bandwidth,242
+OPTIMAL,63
+TIMEOUT,603
+ERROR,6
+Runtime > 605 s,4

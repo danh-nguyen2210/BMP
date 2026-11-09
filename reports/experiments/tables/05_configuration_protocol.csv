@@ -1,0 +1,17 @@
+﻿Solver,AMO_Method,Runs,Timeout_s,Use_Components,Threads
+cp-sat,,42,600,False,1
+cplex-cp,,42,600,False,1
+cplex-mip,,42,600,False,1
+gurobi,,42,600,False,1
+order-inc,pairwise,42,600,True,not recorded
+order-inc,product,42,600,True,not recorded
+order-inc,sequential,42,600,True,not recorded
+order-iter,pairwise,42,600,True,not recorded
+order-iter,product,42,600,True,not recorded
+order-iter,sequential,42,600,True,not recorded
+pairwise-inc,pairwise,42,600,True,not recorded
+pairwise-inc,product,42,600,True,not recorded
+pairwise-inc,sequential,42,600,True,not recorded
+pairwise-iter,pairwise,42,600,True,not recorded
+pairwise-iter,product,42,600,True,not recorded
+pairwise-iter,sequential,42,600,True,not recorded

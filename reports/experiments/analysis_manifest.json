@@ -1,0 +1,50 @@
+{
+  "input": "results/results.csv",
+  "input_sha256": "41068b30775260cc6e91d498126a022cde0f2cc9b5400d24da05e91e5ab6eeb8",
+  "rows": 672,
+  "instances": 42,
+  "configurations": [
+    "order-inc / pairwise",
+    "order-inc / sequential",
+    "order-inc / product",
+    "order-iter / pairwise",
+    "order-iter / sequential",
+    "order-iter / product",
+    "pairwise-inc / pairwise",
+    "pairwise-inc / sequential",
+    "pairwise-inc / product",
+    "pairwise-iter / pairwise",
+    "pairwise-iter / sequential",
+    "pairwise-iter / product",
+    "cplex-cp",
+    "cplex-mip",
+    "gurobi",
+    "cp-sat"
+  ],
+  "statuses": {
+    "OPTIMAL": 63,
+    "TIMEOUT": 603,
+    "ERROR": 6
+  },
+  "analysis_versions": {
+    "python": "3.12.10",
+    "pandas": "3.1.1",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.2"
+  },
+  "figures": [
+    "01_dataset",
+    "02_status_by_configuration",
+    "03_summary_table",
+    "04_quality_coverage",
+    "05_gap_heatmap",
+    "06_optimal_cactus",
+    "07_amo_comparison",
+    "08_encoding_clauses",
+    "09_baseline_proof_gap",
+    "10_size_group_outcomes"
+  ],
+  "runtime_warning_threshold_s": 605,
+  "missing_bandwidth_policy": "Keep missing; never replace with zero",
+  "runtime_policy": "Keep recorded runtimes; optimal cactus excludes TIMEOUT and ERROR"
+}

@@ -1,0 +1,13 @@
+﻿Solver,AMO,Common_instances,Mean_gap_paper_pct,Median_gap_paper_pct
+order-inc,pairwise,19,22.8854,14.2857
+order-inc,sequential,19,31.677,18.1818
+order-inc,product,19,37.7276,15
+order-iter,pairwise,21,27.4499,9.09091
+order-iter,sequential,21,35.5291,15
+order-iter,product,21,41.7882,15
+pairwise-inc,pairwise,15,30.0555,20
+pairwise-inc,sequential,15,38.1308,18.75
+pairwise-inc,product,15,44.8537,30
+pairwise-iter,pairwise,17,26.1713,10
+pairwise-iter,sequential,17,42.9672,20
+pairwise-iter,product,17,43.5075,20

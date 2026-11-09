@@ -1,0 +1,17 @@
+﻿Config,At/better than reference,Above reference,No BW (non-error),Error without BW
+order-inc / pairwise,5,16,21,0
+order-inc / sequential,7,16,19,0
+order-inc / product,7,15,20,0
+order-iter / pairwise,6,18,18,0
+order-iter / sequential,7,18,17,0
+order-iter / product,7,16,19,0
+pairwise-inc / pairwise,5,19,17,1
+pairwise-inc / sequential,7,13,21,1
+pairwise-inc / product,4,12,25,1
+pairwise-iter / pairwise,7,17,17,1
+pairwise-iter / sequential,4,18,19,1
+pairwise-iter / product,4,14,23,1
+cplex-cp,21,21,0,0
+cplex-mip,11,31,0,0
+gurobi,16,26,0,0
+cp-sat,16,26,0,0

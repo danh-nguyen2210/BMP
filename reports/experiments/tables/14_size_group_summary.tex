@@ -1,0 +1,54 @@
+\begin{tabular}{lllllllll}
+\hline
+Config & Size\_Group & Runs & Optimal & Feasible & Match\_paper & Errors & Optimal\_pct & Feasible\_pct \\
+\hline
+cp-sat & n <= 150 & 23 & 10 & 23 & 12 & 0 & 43.48 & 100.00 \\
+cp-sat & 151 <= n <= 250 & 13 & 0 & 13 & 2 & 0 & 0.00 & 100.00 \\
+cp-sat & 251 <= n < 400 & 6 & 1 & 6 & 2 & 0 & 16.67 & 100.00 \\
+cplex-cp & n <= 150 & 23 & 5 & 23 & 16 & 0 & 21.74 & 100.00 \\
+cplex-cp & 151 <= n <= 250 & 13 & 0 & 13 & 3 & 0 & 0.00 & 100.00 \\
+cplex-cp & 251 <= n < 400 & 6 & 0 & 6 & 2 & 0 & 0.00 & 100.00 \\
+cplex-mip & n <= 150 & 23 & 1 & 23 & 9 & 0 & 4.35 & 100.00 \\
+cplex-mip & 151 <= n <= 250 & 13 & 0 & 13 & 1 & 0 & 0.00 & 100.00 \\
+cplex-mip & 251 <= n < 400 & 6 & 0 & 6 & 1 & 0 & 0.00 & 100.00 \\
+gurobi & n <= 150 & 23 & 3 & 23 & 13 & 0 & 13.04 & 100.00 \\
+gurobi & 151 <= n <= 250 & 13 & 0 & 13 & 2 & 0 & 0.00 & 100.00 \\
+gurobi & 251 <= n < 400 & 6 & 0 & 6 & 1 & 0 & 0.00 & 100.00 \\
+order-inc / pairwise & n <= 150 & 23 & 3 & 14 & 5 & 0 & 13.04 & 60.87 \\
+order-inc / pairwise & 151 <= n <= 250 & 13 & 0 & 4 & 0 & 0 & 0.00 & 30.77 \\
+order-inc / pairwise & 251 <= n < 400 & 6 & 0 & 3 & 0 & 0 & 0.00 & 50.00 \\
+order-inc / product & n <= 150 & 23 & 4 & 16 & 7 & 0 & 17.39 & 69.57 \\
+order-inc / product & 151 <= n <= 250 & 13 & 0 & 4 & 0 & 0 & 0.00 & 30.77 \\
+order-inc / product & 251 <= n < 400 & 6 & 0 & 2 & 0 & 0 & 0.00 & 33.33 \\
+order-inc / sequential & n <= 150 & 23 & 4 & 16 & 7 & 0 & 17.39 & 69.57 \\
+order-inc / sequential & 151 <= n <= 250 & 13 & 0 & 5 & 0 & 0 & 0.00 & 38.46 \\
+order-inc / sequential & 251 <= n < 400 & 6 & 0 & 2 & 0 & 0 & 0.00 & 33.33 \\
+order-iter / pairwise & n <= 150 & 23 & 4 & 15 & 6 & 0 & 17.39 & 65.22 \\
+order-iter / pairwise & 151 <= n <= 250 & 13 & 0 & 6 & 0 & 0 & 0.00 & 46.15 \\
+order-iter / pairwise & 251 <= n < 400 & 6 & 0 & 3 & 0 & 0 & 0.00 & 50.00 \\
+order-iter / product & n <= 150 & 23 & 4 & 16 & 7 & 0 & 17.39 & 69.57 \\
+order-iter / product & 151 <= n <= 250 & 13 & 0 & 5 & 0 & 0 & 0.00 & 38.46 \\
+order-iter / product & 251 <= n < 400 & 6 & 0 & 2 & 0 & 0 & 0.00 & 33.33 \\
+order-iter / sequential & n <= 150 & 23 & 4 & 16 & 7 & 0 & 17.39 & 69.57 \\
+order-iter / sequential & 151 <= n <= 250 & 13 & 0 & 7 & 0 & 0 & 0.00 & 53.85 \\
+order-iter / sequential & 251 <= n < 400 & 6 & 0 & 2 & 0 & 0 & 0.00 & 33.33 \\
+pairwise-inc / pairwise & n <= 150 & 23 & 3 & 16 & 5 & 0 & 13.04 & 69.57 \\
+pairwise-inc / pairwise & 151 <= n <= 250 & 13 & 0 & 6 & 0 & 0 & 0.00 & 46.15 \\
+pairwise-inc / pairwise & 251 <= n < 400 & 6 & 0 & 2 & 0 & 1 & 0.00 & 33.33 \\
+pairwise-inc / product & n <= 150 & 23 & 2 & 13 & 4 & 0 & 8.70 & 56.52 \\
+pairwise-inc / product & 151 <= n <= 250 & 13 & 0 & 3 & 0 & 0 & 0.00 & 23.08 \\
+pairwise-inc / product & 251 <= n < 400 & 6 & 0 & 0 & 0 & 1 & 0.00 & 0.00 \\
+pairwise-inc / sequential & n <= 150 & 23 & 4 & 13 & 7 & 0 & 17.39 & 56.52 \\
+pairwise-inc / sequential & 151 <= n <= 250 & 13 & 0 & 6 & 0 & 0 & 0.00 & 46.15 \\
+pairwise-inc / sequential & 251 <= n < 400 & 6 & 0 & 1 & 0 & 1 & 0.00 & 16.67 \\
+pairwise-iter / pairwise & n <= 150 & 23 & 4 & 16 & 7 & 0 & 17.39 & 69.57 \\
+pairwise-iter / pairwise & 151 <= n <= 250 & 13 & 0 & 6 & 0 & 0 & 0.00 & 46.15 \\
+pairwise-iter / pairwise & 251 <= n < 400 & 6 & 0 & 2 & 0 & 1 & 0.00 & 33.33 \\
+pairwise-iter / product & n <= 150 & 23 & 4 & 13 & 4 & 0 & 17.39 & 56.52 \\
+pairwise-iter / product & 151 <= n <= 250 & 13 & 0 & 4 & 0 & 0 & 0.00 & 30.77 \\
+pairwise-iter / product & 251 <= n < 400 & 6 & 0 & 1 & 0 & 1 & 0.00 & 16.67 \\
+pairwise-iter / sequential & n <= 150 & 23 & 3 & 14 & 4 & 0 & 13.04 & 60.87 \\
+pairwise-iter / sequential & 151 <= n <= 250 & 13 & 0 & 6 & 0 & 0 & 0.00 & 46.15 \\
+pairwise-iter / sequential & 251 <= n < 400 & 6 & 0 & 2 & 0 & 1 & 0.00 & 33.33 \\
+\hline
+\end{tabular}

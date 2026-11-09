@@ -1,0 +1,49 @@
+﻿Config,Size_Group,Runs,Optimal,Feasible,Match_paper,Errors,Optimal_pct,Feasible_pct
+cp-sat,n <= 150,23,10,23,12,0,43.4783,100
+cp-sat,151 <= n <= 250,13,0,13,2,0,0,100
+cp-sat,251 <= n < 400,6,1,6,2,0,16.6667,100
+cplex-cp,n <= 150,23,5,23,16,0,21.7391,100
+cplex-cp,151 <= n <= 250,13,0,13,3,0,0,100
+cplex-cp,251 <= n < 400,6,0,6,2,0,0,100
+cplex-mip,n <= 150,23,1,23,9,0,4.34783,100
+cplex-mip,151 <= n <= 250,13,0,13,1,0,0,100
+cplex-mip,251 <= n < 400,6,0,6,1,0,0,100
+gurobi,n <= 150,23,3,23,13,0,13.0435,100
+gurobi,151 <= n <= 250,13,0,13,2,0,0,100
+gurobi,251 <= n < 400,6,0,6,1,0,0,100
+order-inc / pairwise,n <= 150,23,3,14,5,0,13.0435,60.8696
+order-inc / pairwise,151 <= n <= 250,13,0,4,0,0,0,30.7692
+order-inc / pairwise,251 <= n < 400,6,0,3,0,0,0,50
+order-inc / product,n <= 150,23,4,16,7,0,17.3913,69.5652
+order-inc / product,151 <= n <= 250,13,0,4,0,0,0,30.7692
+order-inc / product,251 <= n < 400,6,0,2,0,0,0,33.3333
+order-inc / sequential,n <= 150,23,4,16,7,0,17.3913,69.5652
+order-inc / sequential,151 <= n <= 250,13,0,5,0,0,0,38.4615
+order-inc / sequential,251 <= n < 400,6,0,2,0,0,0,33.3333
+order-iter / pairwise,n <= 150,23,4,15,6,0,17.3913,65.2174
+order-iter / pairwise,151 <= n <= 250,13,0,6,0,0,0,46.1538
+order-iter / pairwise,251 <= n < 400,6,0,3,0,0,0,50
+order-iter / product,n <= 150,23,4,16,7,0,17.3913,69.5652
+order-iter / product,151 <= n <= 250,13,0,5,0,0,0,38.4615
+order-iter / product,251 <= n < 400,6,0,2,0,0,0,33.3333
+order-iter / sequential,n <= 150,23,4,16,7,0,17.3913,69.5652
+order-iter / sequential,151 <= n <= 250,13,0,7,0,0,0,53.8462
+order-iter / sequential,251 <= n < 400,6,0,2,0,0,0,33.3333
+pairwise-inc / pairwise,n <= 150,23,3,16,5,0,13.0435,69.5652
+pairwise-inc / pairwise,151 <= n <= 250,13,0,6,0,0,0,46.1538
+pairwise-inc / pairwise,251 <= n < 400,6,0,2,0,1,0,33.3333
+pairwise-inc / product,n <= 150,23,2,13,4,0,8.69565,56.5217
+pairwise-inc / product,151 <= n <= 250,13,0,3,0,0,0,23.0769
+pairwise-inc / product,251 <= n < 400,6,0,0,0,1,0,0
+pairwise-inc / sequential,n <= 150,23,4,13,7,0,17.3913,56.5217
+pairwise-inc / sequential,151 <= n <= 250,13,0,6,0,0,0,46.1538
+pairwise-inc / sequential,251 <= n < 400,6,0,1,0,1,0,16.6667
+pairwise-iter / pairwise,n <= 150,23,4,16,7,0,17.3913,69.5652
+pairwise-iter / pairwise,151 <= n <= 250,13,0,6,0,0,0,46.1538
+pairwise-iter / pairwise,251 <= n < 400,6,0,2,0,1,0,33.3333
+pairwise-iter / product,n <= 150,23,4,13,4,0,17.3913,56.5217
+pairwise-iter / product,151 <= n <= 250,13,0,4,0,0,0,30.7692
+pairwise-iter / product,251 <= n < 400,6,0,1,0,1,0,16.6667
+pairwise-iter / sequential,n <= 150,23,3,14,4,0,13.0435,60.8696
+pairwise-iter / sequential,151 <= n <= 250,13,0,6,0,0,0,46.1538
+pairwise-iter / sequential,251 <= n < 400,6,0,2,0,1,0,33.3333

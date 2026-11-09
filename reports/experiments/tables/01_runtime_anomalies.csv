@@ -1,0 +1,5 @@
+﻿Instance,Config,Status,Timeout_s,Runtime_s
+bcsstk04,pairwise-inc / pairwise,TIMEOUT,600,744.922
+bcsstk04,cplex-cp,TIMEOUT,600,1178.56
+bcsstk04,cplex-mip,TIMEOUT,600,1046.41
+lund_a,cp-sat,TIMEOUT,600,662.703
