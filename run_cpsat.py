@@ -100,6 +100,9 @@ def solve_job(graph, timeout, threads):
 
 
 def run(args):
+    size_limit = getattr(args, 'size_limit', 400)
+    if size_limit < 1:
+        raise ValueError('size-limit must be positive')
     from src.graph import GraphData
     # Fail before recording jobs if the optional engine is missing.
     version = importlib.metadata.version('ortools')
@@ -150,7 +153,7 @@ def run(args):
             for item in items:
                 if should_stop():
                     break
-                limited = item['paper_n'] >= 400
+                limited = item['paper_n'] >= size_limit
                 path = common.ROOT/item['file']
                 if not limited and not path.exists():
                     download_hb_matrix(item['name'], target_dir=str(path.parent))
@@ -160,7 +163,7 @@ def run(args):
                     'Warm_Start': 'RCM', 'Data_SHA256': 'size-limit' if limited else file_digest(path),
                     'Code_SHA256': code_hash, 'Environment': versions,
                     'Machine': common.platform.node(), 'Platform': common.platform.platform(),
-                    'Size_Limit_Exclusive': 400}
+                    'Size_Limit_Exclusive': size_limit}
                 job_id = digest(identity)
                 if not store.should_run(job_id, retry_errors=args.retry_errors):
                     skipped += 1
@@ -174,11 +177,11 @@ def run(args):
                 started = time.monotonic()
                 try:
                     if limited:
-                        result = {'Status': 'LIMIT', 'Runtime_s': 0, 'Reason': 'n >= 400'}
+                        result = {'Status': 'LIMIT', 'Runtime_s': 0, 'Reason': f'n >= {size_limit}'}
                     else:
                         graph = GraphData.from_mtx(path)
-                        if graph.n >= 400:
-                            result = {'Status': 'LIMIT', 'Runtime_s': 0, 'Reason': 'n >= 400'}
+                        if graph.n >= size_limit:
+                            result = {'Status': 'LIMIT', 'Runtime_s': 0, 'Reason': f'n >= {size_limit}'}
                         else:
                             result = solve_job(graph, args.timeout, args.threads)
                             result.update(n=graph.n, m=graph.m)
@@ -208,6 +211,7 @@ def main():
     selection.add_argument('--instances-file')
     selection.add_argument('--instances', nargs='+')
     parser.add_argument('--timeout', type=float, default=600)
+    parser.add_argument('--size-limit', type=int, default=400, help='Skip graphs with n >= this value')
     parser.add_argument('--threads', type=int, default=1)
     parser.add_argument('--checkpoint', default='results/cpsat.sqlite3')
     parser.add_argument('--output', default='results/cpsat.csv')

@@ -73,6 +73,7 @@ class SolverResult:
 
 
 class BaseBMPSolver:
+    max_vertices = 400
 
     def __init__(self, graph, amo_method="pairwise", timeout=600.0):
         self.graph = graph
@@ -87,16 +88,17 @@ class BaseBMPSolver:
         use_components=True,
         strategy="binary",
         verbose=False,
+        memory_job=None,
     ):
         """Phương thức giải chính điều phối tối ưu 4.4.2, 4.4.3 và quản lý Timeout cứng qua Process Watchdog."""
         start_time = time.time()
         self.start_time = start_time
 
         # Kiểm tra giới hạn bộ nhớ theo yêu cầu: n > 400 không cần chạy, trả về MEM_EXCEED
-        if self.n > 400:
+        if self.n > self.max_vertices:
             if verbose:
                 print(
-                    f"[{self.__class__.__name__}] n = {self.n} > 400 ->"
+                    f"[{self.__class__.__name__}] n = {self.n} > {self.max_vertices} ->"
                     " Memory Exceeded (MEM_EXCEED). Bỏ qua giải toán.",
                     flush=True,
                 )
@@ -112,7 +114,7 @@ class BaseBMPSolver:
         # All sizes use the watchdog, including pores_1 (n=30).
         if self.timeout and self.timeout > 0:
             return self._solve_with_watchdog(
-                use_heuristics, use_components, strategy, verbose
+                use_heuristics, use_components, strategy, verbose, memory_job
             )
 
         return self._solve_direct(
@@ -122,7 +124,7 @@ class BaseBMPSolver:
             verbose=verbose,
         )
 
-    def _solve_with_watchdog(self, use_heuristics, use_components, strategy, verbose):
+    def _solve_with_watchdog(self, use_heuristics, use_components, strategy, verbose, memory_job=None):
         q = mp.Queue()
         p = mp.Process(
             target=_worker_solve_entry,
@@ -133,9 +135,13 @@ class BaseBMPSolver:
         best_bw = initial_ub
         best_labeling = self.graph.get_rcm_labeling()
         iterations = clauses = variables = 0
+        status = "TIMEOUT"
         try:
             p.start()
             while True:
+                if memory_job and memory_job.limit_hit():
+                    status = "MEM_LIMIT"
+                    break
                 remaining = self.timeout - (time.monotonic() - started)
                 if remaining <= 0:
                     break
@@ -143,11 +149,17 @@ class BaseBMPSolver:
                     msg = q.get(timeout=min(0.1, remaining))
                 except Empty:
                     if not p.is_alive():
+                        if memory_job and memory_job.limit_hit():
+                            status = "MEM_LIMIT"
+                            break
                         raise RuntimeError(f"Solver worker exited without a result (exitcode={p.exitcode})")
                     continue
                 if msg[0] == "RESULT":
                     return msg[1]
                 if msg[0] == "ERROR":
+                    if memory_job and memory_job.limit_hit():
+                        status = "MEM_LIMIT"
+                        break
                     raise RuntimeError(msg[1])
                 if msg[0] == "PROGRESS":
                     # Component progress uses local vertex IDs, not a global certificate.
@@ -155,10 +167,10 @@ class BaseBMPSolver:
                     if len(msg[3]) == self.n:
                         best_bw, iterations, best_labeling, clauses, variables = msg[1:]
             return SolverResult(
-                bandwidth=best_bw if iterations > 0 and best_bw != initial_ub else "TIMEOUT",
+                bandwidth=best_bw if status == "MEM_LIMIT" or (iterations > 0 and best_bw != initial_ub) else "TIMEOUT",
                 runtime=time.monotonic() - started, iterations=iterations,
                 clauses_count=clauses, vars_count=variables,
-                labeling=best_labeling, status="TIMEOUT",
+                labeling=best_labeling, status=status,
             )
         finally:
             if p.pid is not None:
@@ -222,6 +234,7 @@ class BaseBMPSolver:
                             comp, amo_method=self.amo_method, timeout=0.0
                         )
                         sub_solver.start_time = self.start_time
+                        sub_solver.max_vertices = self.max_vertices
                         sub_solver._queue = getattr(self, "_queue", None)
                         res = sub_solver._solve_single_graph(
                             use_heuristics=use_heuristics,
@@ -310,7 +323,7 @@ class PairwiseIterativeSolver(BaseBMPSolver):
         start_time = getattr(self, "start_time", None) or time.time()
 
         n = self.n
-        if n > 400:
+        if n > self.max_vertices:
             return SolverResult(
                 bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
             )
@@ -445,7 +458,7 @@ class PairwiseIncrementalSolver(PairwiseIterativeSolver):
         start_time = getattr(self, "start_time", None) or time.time()
 
         n = self.n
-        if n > 400:
+        if n > self.max_vertices:
             return SolverResult(
                 bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
             )
@@ -660,7 +673,7 @@ class OrderIterativeSolver(BaseBMPSolver):
         start_time = getattr(self, "start_time", None) or time.time()
 
         n = self.n
-        if n > 400:
+        if n > self.max_vertices:
             return SolverResult(
                 bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
             )
@@ -794,7 +807,7 @@ class OrderIncrementalSolver(OrderIterativeSolver):
         start_time = getattr(self, "start_time", None) or time.time()
 
         n = self.n
-        if n > 400:
+        if n > self.max_vertices:
             return SolverResult(
                 bandwidth="MEM_EXCEED", runtime=0.0, iterations=0, status="MEM_EXCEED"
             )

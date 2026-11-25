@@ -97,3 +97,20 @@ python -m unittest discover -s tests -p test_resume.py -v
 
 Bộ test resume dùng thư viện chuẩn. Bộ watchdog dùng SciPy/PySAT và tiến trình thật,
 bao gồm giới hạn thời gian cho đồ thị nhỏ, truyền lỗi worker và nhận nghiệm SAT.
+
+### Table 7 trên Windows
+
+Chạy từ thư mục BMP bằng PowerShell:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_table7_person1.ps1 -SatOnly
+```
+
+Runner SAT và các worker dùng chung một Windows Job Object với trần **5 GiB bộ nhớ
+commit**. CSV ghi `Memory_Limit_GiB` cho lượt mới. Khi watchdog nhận thông báo Windows
+từ chối cấp phát ở trần này, nó kết thúc lượt, lưu `MEM_LIMIT` và chuyển sang lượt sau.
+Lượt có thể có bandwidth từ nghiệm RCM hoặc nghiệm khả thi đã ghi nhận.
+Resume bỏ qua lượt đã lưu `MEM_LIMIT`. Script nhận diện kết quả OPTIMAL/TIMEOUT từ
+phiên bản trước khi có trần bằng hash cũ cùng cấu hình và dữ liệu tương ứng, và giữ
+nguyên thông tin gốc của chúng. Bỏ `-SatOnly` để chạy thêm CPLEX, Gurobi và CP-SAT
+theo thiết lập riêng của các baseline.

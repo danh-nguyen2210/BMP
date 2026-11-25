@@ -76,14 +76,18 @@ class BenchmarkStore:
     def __exit__(self, *args):
         self.connection.close()
 
-    def should_run(self, job_id, retry_errors=False):
+    def latest_status(self, job_id):
         row = self.connection.execute(
             "SELECT status FROM attempts WHERE job_id=? ORDER BY id DESC LIMIT 1",
             (job_id,),
         ).fetchone()
-        if row is None or row["status"] == "INTERRUPTED":
+        return row["status"] if row else None
+
+    def should_run(self, job_id, retry_errors=False):
+        status = self.latest_status(job_id)
+        if status is None or status == "INTERRUPTED":
             return True
-        return retry_errors and row["status"] in ("ERROR", "DOWNLOAD_ERROR")
+        return retry_errors and status in ("ERROR", "DOWNLOAD_ERROR")
 
     def start(self, job_id, metadata):
         with self.connection:

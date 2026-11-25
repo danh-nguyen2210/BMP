@@ -16,7 +16,7 @@ Hỗ trợ:
 """
 
 import argparse
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 from importlib import metadata as package_metadata
 import math
 import platform
@@ -142,7 +142,7 @@ def _environment():
 def _code_hash():
     return digest({name: file_digest(ROOT / name) for name in (
         "run_benchmarks.py", "src/benchmark_store.py", "src/solvers.py",
-        "src/cardinality.py", "src/graph.py", "src/downloader.py",
+        "src/cardinality.py", "src/graph.py", "src/downloader.py", "src/windows_memory_job.py",
     )})
 
 
@@ -174,9 +174,11 @@ def run_benchmark(
     output_csv="results/benchmark_runs.csv",
     checkpoint="results/benchmark_resume.sqlite3", instances=None,
     solver_keys=None, session_hours=None, max_jobs=None, retry_errors=False,
-    stop_file=None,
+    stop_file=None, size_limit=400, memory_job=None, reuse_uncapped_hash=None,
 ):
     """Resume between solver jobs, not inside an unfinished SAT search."""
+    if size_limit < 1:
+        raise ValueError("size-limit must be positive")
     if not math.isfinite(timeout) or timeout <= 0:
         raise ValueError("timeout phải là số dương hữu hạn.")
     if session_hours is not None and (not math.isfinite(session_hours) or session_hours <= 0):
@@ -220,7 +222,7 @@ def run_benchmark(
     counters = {"completed": 0, "skipped": 0}
     print(f"Checkpoint: {checkpoint}\nCSV: {output}\nStop-file: {stop_path}")
     print(f"{len(items)} instances × {len(methods)} AMO × {len(selected_solvers)} SAT. "
-          "Resume tự động; n >= 400: LIMIT. Nhấn Ctrl+C để dừng sau lượt hiện tại.", flush=True)
+          f"Resume tự động; n >= {size_limit}: LIMIT. Nhấn Ctrl+C để dừng sau lượt hiện tại.", flush=True)
 
     with BenchmarkStore(checkpoint) as store, _graceful_stop() as stopping:
         def should_stop(reserve=0):
@@ -242,7 +244,7 @@ def run_benchmark(
                 if should_stop():
                     break
                 path = ROOT / item["file"]
-                size_limited = item["paper_n"] >= 400
+                size_limited = item["paper_n"] >= size_limit
                 input_error = None
                 if not size_limited and not path.exists():
                     try:
@@ -268,9 +270,18 @@ def run_benchmark(
                             "Code_SHA256": code_hash, "Environment": versions,
                             "Solver": solver_key, "AMO_Method": method, "Strategy": strategy,
                             "Timeout_s": float(timeout), "Use_Heuristics": True,
-                            "Use_Components": True, "Size_Limit_Exclusive": 400,
+                            "Use_Components": True, "Size_Limit_Exclusive": size_limit,
                         }
                         job_id = digest(identity)
+                        if memory_job:
+                            if reuse_uncapped_hash:
+                                previous = digest(dict(identity, Code_SHA256=reuse_uncapped_hash))
+                                if store.latest_status(previous) in ("OPTIMAL", "TIMEOUT"):
+                                    counters["skipped"] += 1
+                                    print(f"[Resume] Saved before RAM cap: {item['name']} / {solver_key} / {method}", flush=True)
+                                    continue
+                            identity["Memory_Limit_GiB"] = memory_job.gib
+                            job_id = digest(identity)
                         if not store.should_run(job_id, retry_errors=retry_errors):
                             counters["skipped"] += 1
                             print(f"[Resume] Bỏ qua {item['name']} / {solver_key} / {method}", flush=True)
@@ -294,8 +305,8 @@ def run_benchmark(
                             return counters
                         attempt = store.start(job_id, info)
                         print(f"[Run] {item['name']} / {solver_key} / {method}", flush=True)
-                        if size_limited or (graph is not None and graph.n >= 400):
-                            saved(attempt, "LIMIT", {"Reason": "n >= 400", "Runtime_s": 0})
+                        if size_limited or (graph is not None and graph.n >= size_limit):
+                            saved(attempt, "LIMIT", {"Reason": f"n >= {size_limit}", "Runtime_s": 0})
                             continue
                         if input_error:
                             saved(attempt, input_error[0], {"Error": input_error[1]})
@@ -303,8 +314,11 @@ def run_benchmark(
                         started = time.monotonic()
                         try:
                             solver = runtime[1][solver_key](graph, amo_method=method, timeout=timeout)
+                            solver.max_vertices = size_limit - 1
+                            if memory_job:
+                                memory_job.limit_hit()  # discard notifications from a previous job
                             result = solver.solve(use_heuristics=True, use_components=True,
-                                                  strategy=strategy, verbose=False)
+                                                  strategy=strategy, verbose=False, memory_job=memory_job)
                             elapsed = time.monotonic() - started
                             saved(attempt, result.status, {
                                 "Bandwidth": result.bandwidth, "Runtime_s": elapsed,
@@ -333,6 +347,10 @@ def main():
     parser.add_argument("--amo", choices=[*AMO_METHODS, "all"], default="pairwise")
     parser.add_argument("--strategy", choices=["linear", "binary"], default="linear")
     parser.add_argument("--timeout", type=float, default=600.0)
+    parser.add_argument("--size-limit", type=int, default=400, help="Skip graphs with n >= this value")
+    parser.add_argument("--memory-limit-gib", type=float, default=5 if sys.platform == "win32" else None,
+                        help="Windows SAT runner and workers combined, in GiB (Windows default: 5)")
+    parser.add_argument("--reuse-uncapped-hash", help="Keep completed OPTIMAL/TIMEOUT jobs from this previous uncapped build")
     parser.add_argument("--output", default="results/benchmark_runs.csv", help="CSV dạng dài, tự xuất từ checkpoint")
     parser.add_argument("--checkpoint", default="results/benchmark_resume.sqlite3")
     selection = parser.add_mutually_exclusive_group()
@@ -352,10 +370,20 @@ def main():
                          for word in line.split("#", 1)[0].split()]
             if not instances:
                 raise ValueError("instances-file không có instance nào.")
-        run_benchmark(table_filter=args.table, strategy=args.strategy, amo=args.amo,
-                      timeout=args.timeout, output_csv=args.output, checkpoint=args.checkpoint,
-                      instances=instances, solver_keys=args.solvers, session_hours=args.session_hours,
-                      max_jobs=args.max_jobs, retry_errors=args.retry_errors, stop_file=args.stop_file)
+        with ExitStack() as stack:
+            job = None
+            if args.memory_limit_gib is not None:
+                if sys.platform != "win32" or not (0 < args.memory_limit_gib <= 65536):
+                    parser.error("--memory-limit-gib requires Windows and a positive limit up to 65536 GiB")
+                from src.windows_memory_job import WindowsMemoryJob
+                job = WindowsMemoryJob(args.memory_limit_gib)
+                stack.callback(job.close)
+                print(f"[SAT] Windows job memory limit: {job.gib:g} GiB", flush=True)
+            run_benchmark(table_filter=args.table, strategy=args.strategy, amo=args.amo,
+                          timeout=args.timeout, output_csv=args.output, checkpoint=args.checkpoint,
+                          instances=instances, solver_keys=args.solvers, session_hours=args.session_hours,
+                          max_jobs=args.max_jobs, retry_errors=args.retry_errors, stop_file=args.stop_file,
+                          size_limit=args.size_limit, memory_job=job, reuse_uncapped_hash=args.reuse_uncapped_hash)
     except (ValueError, RuntimeError, OSError) as exc:
         parser.exit(1, f"Lỗi: {exc}\n")
 
